@@ -57,11 +57,13 @@ export default function Nav() {
           Hi, i&#39;m Atiq 👋
         </h1>
         <h2 className="text-xl lg:text-start">
-          Front-End Developer, founder, and Quality nerd.
+          Senior Software Engineer, Aliio Inc. 🚀
         </h2>
         <p className="text-lg lg:text-start text-muted-foreground">
-          I build seamless, user-first applications and web experiences that
-          bridge the gap between tech and people.
+        5+ Years Experienced Software Engineer <br />
+Skilled in MERN, LAMP, CMS, PWAs, Workflow Automation <br />
+Saved $60k through automation <br />
+Increased revenue by 160% with AI Chatbot
         </p>
       </div>
       <nav className="lg:flex hidden">

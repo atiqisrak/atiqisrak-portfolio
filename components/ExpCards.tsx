@@ -12,69 +12,98 @@ import { MoveRight } from "lucide-react";
 
 const jobPositions = [
   {
-    timeline: "Feb 2022 — Present",
-    currentPosition: "Co-founder, Engineering & Development",
-    place: "Swoop Exchange",
+    timeline: "June 2023 — Present",
+    currentPosition: "Senior Software Engineer & Tech Team Lead",
+    place: "Webable Digital",
     previousPositions: [""],
     description:
-      "Co-founded Swoop Exchange and led its Engineering & Development, guiding the project's technical execution and strategic vision. My role was hands-on, involving the development, design, and coding of essential components. Simultaneously, I focused on directing the project's technical path.",
+      "Led a 12-member team, enhancing collaboration and productivity through Agile practices. Spearheaded initiatives in Node.js, Express.js, MongoDB, and AWS, reducing project delivery time by 40%. Implemented CI/CD pipelines with GitHub Actions, enhancing development speed and reliability.",
     skills: [
-      "Typescript",
-      "JavaScript",
-      "CSS",
+      "TypeScript",
+      "Node.js",
+      "React",
+      "Next.js",
       "Tailwind CSS",
-      "MUI",
-      "HTML",
-      "Figma",
-      "UI/UX Design",
-      "Blockchain tech",
-      "Project Management",
-      "Planning",
+      "GraphQL",
+      "RESTful APIs",
+      "Agile (Scrum, Kanban)",
+      "CI/CD",
+      "AWS (EC2, S3, RDS)",
       "Leadership",
-      "Testing & QA",
+      "Mentorship",
+    ],
+    recentProjects: [
+      {
+        title: "MAVE CMS (PAAS | API First Enterprise software)",
+        description:
+          "As Product Owner & Lead Developer, implemented a headless CMS using MACH architecture. Boosted team efficiency by 30% and improved project delivery time by 20% through Agile methodologies.",
+        technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      },
+      {
+        title: "Aranya (E-Commerce)",
+        description:
+          "Developed a fully functional e-commerce platform using Next.js, Redux, and Cloudinary for media management. Integrated CDN for enhanced performance and scalability, increasing load times by 35% and enhancing user experience.",
+        technologies: ["Next.js", "Redux", "Cloudinary"],
+      },
+      {
+        title: "UHL (Hospital Management System)",
+        description:
+          "Designed and implemented a comprehensive hospital management system with features including doctor appointments, report delivery, and patient management. Utilized Next.js and Redux for frontend, and Node.js for backend services, resulting in a 40% increase in system efficiency and user satisfaction.",
+        technologies: ["Next.js", "Redux", "Node.js"],
+      },
     ],
   },
   {
-    timeline: "Aug 2016 — Present",
-    currentPosition: "Head of QA",
-    place: "Lykomitros Steel",
-    previousPositions: [
-      "Quality Assurance Engineer",
-      "QA/QC Administrative Support",
-    ],
-    description:
-      "Lead the QA department, focusing on renewable energy components in steel manufacturing. Maintained industry and client standards, ensuring product integrity for renewable energy.",
-    skills: [
-      "ISO Compliance",
-      "Quality Assurance",
-      "Engineering Management",
-      "ISO 9001",
-      "ISO 45001",
-      "ISO 14001",
-      "Requirement Assessment",
-      "Auditing",
-    ],
-  },
-  {
-    timeline: "Nov 2013 - May 2014",
-    currentPosition: "Digital Systems Admin - Internship",
-    place: "OTE Group (HTO)",
+    timeline: "August 2020 — March 2023",
+    currentPosition: "Full Stack Web Developer, Product & Engineering",
+    place: "Navana Group",
     previousPositions: [""],
     description:
-      "Gained valuable experience in digital systems administration, focusing on the management of contractors and capital.",
+      "Led web application development for Fortune 500 companies, using React, Node.js, and PostgreSQL. Surpassed revenue goals by 150% and enhanced PWAs for multinational brands, improving performance scores by 45%-56%. Implemented streamlined processes and resource optimization with Docker and AWS, saving over $20K.",
     skills: [
-      "SQL",
-      "Administration",
-      "Problem-Solving",
-      "Computer Systems",
-      "System documentation",
-      "Networking",
-      "Cloud Computing",
-      "Automation",
-      "Scripting",
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "PWA Development",
+      "Resource Optimization",
+      "Team Leadership",
+    ],
+    recentProjects: [
+      {
+        title: "Gloria Jean’s Coffees Bangladesh (Web App | E-commerce)",
+        description:
+          "As Front-end Engineer & Head of Product R&D, optimized performance with MERN stack technologies. Implemented server load balancing and automation, driving a 27% increase in sales and onboarding 170% more clients.",
+        technologies: ["React", "Node.js", "MongoDB", "Express"],
+      },
+      {
+        title: "NAVBOT (AI CRM Chatbot)",
+        description:
+          "Developed an AI Chatbot for CRM, providing comprehensive management solutions for restaurant management at Gloria Jean’s and vehicle servicing reservation and queue automation at Toyota. Utilized Node.js and NLP, automating customer interactions and reducing manual workload by 50%.",
+        technologies: ["Node.js", "NLP", "Express", "MongoDB"],
+      },
+    ],
+  },
+  {
+    timeline: "February 2019 — July 2020",
+    currentPosition: "Frontend Web Developer",
+    place: "TechCare Inc.",
+    previousPositions: [""],
+    description:
+      "Created over 120 website templates using React and Next.js, achieving 863,000+ downloads and 430,000+ purchases. Integrated Lottiefiles & GSAP for interactive animations, increasing sales by 27% and onboarding 170% more clients. Awarded Best Employer in 2020 for exceptional contributions and team leadership.",
+    skills: [
+      "React",
+      "Next.js",
+      "Lottiefiles",
+      "GSAP",
+      "Template Development",
+      "Interactive Animations",
+      "Team Leadership",
     ],
   },
 ];
+
 
 export default function ExpCard() {
   return (

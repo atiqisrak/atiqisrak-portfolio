@@ -10,34 +10,58 @@ export default function About() {
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-start text-muted-foreground lg:px-6">
-          I embarked on my tech journey at 17, diving into web development with
-          a passion for bringing ideas to life. This passion led me to design
-          and develop various websites as a freelancer. After military service,
-          I ventured into quality assurance within the engineering sector,
-          focusing on renewable energy projects.
+          I started my tech journey at 17, diving into web development with a
+          passion for bringing ideas to life. Over the years, I've designed and
+          developed various websites as a freelancer, which led me to work with
+          advertising agencies, startups, large corporations, and digital
+          product studios.
         </p>
         <p className="text-start  text-muted-foreground lg:px-6">
-          In parallel, my path took an exciting turn into the Web3 space,
-          co-founding{" "}
+          Currently, I work as a Senior Software Engineer and Tech Team Lead at
+          Webable Digital. Leading a 12-member team, I drive strategic
+          innovations using technologies like Node.js, Express.js, MongoDB, and
+          AWS. Some of my recent projects include{" "}
           <a
             className="no-wrap text-primary dark:text-white"
-            href="https://swoop.exchange"
+            href="https://app.aliio.tech"
             target="blank"
             rel="noopener noreferrer"
           >
-            Swoop Exchange
+            Mave CMS
           </a>{" "}
-          two years ago, in a mission to tackle the fragmentation of liquidity
-          and protocols and simplify the Decentralized Finance onboarding
-          process for the next billion users. Our platform has quickly reached
-          critical milestones, boasting a trading volume of millions USD and
-          attracting over 4,000 monthly active users.
+          , a headless CMS utilizing MACH architecture, and Aranya, a fully
+          functional e-commerce platform that improved load times by 35%.
         </p>
         <p className="text-start text-muted-foreground lg:px-6">
-          Outside of work, I&#39;m an avid reader of blockchain and cryptography
-          and enjoy my time outdoors. Looking forward, I aim to leverage my
-          frontend development and quality assurance expertise to contribute to
-          impactful tech ventures.
+          Before that, I was at Navana Group, where I led web application
+          development for Fortune 500 companies. We surpassed revenue goals by
+          150% and saved over $20K through streamlined processes. At <a
+            className="no-wrap text-primary dark:text-white"
+            href="https://gloriajeanscoffeesbd.com/menu"
+            target="blank"
+            rel="noopener noreferrer"
+          >
+            Gloria
+            Jean’s Coffees Bangladesh
+          </a>{" "}, I optimized system performance with MERN
+          stack technologies, driving a 27% increase in sales. I also developed
+          NAVBOT, an AI CRM Chatbot that automated customer interactions,
+          enhancing operational efficiency.
+        </p>
+        <p className="text-start text-muted-foreground lg:px-6">
+          At TechCare Inc., I created over 120 website {" "}
+          <a
+            className="no-wrap text-primary dark:text-white"
+            href="https://templately.com/platform/elementor"
+            target="blank"
+            rel="noopener noreferrer"
+          >
+            templates
+          </a>{" "}
+          using React and
+          Next.js, achieving 863,000+ downloads and 430,000+ purchases. My
+          innovative approach to animations increased sales by 27%, earning me
+          the Best Employer Award in 2020.
         </p>
       </div>
     </section>

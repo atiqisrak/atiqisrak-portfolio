@@ -7,9 +7,9 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://meikopoulos.com"),
+  metadataBase: new URL("https://atiqisrak.me"),
   alternates: {
-    canonical: "https://meikopoulos.com",
+    canonical: "https://atiqisrak.me",
   },
   title: "Atiq Israk",
   description:
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Atiq Israk",
     description:
       "Atiq Israk is a Front-End Software Engineer, founder, and Quality nerd.",
-    url: "https://meikopoulos.com",
+    url: "https://atiqisrak.me",
     images: [
       {
         url: "./og-large-meik.jpg",
@@ -43,6 +43,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

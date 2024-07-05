@@ -12,46 +12,82 @@ import { MoveUpRight } from "lucide-react";
 
 const jobProjects = [
   {
-    imagePath: "/swoop-og-banner.webp",
-    title: "Swoop Exchange - Landing Page",
+    imagePath: "/mave-cms.png",
+    title: "MAVE CMS - Headless CMS",
     description:
-      "Swoop's landing page highlights the platform's use cases and solutions. Swoop Exchange is a Meta-DEX Aggregator that automatically sources, ranks and routes quotes from the best DEX Aggregators and Bridges, ensuring the best prices for on-chain and cross-chain swaps. Swoop Exchange has achieved millions in USD volume and currently has around 4000 monthly users with 0 paid marketing.",
+      "MAVE CMS is an API First Enterprise software utilizing MACH architecture. As the Product Owner and Lead Developer, I spearheaded the development of this transformative headless CMS, integrating a visual page builder and ensuring scalability and security. This project set new standards in industry efficiency and innovation, enhancing team productivity by 30% and reducing project delivery time by 20%.",
     skills: [
+      "React",
       "Next.js",
-      "Framer",
-      "Shadcn/ui",
-      "Typescript",
-      "JavaScript",
-      "Vercel",
-      "Figma",
-    ],
-    link: "https://swoop.exchange",
-  },
-  {
-    imagePath: "/app-front-1.png",
-    title: "Swoop Exchange - Application",
-    description:
-      "Swoop Exchange is a next generation Meta Decentralized Exchange and Bridge Aggregator. By Aggregating the Aggregators, Bridges, and Liquidity across chains, and off-chain it solves protocol and liquidity fragmentation, significantly improving UX. Provides access to: 450,000+ Tokens, 7+ Aggregators, 13+ Bridges, 50+ DEXs, 280+ Liquidity Sources and 16+ Blockchains.",
-    skills: [
-      "Next.js",
-      "Typescript",
-      "JavaScript",
-      "MUI",
+      "TypeScript",
       "Tailwind CSS",
-      "Vercel",
-      "Figma",
+      "GraphQL",
+      "AWS",
     ],
-    link: "https://app.mtopswap.com",
+    link: "https://app.aliio.tech",
   },
   {
-    imagePath: "/meikopoulos.com_PC.png",
-    title: "meikopoulos.com",
+    imagePath: "/aranya-ecommerce.png",
+    title: "Aranya - E-Commerce Platform",
     description:
-      "The portfolio webpage you are looking at right now. Based on Brittany Chiang's website (they awesome). Coded in Visual Studio Code.",
-    skills: ["Typescript", "JavaScript", "Tailwind CSS", "Vercel"],
-    link: "https://github.com/atiqisrak/atiqisrak-portfolio",
+      "Aranya is a fully functional e-commerce platform developed with Next.js and Redux. I contributed to both frontend development and backend architecture, utilizing Cloudinary for media management and CDN integration for enhanced performance and scalability. This project increased load times by 35% and significantly enhanced user experience.",
+    skills: [
+      "Next.js",
+      "Redux",
+      "Cloudinary",
+      "JavaScript",
+      "TypeScript",
+      "CDN",
+    ],
+    link: "https://www.aranya.com.bd/",
+  },
+  {
+    imagePath: "/uhl-hms.png",
+    title: "UHL - Hospital Management System",
+    description:
+      "UHL is a comprehensive hospital management system designed to handle everything from doctor appointments to report delivery and patient management. Developed with Next.js, Redux for the frontend, and Node.js for backend services, this system improved efficiency and user satisfaction by 40%.",
+    skills: [
+      "Next.js",
+      "Redux",
+      "Node.js",
+      "JavaScript",
+      "TypeScript",
+      "MongoDB",
+    ],
+    link: "https://www.uhlbd.com/",
+  },
+  {
+    imagePath: "/gloria-jeans.png",
+    title: "Gloria Jean’s Coffees Bangladesh - Web App",
+    description:
+      "As the Front-end Engineer and Head of Product R&D, I optimized the performance of Gloria Jean’s Coffees BD franchise web app using MERN stack technologies. Implemented server load balancing and automation, driving a 27% increase in sales and onboarding 170% more clients.",
+    skills: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "JavaScript",
+      "TypeScript",
+    ],
+    link: "https://gloriajeanscoffeesbd.com/menu",
+  },
+  {
+    imagePath: "/navbot-ai.png",
+    title: "NAVBOT - AI CRM Chatbot",
+    description:
+      "NAVBOT is an AI chatbot developed for CRM, providing comprehensive management solutions for various industries including restaurants and automotive services. Utilizing Node.js and natural language processing (NLP), NAVBOT automated customer interactions, reducing manual workload by 50% and boosting customer satisfaction by 35%.",
+    skills: [
+      "Node.js",
+      "NLP",
+      "Express",
+      "MongoDB",
+      "JavaScript",
+      "TypeScript",
+    ],
+    link: "https://linkedin.com/in/atiq-israk",
   },
 ];
+
 
 export default function Projects() {
   return (
