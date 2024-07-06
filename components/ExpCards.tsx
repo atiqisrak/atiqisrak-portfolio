@@ -148,7 +148,7 @@ export default function ExpCard() {
       <div className="lg:px-12 mt-12">
         <a
           className="inline-flex items-center font-medium leading-tight text-foreground group"
-          href="/am-resume-2024.pdf"
+          href="/public/Atiq_Israk_Niloy_Resume.pdf"
         >
           <span className="border-b border-transparent pb-px transition hover:border-primary motion-reduce:transition-none">
             View Full Resume
