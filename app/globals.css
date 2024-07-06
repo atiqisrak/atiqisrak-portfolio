@@ -7,18 +7,18 @@
     @apply fixed inset-0 pointer-events-none;
     background-image: radial-gradient(
       circle at var(--mouse-x) var(--mouse-y),
-      rgba(63, 81, 181, 0.3) 0%,
-      rgba(63, 81, 181, 0.15) 30%,
-      rgba(63, 81, 181, 0) 50%
+      rgba(252, 109, 38, 0.3) 0%,
+      rgba(252, 109, 38, 0.15) 30%,
+      rgba(252, 109, 38, 0) 50%
     );
 
     /* Media query for touch devices */
     @media (hover: none) and (pointer: coarse) {
       background-image: radial-gradient(
         circle at top left,
-        rgba(63, 81, 181, 0.3) 0%,
-        rgba(63, 81, 181, 0.15) 30%,
-        rgba(63, 81, 181, 0) 50%
+        rgba(252, 109, 38, 0.3) 0%,
+        rgba(252, 109, 38, 0.15) 30%,
+        rgba(252, 109, 38, 0) 50%
       );
     }
   }
@@ -32,9 +32,9 @@
     --card-foreground: 222.2 50% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 50% 10%;
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 18.2 94.5% 57.3%; /* #FC6D26 */
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
+    --secondary: 252.5 85.7% 48.8%; /* #5017F2 */
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -44,7 +44,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 18.2 94.5% 57.3%; /* #FC6D26 */
     --radius: 1rem;
   }
 
@@ -55,9 +55,9 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 50% 10%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
+    --primary: 18.2 94.5% 57.3%; /* #FC6D26 */
     --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 252.5 85.7% 48.8%; /* #5017F2 */
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
@@ -67,7 +67,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --ring: 18.2 94.5% 57.3%; /* #FC6D26 */
   }
 }
 

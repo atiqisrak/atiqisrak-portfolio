@@ -54,7 +54,7 @@ const jobPositions = [
     ],
   },
   {
-    timeline: "August 2020 — March 2023",
+    timeline: "Aug 2020 — Mar 2023",
     currentPosition: "Full Stack Web Developer, Product & Engineering",
     place: "Navana Group",
     previousPositions: [""],
@@ -86,7 +86,7 @@ const jobPositions = [
     ],
   },
   {
-    timeline: "February 2019 — July 2020",
+    timeline: "Feb 2019 — July 2020",
     currentPosition: "Frontend Web Developer",
     place: "TechCare Inc.",
     previousPositions: [""],
@@ -148,7 +148,11 @@ export default function ExpCard() {
       <div className="lg:px-12 mt-12">
         <a
           className="inline-flex items-center font-medium leading-tight text-foreground group"
-          href="/public/Atiq_Israk_Niloy_Resume.pdf"
+          href="https://drive.google.com/file/d/1Aj7trMnTxtX0Hq-9D1OOBrHAJ9nsQ4kx/view?usp=sharing"
+          // open in new tab
+          target="_blank"
+          rel="noopener noreferrer"
+          
         >
           <span className="border-b border-transparent pb-px transition hover:border-primary motion-reduce:transition-none">
             View Full Resume

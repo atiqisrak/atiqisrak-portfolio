@@ -54,7 +54,7 @@ export default function Nav() {
           </Avatar>
         </div>
         <h1 className="text-[42px] font-bold lg:text-start">
-          Hi, i&#39;m Atiq 👋
+          Hi, I&#39;m Atiq Israk 👋
         </h1>
         <h2 className="text-xl lg:text-start">
           Senior Software Engineer, Aliio Inc. 🚀
@@ -95,7 +95,7 @@ Increased revenue by 160% with AI Chatbot
         </Button>
         <Button variant="outline" size="icon">
           <a
-            href="https://linkedin.com/in/atiq-israk"
+            href="https://linkedin.com/in/atiq-israk?ref=atiqisrak.me"
             target="_blank"
             rel="noopener noreferrer"
           >
