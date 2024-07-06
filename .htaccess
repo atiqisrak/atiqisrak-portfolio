@@ -9,12 +9,17 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# Handle Next.js routing and rendering
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
+# Serve static files with cache control headers
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|eot|ttf|otf)$">
+  Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
 
 # Serve static files from the /out directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /out/$1 [L]
+
+# Handle Next.js routing and rendering
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]

@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve out",
     "lint": "next lint",
     "export": "next export",
-    "serve": "npx serve@latest out"
+    "serve": "npx serve out"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
