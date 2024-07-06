@@ -11,7 +11,7 @@ export default function About() {
       <div className="flex flex-col gap-4">
         <p className="text-start text-muted-foreground lg:px-6">
           I started my tech journey at 17, diving into web development with a
-          passion for bringing ideas to life. Over the years, I've designed and
+          passion for bringing ideas to life. Over the years, I have designed and
           developed various websites as a freelancer, which led me to work with
           advertising agencies, startups, large corporations, and digital
           product studios.
