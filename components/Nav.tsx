@@ -16,13 +16,15 @@ export default function Nav() {
     "experience",
     "projects",
     "contact",
+    "Product Hunt",
   ]);
 
   const navItems: NavItem[] = [
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Experience", href: "/#experience" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Contact", href: "/#contact" },
+    { name: "Product Hunt", href: "/producthunter" },
   ];
 
   const getNavItemClasses = (href: string) => {
