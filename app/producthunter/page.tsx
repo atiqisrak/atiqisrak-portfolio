@@ -46,7 +46,7 @@ export default function ProductHunter() {
             <h1 className="text-3xl font-bold">Get Your Product Noticed on Product Hunt – For Free!</h1>
             <section>
               <h2 className="text-2xl font-semibold">Why Choose My Free Product Hunt Services?</h2>
-              <p>Are you launching a new product and want to make a splash on Product Hunt? I’m here to help you succeed without any cost! With a deep understanding of what makes products stand out on Product Hunt, I offer comprehensive services to ensure your product gets the attention it deserves.</p>
+              <p>Are you launching a new product and want to make a splash on Product Hunt? I&apos;m here to help you succeed without any cost! With a deep understanding of what makes products stand out on Product Hunt, I offer comprehensive services to ensure your product gets the attention it deserves.</p>
             </section>
             <section>
               <h2 className="text-2xl font-semibold">What I Offer</h2>
@@ -83,7 +83,8 @@ export default function ProductHunter() {
             </section>
             <section>
               <h2 className="text-2xl font-semibold">Get Started Today!</h2>
-              <p>Ready to make your product stand out on Product Hunt? Contact me today to get started. Let's make your launch a success together!</p>
+              <p>Ready to make your product stand out on Product Hunt? Contact me today to get started. Let&apos;s 
+                make your launch a success together!</p>
 
 
               {/* <p><strong>Contact Information:</strong></p>
