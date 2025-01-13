@@ -59,7 +59,7 @@ export default function Nav() {
           Hi, I&#39;m Atiq Israk 👋
         </h1>
         <h2 className="text-xl lg:text-start">
-          Senior Software Engineer, Aliio Inc. 🚀
+          Senior Software Engineer, EtherTech Ltd. 🚀
         </h2>
         <p className="text-lg lg:text-start text-muted-foreground">
         5+ Years Experienced Software Engineer <br />

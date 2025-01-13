@@ -23,7 +23,7 @@ export default function About() {
           AWS. Some of my recent projects include{" "}
           <a
             className="no-wrap text-primary dark:text-white"
-            href="https://app.aliio.tech"
+            href="https://mave.ethertech.ltd"
             target="blank"
             rel="noopener noreferrer"
           >

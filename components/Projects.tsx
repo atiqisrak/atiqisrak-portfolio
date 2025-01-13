@@ -24,7 +24,7 @@ const jobProjects = [
       "GraphQL",
       "AWS",
     ],
-    link: "https://app.aliio.tech",
+    link: "https://mave.ethertech.ltd",
   },
   {
     imagePath: "/aranya-ecommerce.png",
