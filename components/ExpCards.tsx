@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveRight } from "lucide-react";
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const jobPositions = [
   {
@@ -102,8 +104,17 @@ const jobPositions = [
   },
 ];
 
+const ExpCards = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
 
-export default function ExpCard() {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <section id="experience" className="scroll-mt-16 lg:mt-16">
       <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
@@ -111,45 +122,57 @@ export default function ExpCard() {
           Experience
         </h2>
       </div>
-      <>
+      <div className="space-y-6">
         {jobPositions.map((job, index) => (
-          <Card
+          <motion.div
             key={index}
-            className="lg:p-6 mb-8 flex flex-col lg:flex-row w-full min-h-fit gap-0 lg:gap-5 border-transparent hover:border dark:lg:hover:border-t-blue-900 dark:lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:hover:drop-shadow-lg lg:hover:bg-slate-100/50 lg:hover:border-t-blue-200"
+            ref={ref}
+            variants={cardVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            className="bg-card rounded-lg p-6 hover:shadow-lg transition-all border border-muted hover:border-primary"
           >
-            <CardHeader className="h-full w-full p-0">
-              <CardTitle className="text-base text-slate-400 whitespace-nowrap">
-                {job.timeline}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col p-0">
-              <p className="text-primary font-bold">
-                {job.currentPosition} • {job.place}
-              </p>
-              {job.previousPositions.map((position, index) => (
-                <p key={index} className="text-slate-400 text-sm font-bold">
-                  {position}
-                </p>
-              ))}
-              <CardDescription className="py-3 text-muted-foreground">
-                {job.description}
-              </CardDescription>
-              <CardFooter className="p-0 flex flex-wrap gap-2">
-                {job.skills.map((skill, index) => (
-                  <Badge key={index}>{skill}</Badge>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-xl font-bold">{job.currentPosition}</h3>
+                  <p className="text-primary">{job.place}</p>
+                </div>
+                <span className="text-sm text-muted-foreground">{job.timeline}</span>
+              </div>
+              
+              <p className="text-muted-foreground">{job.description}</p>
+              
+              {job.previousPositions && job.previousPositions.length > 0 && (
+                <div className="space-y-2">
+                  <p className="font-medium">Previous Roles:</p>
+                  {job.previousPositions.map((position, idx) => (
+                    <p key={idx} className="text-sm text-muted-foreground">
+                      {position}
+                    </p>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex flex-wrap gap-2">
+                {job.skills.map((skill, idx) => (
+                  <Badge key={idx} variant="secondary">
+                    {skill}
+                  </Badge>
                 ))}
-              </CardFooter>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </motion.div>
         ))}
-      </>
-      <div className="lg:px-12 mt-12">
+      </div>
+      
+      <div className="mt-12">
         <a
           className="inline-flex items-center font-medium leading-tight text-foreground group"
           href="https://drive.google.com/file/d/1k9u8kSZBKRf637oK06XbSLjdqR8oc4bJ/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          
         >
           <span className="border-b border-transparent pb-px transition hover:border-primary motion-reduce:transition-none">
             View Full Resume
@@ -159,4 +182,6 @@ export default function ExpCard() {
       </div>
     </section>
   );
-}
+};
+
+export default ExpCards;

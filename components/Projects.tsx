@@ -9,6 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveUpRight } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from "next/link";
 
 const jobProjects = [
   {
@@ -88,8 +91,34 @@ const jobProjects = [
   },
 ];
 
+// First, update the interface to match your actual project data
+interface Project {
+  imagePath: string;
+  title: string;
+  description: string;
+  skills: string[];
+  link: string;
+}
 
 export default function Projects() {
+  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>(jobProjects);
+  
+  // Remove the githubStats state and useEffect for GitHub stats
+  // Keep only the filtering useEffect
+  useEffect(() => {
+    if (selectedFilter === 'all') {
+      setFilteredProjects(jobProjects);
+    } else {
+      const filtered = jobProjects.filter(project => 
+        project.skills.some(skill => 
+          skill.toLowerCase().includes(selectedFilter.toLowerCase())
+        )
+      );
+      setFilteredProjects(filtered);
+    }
+  }, [selectedFilter]);
+
   return (
     <section id="projects" className="scroll-mt-16 lg:mt-16">
       <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
@@ -97,44 +126,79 @@ export default function Projects() {
           Projects
         </h2>
       </div>
-      <>
-        {jobProjects.map((project, index) => (
-          <a
-            key={index}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:cursor-pointer"
+
+      {/* Filter buttons */}
+      <div className="flex gap-4 mb-8 flex-wrap">
+        {['all', 'web', 'mobile', 'backend', 'ai'].map((filter) => (
+          <button
+            key={filter}
+            onClick={() => setSelectedFilter(filter)}
+            className={`px-4 py-2 rounded-lg transition-colors ${
+              selectedFilter === filter
+                ? 'bg-primary text-white'
+                : 'bg-secondary hover:bg-secondary/80'
+            }`}
           >
-            <Card className="group lg:p-6 mb-8 flex flex-col lg:flex-row w-full min-h-fit gap-0 lg:gap-5 border-transparent hover:border dark:lg:hover:border-t-blue-900 dark:lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:hover:drop-shadow-lg lg:hover:bg-slate-100/50 lg:hover:border-t-blue-200">
-              <CardHeader className="h-full w-full lg:w-1/3 mb-4 p-0">
+            {filter.charAt(0).toUpperCase() + filter.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      {/* Projects grid */}
+      <div className="space-y-6">
+        <AnimatePresence mode="wait">
+          {filteredProjects.map((project) => (
+            <motion.div
+              key={project.title}
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-card rounded-lg overflow-hidden border border-muted hover:border-primary transition-colors"
+            >
+              <div className="md:flex">
                 <Image
                   src={project.imagePath}
-                  alt={`Screenshot of ${project.title}`}
+                  alt={project.title}
                   width={1920}
                   height={1080}
-                  priority
-                  className="bg-[#141414] mt-2 border border-muted-foreground rounded-[0.5rem]"
+                  className="w-full md:w-1/3 h-48 md:h-auto object-cover"
                 />
-              </CardHeader>
-              <CardContent className="flex flex-col p-0 w-full lg:w-2/3">
-                <p className="text-primary font-bold">
-                  {project.title}{" "}
-                  <MoveUpRight className="ml-1 inline-block h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 motion-reduce:transition-none" />
-                </p>
-                <CardDescription className="py-3 text-muted-foreground">
-                  {project.description}
-                </CardDescription>
-                <CardFooter className="p-0 flex flex-wrap gap-2">
-                  {project.skills.map((skill, index) => (
-                    <Badge key={index}>{skill}</Badge>
-                  ))}
-                </CardFooter>
-              </CardContent>
-            </Card>
-          </a>
-        ))}
-      </>
+                
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.skills.map((skill, index) => (
+                      <Badge key={index} variant="secondary">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-auto">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-primary hover:underline"
+                    >
+                      View Project <MoveUpRight className="ml-1 h-4 w-4" />
+                    </a>
+                    <Link
+                      href={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="inline-flex items-center text-primary hover:underline"
+                    >
+                      Case Study <MoveUpRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
     </section>
   );
 }
