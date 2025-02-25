@@ -17,6 +17,7 @@ const jobProjects = [
   {
     imagePath: "/mave-cms.png",
     title: "MAVE CMS - Enterprise SaaS Platform",
+    slug: "mave-cms",
     description:
       "Led the product strategy and development of MAVE CMS, an enterprise-grade headless CMS utilizing MACH architecture. Spearheaded stakeholder negotiations, defined product roadmap, and implemented data-driven feature prioritization. Successfully shortened deployment cycles by 30% while maintaining high engineering quality and achieving a 20% reduction in operational costs.",
     skills: [
@@ -32,6 +33,7 @@ const jobProjects = [
   {
     imagePath: "/mave-lms.png",
     title: "MAVE LMS - AI-Driven Learning Platform",
+    slug: "mave-lms",
     description:
       "Defined and executed the product vision for an innovative learning management system. Implemented analytics dashboards and AI-driven features that increased course completion rates by 40% and reduced dropout rates by 25%. Led cross-functional teams in developing flexible subscription models and content modularity.",
     skills: [
@@ -47,6 +49,7 @@ const jobProjects = [
   {
     imagePath: "/aranya-ecommerce.png",
     title: "Aranya - E-Commerce Transformation",
+    slug: "aranya",
     description:
       "Led end-to-end product discovery and user journey optimization for Aranya's e-commerce platform. Collaborated with UI/UX teams to identify and eliminate friction points, resulting in a 35% improvement in load times and 20% increase in conversion rates through strategic phased rollout.",
     skills: [
@@ -62,6 +65,7 @@ const jobProjects = [
   {
     imagePath: "/uhl-hms.png",
     title: "UHL - Healthcare Digital Transformation",
+    slug: "uhl",
     description:
       "Guided product requirements and digital transformation strategy for UHL's hospital management system. Streamlined patient pathways from appointment scheduling to report access, resulting in 40% operational efficiency improvement. Led user acceptance testing with medical staff to optimize service delivery.",
     skills: [
@@ -77,6 +81,7 @@ const jobProjects = [
   {
     imagePath: "/navbot-ai.png",
     title: "NAVBOT - AI-Powered CRM Solution",
+    slug: "navbot",
     description:
       "Conceptualized and led the development of an innovative AI-powered CRM chatbot for the restaurant and automotive industries. Defined the product roadmap, focusing on automated workflows and intelligent customer interaction. Achieved significant improvements in response times and customer satisfaction metrics.",
     skills: [
@@ -89,12 +94,45 @@ const jobProjects = [
     ],
     link: "https://linkedin.com/in/atiq-israk",
   },
+  {
+    imagePath: "/gloria-jeans.png",
+    title: "Gloria Jean's Digital Transformation",
+    slug: "gloria-jeans",
+    description:
+      "Led end-to-end product discovery and user journey optimization for Gloria Jean's e-commerce platform. Collaborated with UI/UX teams to identify and eliminate friction points, resulting in a 35% improvement in load times and 20% increase in conversion rates through strategic phased rollout.",
+    skills: [
+      "E-commerce Strategy",
+      "User Journey Mapping",
+      "Conversion Optimization",
+      "A/B Testing",
+      "Performance Analytics",
+      "UX Design",
+    ],
+    link: "https://gloriajeanscoffeesbd.com/menu",
+  },
+  {
+    imagePath: "/techcare.png",
+    title: "TechCare Web Template System",
+    slug: "techcare",
+    description:
+      "Developed and maintained a comprehensive web template system that achieved over 863,000 global downloads. Led the implementation of responsive design patterns and accessibility features, resulting in significant improvements in developer productivity and user satisfaction.",
+    skills: [
+      "Web Development",
+      "UI/UX Design",
+      "Accessibility",
+      "Performance Optimization",
+      "Documentation",
+      "Open Source",
+    ],
+    link: "https://github.com/atiqisrak",
+  },
 ];
 
 // First, update the interface to match your actual project data
 interface Project {
   imagePath: string;
   title: string;
+  slug: string;
   description: string;
   skills: string[];
   link: string;
@@ -187,7 +225,7 @@ export default function Projects() {
                       View Project <MoveUpRight className="ml-1 h-4 w-4" />
                     </a>
                     <Link
-                      href={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      href={`/projects/${project.slug}`}
                       className="inline-flex items-center text-primary hover:underline"
                     >
                       Case Study <MoveUpRight className="ml-1 h-4 w-4" />

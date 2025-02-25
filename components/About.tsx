@@ -36,7 +36,7 @@ export default function About() {
             As a forward-thinking Product Manager with over 5 years of experience, I specialize in translating customer needs into profitable, user-centric solutions. My journey in tech began as a developer, which gives me a unique technical perspective in product management, allowing me to effectively bridge business goals with technical implementation.
           </p>
           <p className="text-start text-muted-foreground lg:px-6">
-            Currently, I serve as the Product Manager at Webable Digital, where I develop product vision and strategy, focusing on user journey optimization and go-to-market execution. I've successfully launched and managed{" "}
+          Currently, I serve as the Product Manager at Webable Digital, where I develop product vision and strategy, focusing on user journey optimization and go-to-market execution. I&apos;ve successfully launched and managed{" "}
             <a
               className="no-wrap text-primary dark:text-white"
               href="https://mave.ethertech.ltd"
@@ -64,12 +64,12 @@ export default function About() {
               target="blank"
               rel="noopener noreferrer"
             >
-              Gloria Jean's Coffees Bangladesh
+              Gloria Jean&apos;s Coffees Bangladesh
             </a>{" "}, 
             I led the implementation of key e-commerce optimizations that boosted sales by 27%. I also conceptualized NAVBOT, an AI CRM Chatbot that revolutionized customer service automation for restaurants and vehicle servicing.
           </p>
           <p className="text-start text-muted-foreground lg:px-6">
-            My background in software development at TechCare Inc., where I developed over 120 web templates with 863,000+ global downloads, provides me with deep technical insights that enhance my product management approach. I'm passionate about balancing revenue vs. cost, defining user journeys, and managing complex roadmaps to deliver high-impact digital products while mentoring cross-functional teams.
+            My background in software development at TechCare Inc., where I developed over 120 web templates with 863,000+ global downloads, provides me with deep technical insights that enhance my product management approach. I&apos;m passionate about balancing revenue vs. cost, defining user journeys, and managing complex roadmaps to deliver high-impact digital products while mentoring cross-functional teams.
           </p>
         </div>
       </section>
