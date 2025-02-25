@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: "https://atiqisrak.me",
     images: [
       {
-        url: "./og-large-meik.jpg",
+        url: "./og-large-meik.webp",
       },
     ],
   },

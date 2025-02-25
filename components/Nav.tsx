@@ -46,27 +46,40 @@ export default function Nav() {
 
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 flex flex-col lg:gap-4">
-      <div className="flex flex-col gap-4 lg:pr-24 mt-6 lg:mt-0">
+      <div className="flex flex-col gap-4 lg:pr-24 mt-6 lg:mt-0 px-4 lg:px-0">
         <div className="w-full flex lg:items-center lg:justify-start">
           <Avatar className="w-24 lg:w-36 h-auto border-2 border-primary bg-secondary">
-            <AvatarImage src="./avatar.png" />
+            <AvatarImage src="./avatar.webp" />
             <AvatarFallback className="w-24 h-24 lg:w-36 lg:h-36 rounded-full border-1 border-primary">
               AM
             </AvatarFallback>
           </Avatar>
         </div>
-        <h1 className="text-[42px] font-bold lg:text-start">
+        <h1 className="text-4xl lg:text-[42px] font-bold lg:text-start">
           Hi, I&#39;m Atiq Israk 👋
         </h1>
-        <h2 className="text-xl lg:text-start">
-          Senior Software Engineer, EtherTech Ltd. 🚀
+        <h2 className="text-xl lg:text-start text-primary font-semibold">
+          Product Manager, Webable Digital 🚀
         </h2>
-        <p className="text-lg lg:text-start text-muted-foreground">
-        5+ Years Experienced Software Engineer <br />
-Skilled in MERN, LAMP, CMS, PWAs, Workflow Automation <br />
-Saved $60k through automation <br />
-Increased revenue by 160% with AI Chatbot
-        </p>
+        <div className="space-y-4 text-muted-foreground">
+          <p className="text-base lg:text-lg leading-relaxed">
+            Product leader with 5+ years of experience in tech, specializing in building innovative digital solutions that drive business growth.
+          </p>
+          <ul className="space-y-2 text-sm lg:text-base">
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+              <span>Led development of MACH-based enterprise platforms</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+              <span>Achieved 160% revenue growth through AI implementation</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+              <span>Reduced operational costs by $60K via automation</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <nav className="lg:flex hidden">
         <ul className="flex flex-col w-max text-start gap-6 uppercase text-xs font-medium">
@@ -85,7 +98,7 @@ Increased revenue by 160% with AI Chatbot
           })}
         </ul>
       </nav>
-      <ul className="flex flex-row gap-6 mt-6 lg:mt-0">
+      <ul className="flex flex-row gap-6 mt-6 lg:mt-0 px-4 lg:px-0">
         <Button variant="outline" size="icon">
           <a
             href="https://github.com/atiqisrak"

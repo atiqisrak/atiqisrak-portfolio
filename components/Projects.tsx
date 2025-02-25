@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const jobProjects = [
   {
-    imagePath: "/mave-cms.png",
+    imagePath: "/mave-cms.webp",
     title: "MAVE CMS - Enterprise SaaS Platform",
     slug: "mave-cms",
     description:
@@ -31,7 +31,7 @@ const jobProjects = [
     link: "https://mave.ethertech.ltd",
   },
   {
-    imagePath: "/mave-lms.png",
+    imagePath: "/mave-lms.webp",
     title: "MAVE LMS - AI-Driven Learning Platform",
     slug: "mave-lms",
     description:
@@ -47,7 +47,7 @@ const jobProjects = [
     link: "https://mave-lms.ethertech.ltd",
   },
   {
-    imagePath: "/aranya-ecommerce.png",
+    imagePath: "/aranya-ecommerce.webp",
     title: "Aranya - E-Commerce Transformation",
     slug: "aranya",
     description:
@@ -63,7 +63,7 @@ const jobProjects = [
     link: "https://www.aranya.com.bd/",
   },
   {
-    imagePath: "/uhl-hms.png",
+    imagePath: "/uhl-hms.webp",
     title: "UHL - Healthcare Digital Transformation",
     slug: "uhl",
     description:
@@ -79,7 +79,7 @@ const jobProjects = [
     link: "https://www.uhlbd.com/",
   },
   {
-    imagePath: "/navbot-ai.png",
+    imagePath: "/navbot-ai.webp",
     title: "NAVBOT - AI-Powered CRM Solution",
     slug: "navbot",
     description:
@@ -95,7 +95,7 @@ const jobProjects = [
     link: "https://linkedin.com/in/atiq-israk",
   },
   {
-    imagePath: "/gloria-jeans.png",
+    imagePath: "/gloria-jeans.webp",
     title: "Gloria Jean's Digital Transformation",
     slug: "gloria-jeans",
     description:
@@ -111,7 +111,7 @@ const jobProjects = [
     link: "https://gloriajeanscoffeesbd.com/menu",
   },
   {
-    imagePath: "/techcare.png",
+    imagePath: "/techcare.webp",
     title: "TechCare Web Template System",
     slug: "techcare",
     description:
@@ -124,7 +124,7 @@ const jobProjects = [
       "Documentation",
       "Open Source",
     ],
-    link: "https://github.com/atiqisrak",
+    link: "https://templately.com/platform/elementor?page=1",
   },
 ];
 
@@ -165,25 +165,9 @@ export default function Projects() {
         </h2>
       </div>
 
-      {/* Filter buttons */}
-      <div className="flex gap-4 mb-8 flex-wrap">
-        {['all', 'web', 'mobile', 'backend', 'ai'].map((filter) => (
-          <button
-            key={filter}
-            onClick={() => setSelectedFilter(filter)}
-            className={`px-4 py-2 rounded-lg transition-colors ${
-              selectedFilter === filter
-                ? 'bg-primary text-white'
-                : 'bg-secondary hover:bg-secondary/80'
-            }`}
-          >
-            {filter.charAt(0).toUpperCase() + filter.slice(1)}
-          </button>
-        ))}
-      </div>
 
       {/* Projects grid */}
-      <div className="space-y-6">
+      <div className="space-y-4">
         <AnimatePresence mode="wait">
           {filteredProjects.map((project) => (
             <motion.div
@@ -194,28 +178,30 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               className="bg-card rounded-lg overflow-hidden border border-muted hover:border-primary transition-colors"
             >
-              <div className="md:flex">
-                <Image
-                  src={project.imagePath}
-                  alt={project.title}
-                  width={1920}
-                  height={1080}
-                  className="w-full md:w-1/3 h-48 md:h-auto object-cover"
-                />
+              <div className="flex flex-col">
+                <div className="relative w-full h-[240px]">
+                  <Image
+                    src={project.imagePath}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                  />
+                </div>
                 
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
+                  <p className="text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.skills.map((skill, index) => (
-                      <Badge key={index} variant="secondary">
+                      <Badge key={index} variant="secondary" className="text-xs">
                         {skill}
                       </Badge>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-4 mt-auto">
+                  <div className="flex items-center gap-4">
                     <a
                       href={project.link}
                       target="_blank"

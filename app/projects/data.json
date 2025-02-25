@@ -1,7 +1,7 @@
 {
     "mave-cms": {
         "title": "MAVE CMS - Enterprise SaaS Platform",
-        "banner": "/mave-cms.png",
+        "banner": "/mave-cms.webp",
         "overview": "MAVE CMS is an enterprise-grade headless CMS built on MACH architecture, designed to revolutionize content management for large organizations.",
         "challenge": "Enterprise organizations struggled with traditional CMS platforms that were inflexible, slow to deploy, and costly to maintain. The challenge was to create a modern, scalable solution that could handle complex content structures while remaining user-friendly.",
         "solution": "Our approach focused on three key areas:\n1. MACH Architecture Implementation\n2. Microservices-based Design\n3. API-First Development",
@@ -36,7 +36,7 @@
     },
     "mave-lms": {
         "title": "MAVE LMS - AI-Driven Learning Platform",
-        "banner": "/mave-lms.png",
+        "banner": "/mave-lms.webp",
         "overview": "An innovative learning management system that leverages AI to personalize learning experiences and improve outcomes.",
         "challenge": "Traditional learning platforms were unable to provide personalized learning experiences or adapt to individual learner needs. The challenge was to create a platform that could deliver tailored learning paths while maintaining a user-friendly interface.",
         "solution": "Our solution focused on:\n1. AI-Powered Personalization\n2. Adaptive Learning Paths\n3. Gamification Elements",
@@ -66,115 +66,189 @@
             "Continuous performance monitoring"
         ]
     },
-    "navbot": {
-        "title": "NAVBOT - AI-Powered Restaurant CRM",
-        "banner": "/navbot.png",
-        "overview": "An innovative AI-powered CRM system designed specifically for restaurants and vehicle service centers, revolutionizing customer service automation and engagement.",
-        "challenge": "Restaurants and service centers faced significant challenges in managing customer relationships, handling reservations, and providing timely service updates. Manual processes were error-prone and resource-intensive, leading to customer dissatisfaction and operational inefficiencies.",
-        "solution": "We developed a comprehensive solution with these key components:\n1. Natural Language Processing for customer interactions\n2. Automated Reservation Management\n3. Real-time Service Status Updates\n4. Predictive Analytics for Customer Behavior\n5. Integration with POS and Kitchen Management Systems",
+    "aranya": {
+        "title": "Aranya - E-Commerce Transformation",
+        "banner": "/aranya-ecommerce.webp",
+        "overview": "Led the digital transformation of Aranya's e-commerce platform, focusing on user experience optimization and conversion rate improvement through data-driven decision making.",
+        "challenge": "Aranya faced significant challenges with their existing e-commerce platform, including poor mobile performance, high cart abandonment rates, and complex checkout processes. The platform needed a complete overhaul to meet modern e-commerce standards while preserving the brand's premium positioning.",
+        "solution": "Our approach included:\n1. Complete UX/UI Redesign\n2. Mobile-First Performance Optimization\n3. Streamlined Checkout Process\n4. Advanced Analytics Integration\n5. Personalized Product Recommendations",
         "impact": [
-            "45% reduction in customer service response time",
-            "60% decrease in reservation management overhead",
-            "35% increase in customer satisfaction scores",
-            "25% improvement in table turnover rate",
-            "50% reduction in manual data entry tasks"
+            "35% improvement in page load times",
+            "20% increase in conversion rates",
+            "45% reduction in cart abandonment",
+            "50% increase in mobile transactions",
+            "28% growth in average order value"
         ],
         "technicalDetails": {
             "architecture": [
-                "Serverless Architecture",
-                "Event-Driven System",
-                "Real-time WebSocket Communications",
-                "Multi-tenant Database Design"
-            ],
-            "technologies": [
-                "Python",
-                "TensorFlow",
-                "AWS Lambda",
-                "DynamoDB",
-                "WebSocket API",
-                "OpenAI GPT-3"
-            ]
-        },
-        "processAndMethodology": [
-            "Design thinking workshops with restaurant owners",
-            "Rapid prototyping and MVP development",
-            "A/B testing of conversation flows",
-            "Phased rollout strategy",
-            "Continuous customer feedback integration"
-        ]
-    },
-    "gloria-jeans": {
-        "title": "Gloria Jean's Digital Transformation",
-        "banner": "/gloria-jeans.png",
-        "overview": "A comprehensive digital transformation project for Gloria Jean's Coffees Bangladesh, encompassing e-commerce, digital menu boards, and a loyalty program system.",
-        "challenge": "The brand needed to modernize its operations and customer experience while maintaining its premium image. The existing system was fragmented, with no integration between physical stores and digital channels.",
-        "solution": "We implemented a holistic digital transformation strategy:\n1. Unified E-commerce Platform\n2. Digital Menu Board System\n3. Integrated Loyalty Program\n4. Mobile Order & Payment System\n5. Real-time Analytics Dashboard",
-        "impact": [
-            "27% increase in overall sales",
-            "40% growth in repeat customer visits",
-            "65% adoption rate of digital ordering",
-            "30% reduction in order processing time",
-            "85% customer satisfaction with digital experience"
-        ],
-        "technicalDetails": {
-            "architecture": [
-                "Microservices Architecture",
-                "Cloud-native Infrastructure",
-                "Real-time Data Synchronization",
-                "Progressive Web Application"
+                "Headless Commerce",
+                "Progressive Web App",
+                "CDN Integration",
+                "Microservices Architecture"
             ],
             "technologies": [
                 "Next.js",
                 "Node.js",
                 "MongoDB",
                 "Redis",
-                "AWS Services",
-                "Stripe Payment"
+                "Elasticsearch",
+                "Stripe"
             ]
         },
         "processAndMethodology": [
-            "Stakeholder analysis and requirement gathering",
-            "Phased implementation approach",
-            "Staff training and change management",
-            "Customer feedback loops",
-            "Performance monitoring and optimization"
+            "Comprehensive UX research and analysis",
+            "A/B testing of key user journeys",
+            "Performance optimization sprints",
+            "Continuous user feedback integration",
+            "Phased feature rollout strategy"
+        ]
+    },
+    "uhl": {
+        "title": "UHL - Healthcare Digital Transformation",
+        "banner": "/uhl-hms.webp",
+        "overview": "Spearheaded the digital transformation of United Hospital Limited's healthcare management system, implementing modern digital solutions to enhance patient care and operational efficiency.",
+        "challenge": "The hospital faced critical challenges with patient data management, appointment scheduling, and resource allocation. Manual processes were causing delays in patient care, increasing administrative overhead, and limiting the hospital's ability to scale operations effectively.",
+        "solution": "We implemented a comprehensive digital solution focusing on:\n1. Centralized Patient Management System\n2. Digital Appointment Scheduling\n3. Electronic Health Records (EHR)\n4. Resource Management Dashboard\n5. Mobile Patient Portal",
+        "impact": [
+            "40% improvement in operational efficiency",
+            "60% reduction in appointment scheduling time",
+            "90% patient satisfaction with digital services",
+            "50% decrease in administrative overhead",
+            "30% increase in resource utilization"
+        ],
+        "technicalDetails": {
+            "architecture": [
+                "Cloud-Native Architecture",
+                "HIPAA Compliant Infrastructure",
+                "Real-time Data Synchronization",
+                "Multi-tenant System"
+            ],
+            "technologies": [
+                "React",
+                "Node.js",
+                "PostgreSQL",
+                "Redis",
+                "Docker",
+                "AWS Healthcare APIs"
+            ]
+        },
+        "processAndMethodology": [
+            "Stakeholder requirement analysis",
+            "HIPAA compliance implementation",
+            "Phased deployment strategy",
+            "Staff training programs",
+            "Continuous monitoring and optimization"
+        ]
+    },
+    "navbot": {
+        "title": "NAVBOT - AI-Powered CRM Solution",
+        "banner": "/navbot-ai.webp",
+        "overview": "Developed an innovative AI-powered CRM chatbot solution for the restaurant and automotive industries, revolutionizing customer service automation and engagement.",
+        "challenge": "Businesses struggled with managing high volumes of customer inquiries, appointment scheduling, and service follow-ups. Traditional CRM systems were inflexible and required significant manual intervention, leading to delayed responses and customer dissatisfaction.",
+        "solution": "We created an AI-driven solution featuring:\n1. Natural Language Processing Engine\n2. Automated Appointment Scheduling\n3. Real-time Service Updates\n4. Customer Behavior Analytics\n5. Multi-channel Integration",
+        "impact": [
+            "75% reduction in response time",
+            "85% automation of routine inquiries",
+            "40% increase in customer satisfaction",
+            "50% reduction in operational costs",
+            "30% improvement in service efficiency"
+        ],
+        "technicalDetails": {
+            "architecture": [
+                "Microservices Architecture",
+                "Event-Driven System",
+                "AI/ML Pipeline",
+                "Real-time Analytics"
+            ],
+            "technologies": [
+                "Python",
+                "TensorFlow",
+                "Node.js",
+                "MongoDB",
+                "Docker",
+                "OpenAI GPT-3"
+            ]
+        },
+        "processAndMethodology": [
+            "AI model training and optimization",
+            "Iterative chatbot flow design",
+            "A/B testing of responses",
+            "Continuous learning implementation",
+            "Performance monitoring and tuning"
+        ]
+    },
+    "gloria-jeans": {
+        "title": "Gloria Jean's Digital Transformation",
+        "banner": "/gloria-jeans.webp",
+        "overview": "Led the digital transformation of Gloria Jean's Coffees Bangladesh, implementing an integrated digital ecosystem for enhanced customer experience and operational efficiency.",
+        "challenge": "The brand needed to modernize its ordering system, improve customer engagement, and streamline operations across multiple locations. The existing system was fragmented and unable to handle increasing digital demands.",
+        "solution": "Implemented a comprehensive digital solution including:\n1. Mobile Ordering Platform\n2. Digital Menu Management\n3. Loyalty Program Integration\n4. Multi-location Order Management\n5. Analytics Dashboard",
+        "impact": [
+            "27% increase in overall sales",
+            "40% growth in repeat customers",
+            "65% adoption of digital ordering",
+            "35% reduction in order processing time",
+            "25% increase in average order value"
+        ],
+        "technicalDetails": {
+            "architecture": [
+                "Cloud-Native Architecture",
+                "Microservices",
+                "Real-time Order Processing",
+                "Multi-tenant System"
+            ],
+            "technologies": [
+                "React Native",
+                "Node.js",
+                "PostgreSQL",
+                "Redis",
+                "AWS Services",
+                "Firebase"
+            ]
+        },
+        "processAndMethodology": [
+            "User experience research",
+            "Phased feature rollout",
+            "Staff training programs",
+            "Customer feedback integration",
+            "Performance optimization"
         ]
     },
     "techcare": {
         "title": "TechCare Web Template System",
-        "banner": "/techcare.png",
-        "overview": "A revolutionary web template system that has garnered over 863,000 downloads globally, providing developers with responsive, accessible, and modern design templates.",
-        "challenge": "Web developers needed high-quality, customizable templates that adhered to modern web standards while maintaining performance and accessibility. Existing solutions were either too rigid or too complex to customize.",
-        "solution": "We created a comprehensive template system featuring:\n1. Modular Component Architecture\n2. Accessibility-First Design\n3. Performance Optimization System\n4. Custom Theme Engine\n5. Interactive Documentation",
+        "banner": "/techcare.webp",
+        "overview": "Developed and maintained a comprehensive web template system that achieved over 863,000 global downloads, providing developers with responsive and accessible design solutions.",
+        "challenge": "Web developers needed high-quality, customizable templates that maintained performance and accessibility standards while being easy to implement. Existing solutions were either too complex or lacked modern features.",
+        "solution": "Created a template system featuring:\n1. Modular Component Architecture\n2. Responsive Design Framework\n3. Accessibility Standards Integration\n4. Performance Optimization\n5. Documentation System",
         "impact": [
             "863,000+ global downloads",
             "98% positive user ratings",
-            "40% reduction in development time for users",
-            "30% improvement in page load times",
-            "100% WCAG 2.1 compliance across templates"
+            "40% reduction in development time",
+            "100% WCAG compliance",
+            "30% improvement in page load times"
         ],
         "technicalDetails": {
             "architecture": [
                 "Component-Based Architecture",
                 "Atomic Design System",
-                "Build-time Optimization",
-                "Progressive Enhancement"
+                "Build Pipeline",
+                "Testing Framework"
             ],
             "technologies": [
                 "HTML5",
                 "CSS3/SASS",
-                "JavaScript/TypeScript",
+                "JavaScript",
                 "Webpack",
                 "Jest",
                 "Storybook"
             ]
         },
         "processAndMethodology": [
-            "User research and needs analysis",
-            "Component-first development approach",
-            "Extensive testing across devices",
-            "Community feedback integration",
-            "Regular performance audits"
+            "Component-first development",
+            "Accessibility testing",
+            "Performance benchmarking",
+            "Documentation automation",
+            "Community feedback integration"
         ]
     }
 }
