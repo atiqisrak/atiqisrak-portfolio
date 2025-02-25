@@ -10,58 +10,43 @@ export default function About() {
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-start text-muted-foreground lg:px-6">
-          I started my tech journey at 17, diving into web development with a
-          passion for bringing ideas to life. Over the years, I have designed and
-          developed various websites as a freelancer, which led me to work with
-          advertising agencies, startups, large corporations, and digital
-          product studios.
+          As a forward-thinking Product Manager with over 5 years of experience, I specialize in translating customer needs into profitable, user-centric solutions. My journey in tech began as a developer, which gives me a unique technical perspective in product management, allowing me to effectively bridge business goals with technical implementation.
         </p>
-        <p className="text-start  text-muted-foreground lg:px-6">
-          Currently, I work as a Senior Software Engineer and Tech Team Lead at
-          Webable Digital. Leading a 12-member team, I drive strategic
-          innovations using technologies like Node.js, Express.js, MongoDB, and
-          AWS. Some of my recent projects include{" "}
+        <p className="text-start text-muted-foreground lg:px-6">
+          Currently, I serve as the Product Manager at Webable Digital, where I develop product vision and strategy, focusing on user journey optimization and go-to-market execution. I've successfully launched and managed{" "}
           <a
             className="no-wrap text-primary dark:text-white"
             href="https://mave.ethertech.ltd"
             target="blank"
             rel="noopener noreferrer"
           >
-            Mave CMS
+            MAVE CMS
           </a>{" "}
-          , a headless CMS utilizing MACH architecture, and Aranya, a fully
-          functional e-commerce platform that improved load times by 35%.
+          , a MACH architecture based Headless CMS, and {" "}
+          <a
+            className="no-wrap text-primary dark:text-white"
+            href="https://mave-lms.ethertech.ltd"
+            target="blank"
+            rel="noopener noreferrer"
+          >
+            MAVE LMS
+          </a>
+          , achieving a 20% reduction in operational overhead through strategic cost controls and efficient resource management.
         </p>
         <p className="text-start text-muted-foreground lg:px-6">
-          Before that, I was at Navana Group, where I led web application
-          development for Fortune 500 companies. We surpassed revenue goals by
-          150% and saved over $20K through streamlined processes. At <a
+          Previously at Navana Group as Technical Project Manager, I oversaw AI-driven chatbot projects and digital transformation initiatives. At{" "}
+          <a
             className="no-wrap text-primary dark:text-white"
             href="https://gloriajeanscoffeesbd.com/menu"
             target="blank"
             rel="noopener noreferrer"
           >
-            Gloria
-            Jean’s Coffees Bangladesh
-          </a>{" "}, I optimized system performance with MERN
-          stack technologies, driving a 27% increase in sales. I also developed
-          NAVBOT, an AI CRM Chatbot that automated customer interactions,
-          enhancing operational efficiency.
+            Gloria Jean's Coffees Bangladesh
+          </a>{" "}, 
+          I led the implementation of key e-commerce optimizations that boosted sales by 27%. I also conceptualized NAVBOT, an AI CRM Chatbot that revolutionized customer service automation for restaurants and vehicle servicing.
         </p>
         <p className="text-start text-muted-foreground lg:px-6">
-          At TechCare Inc., I created over 120 website {" "}
-          <a
-            className="no-wrap text-primary dark:text-white"
-            href="https://templately.com/platform/elementor"
-            target="blank"
-            rel="noopener noreferrer"
-          >
-            templates
-          </a>{" "}
-          using React and
-          Next.js, achieving 863,000+ downloads and 430,000+ purchases. My
-          innovative approach to animations increased sales by 27%, earning me
-          the Best Employer Award in 2020.
+          My background in software development at TechCare Inc., where I developed over 120 web templates with 863,000+ global downloads, provides me with deep technical insights that enhance my product management approach. I'm passionate about balancing revenue vs. cost, defining user journeys, and managing complex roadmaps to deliver high-impact digital products while mentoring cross-functional teams.
         </p>
       </div>
     </section>
