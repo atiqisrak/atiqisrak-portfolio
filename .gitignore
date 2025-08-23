@@ -7,6 +7,7 @@
 .yarn/install-state.gz
 
 /out
+/out/
 
 # testing
 /coverage
