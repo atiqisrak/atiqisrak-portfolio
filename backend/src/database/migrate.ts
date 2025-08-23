@@ -1,123 +1,92 @@
 import pool from "./config";
 
-const createTables = async (): Promise<void> => {
+async function migrate() {
   try {
-    // Create portfolio_sections table
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS portfolio_sections (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        content TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
+    console.log("Starting database migration...");
 
-    // Create projects table
+    // Enable pgvector extension
+    await pool.query('CREATE EXTENSION IF NOT EXISTS vector;');
+    console.log("✓ pgvector extension enabled");
+
+    // Create projects table with vector support
     await pool.query(`
       CREATE TABLE IF NOT EXISTS projects (
         id SERIAL PRIMARY KEY,
-        title VARCHAR(200) NOT NULL,
-        description TEXT,
-        technologies TEXT[],
-        image_url VARCHAR(500),
-        project_url VARCHAR(500),
-        github_url VARCHAR(500),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
-
-    // Create experience table
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS experience (
-        id SERIAL PRIMARY KEY,
-        position VARCHAR(200) NOT NULL,
-        company VARCHAR(200) NOT NULL,
-        timeline VARCHAR(100),
-        description TEXT,
-        skills TEXT[],
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
-
-    // Create skills table
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS skills (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        category VARCHAR(100),
-        proficiency INTEGER CHECK (proficiency >= 1 AND proficiency <= 100),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
-
-    // Create media table for file management
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS media (
-        id SERIAL PRIMARY KEY,
-        filename VARCHAR(255) NOT NULL,
-        original_name VARCHAR(255) NOT NULL,
-        mime_type VARCHAR(100) NOT NULL,
-        size BIGINT NOT NULL,
-        path VARCHAR(500) NOT NULL,
-        public_url VARCHAR(500) NOT NULL,
-        alt_text VARCHAR(255),
-        caption TEXT,
-        uploaded_by VARCHAR(100) DEFAULT 'system',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
-
-    // Create blogs table with SEO fields
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS blogs (
-        id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
+        description TEXT,
+        content TEXT,
         slug VARCHAR(255) UNIQUE NOT NULL,
-        excerpt TEXT,
-        content TEXT NOT NULL,
-        featured_image_id INTEGER REFERENCES media(id),
-        author VARCHAR(100) DEFAULT 'Atiq Israk',
-        status VARCHAR(20) DEFAULT 'draft' CHECK (status IN ('draft', 'published', 'archived')),
-        published_at TIMESTAMP,
-        meta_title VARCHAR(255),
-        meta_description TEXT,
-        meta_keywords TEXT[],
-        og_title VARCHAR(255),
-        og_description TEXT,
-        og_image_id INTEGER REFERENCES media(id),
-        twitter_title VARCHAR(255),
-        twitter_description TEXT,
-        twitter_image_id INTEGER REFERENCES media(id),
-        canonical_url VARCHAR(500),
-        reading_time INTEGER,
-        view_count INTEGER DEFAULT 0,
-        tags TEXT[],
+        image_url VARCHAR(500),
+        github_url VARCHAR(500),
+        live_url VARCHAR(500),
+        technologies TEXT[],
         category VARCHAR(100),
+        featured BOOLEAN DEFAULT false,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        embedding vector(1536)
+      );
     `);
+    console.log("✓ projects table created/updated");
 
-    console.log("Database tables created successfully");
-  } catch (error) {
-    console.error("Error creating tables:", error);
-    throw error;
-  }
-};
+    // Add missing columns to existing table
+    try {
+      await pool.query('ALTER TABLE projects ADD COLUMN IF NOT EXISTS content TEXT;');
+      await pool.query('ALTER TABLE projects ADD COLUMN IF NOT EXISTS slug VARCHAR(255);');
+      await pool.query('ALTER TABLE projects ADD COLUMN IF NOT EXISTS live_url VARCHAR(500);');
+      await pool.query('ALTER TABLE projects ADD COLUMN IF NOT EXISTS category VARCHAR(100);');
+      await pool.query('ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured BOOLEAN DEFAULT false;');
+      console.log("✓ missing columns added/verified");
+    } catch (error) {
+      console.log("Some columns already exist or error occurred:", error);
+    }
 
-const runMigrations = async (): Promise<void> => {
-  try {
-    await createTables();
-    console.log("All migrations completed successfully");
-    process.exit(0);
+    // Add embedding column if it doesn't exist
+    try {
+      await pool.query('ALTER TABLE projects ADD COLUMN IF NOT EXISTS embedding vector(1536);');
+      console.log("✓ embedding column added/verified");
+    } catch (error) {
+      console.log("embedding column already exists or error occurred:", error);
+    }
+
+    // Create vector index for similarity search
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS projects_embedding_idx 
+      ON projects 
+      USING ivfflat (embedding vector_cosine_ops)
+      WITH (lists = 100);
+    `);
+    console.log("✓ vector index created");
+
+    // Create function to update updated_at timestamp
+    await pool.query(`
+      CREATE OR REPLACE FUNCTION update_updated_at_column()
+      RETURNS TRIGGER AS $$
+      BEGIN
+        NEW.updated_at = CURRENT_TIMESTAMP;
+        RETURN NEW;
+      END;
+      $$ language 'plpgsql';
+    `);
+    console.log("✓ update_updated_at_column function created");
+
+    // Create trigger for updated_at
+    await pool.query(`
+      DROP TRIGGER IF EXISTS update_projects_updated_at ON projects;
+      CREATE TRIGGER update_projects_updated_at
+        BEFORE UPDATE ON projects
+        FOR EACH ROW
+        EXECUTE FUNCTION update_updated_at_column();
+    `);
+    console.log("✓ projects updated_at trigger created");
+
+    console.log("Migration completed successfully!");
   } catch (error) {
     console.error("Migration failed:", error);
-    process.exit(1);
+    throw error;
+  } finally {
+    await pool.end();
   }
-};
+}
 
-runMigrations();
+migrate().catch(console.error);

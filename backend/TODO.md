@@ -14,15 +14,15 @@
 - [ ] **PostgreSQL Database Setup**
 
   - [ ] Install and configure pgvector extension
-  - [ ] Create database schema for portfolio content
-  - [ ] Set up migrations and seed data
-  - [ ] Implement database connection pooling
+  - [x] Create database schema for portfolio content
+  - [x] Set up migrations and seed data
+  - [x] Implement database connection pooling
 
 - [ ] **Core API Routes**
-  - [ ] Health check endpoint (`/api/health`)
-  - [ ] Portfolio data endpoints (`/api/portfolio/*`)
-  - [ ] Project details endpoints (`/api/projects/*`)
-  - [ ] Experience data endpoints (`/api/experience/*`)
+  - [x] Health check endpoint (`/api/health`)
+  - [x] Portfolio data endpoints (`/api/portfolio/*`)
+  - [x] Project details endpoints (`/api/projects/*`)
+  - [x] Experience data endpoints (`/api/experience/*`)
 
 ## Phase-3: 🎨 AI Personal Assistant (RAG Implementation)
 
@@ -30,7 +30,7 @@
 
 - [ ] **OpenAI API Setup**
 
-  - [ ] Install OpenAI SDK: `npm install openai`
+  - [ ] Install OpenAI SDK: `pnpm install openai`
   - [ ] Add OpenAI API key to environment variables
   - [ ] Create OpenAI service wrapper
   - [ ] Implement rate limiting and error handling
