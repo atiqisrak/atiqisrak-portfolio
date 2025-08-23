@@ -9,14 +9,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveRight } from "lucide-react";
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const jobPositions = [
   {
     timeline: "June 2023 — Present",
     currentPosition: "Product Manager",
-    place: "Webable Digital",
+    place: "Ether Technologies",
     previousPositions: [""],
     description:
       "Leading product vision and strategy, focusing on user journey optimization and go-to-market execution. Achieved 20% increase in new user acquisition and 30% improvement in team productivity through Lean Product Development and Agile methods. Launched and managed enterprise SaaS products while maintaining high engineering quality.",
@@ -75,7 +75,11 @@ const jobPositions = [
         title: "Gloria Jean's Coffees Bangladesh (E-Commerce)",
         description:
           "Drove implementation of server load balancing and process automation, boosting sales by 27%. Redesigned user flow to reduce checkout friction and accelerate client onboarding by 170%.",
-        technologies: ["Process Optimization", "UX Design", "Performance Tuning"],
+        technologies: [
+          "Process Optimization",
+          "UX Design",
+          "Performance Tuning",
+        ],
       },
       {
         title: "NAVBOT (AI CRM Chatbot)",
@@ -107,12 +111,12 @@ const jobPositions = [
 const ExpCards = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -139,11 +143,13 @@ const ExpCards = () => {
                   <h3 className="text-xl font-bold">{job.currentPosition}</h3>
                   <p className="text-primary">{job.place}</p>
                 </div>
-                <span className="text-sm text-muted-foreground">{job.timeline}</span>
+                <span className="text-sm text-muted-foreground">
+                  {job.timeline}
+                </span>
               </div>
-              
+
               <p className="text-muted-foreground">{job.description}</p>
-              
+
               {job.previousPositions && job.previousPositions.length > 0 && (
                 <div className="space-y-2">
                   <p className="font-medium">Previous Roles:</p>
@@ -166,7 +172,7 @@ const ExpCards = () => {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="mt-12">
         <a
           className="inline-flex items-center font-medium leading-tight text-foreground group"

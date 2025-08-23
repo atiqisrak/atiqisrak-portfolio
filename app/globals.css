@@ -4,13 +4,15 @@
 
 @layer components {
   .mouse-aura {
-    @apply fixed inset-0 pointer-events-none;
+    @apply fixed inset-0 pointer-events-none z-10;
     background-image: radial-gradient(
       circle at var(--mouse-x) var(--mouse-y),
-      rgba(252, 109, 38, 0.3) 0%,
-      rgba(252, 109, 38, 0.15) 30%,
-      rgba(252, 109, 38, 0) 50%
+      rgba(252, 109, 38, 0.4) 0%,
+      rgba(252, 109, 38, 0.2) 25%,
+      rgba(252, 109, 38, 0.1) 40%,
+      rgba(252, 109, 38, 0) 60%
     );
+    transition: background-image 0.1s ease-out;
 
     /* Media query for touch devices */
     @media (hover: none) and (pointer: coarse) {
@@ -112,4 +114,57 @@
 .dark .nav-indicator.active,
 .dark .group .nav-indicator.active {
   background-color: #e2e8f0;
+}
+
+/* Ensure proper sticky behavior */
+.lg\:sticky {
+  position: sticky;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure proper panel alignment */
+.lg\:h-screen {
+  height: 100vh;
+}
+
+.lg\:overflow-y-auto {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.lg\:overflow-y-auto::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.lg\:overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lg\:overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+.lg\:overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+/* Ensure proper sticky positioning */
+.lg\:top-0 {
+  top: 0;
+}
+
+/* Prevent content from jumping when sticky is applied */
+.lg\:h-screen {
+  min-height: 100vh;
+}
+
+/* Ensure mouse aura works across all content */
+.mouse-aura {
+  will-change: background-image;
 }

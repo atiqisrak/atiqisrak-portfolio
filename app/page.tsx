@@ -1,47 +1,43 @@
 "use client";
-import Head from "next/head";
 import Nav from "@/components/Nav";
 import ExpCard from "@/components/ExpCards";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { Inter } from "next/font/google";
+import useActiveSectionObserver from "@/hooks/useActiveSection";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const auraRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const updateAuraPosition = (e: MouseEvent) => {
-      if (auraRef.current) {
-        auraRef.current.style.setProperty("--mouse-x", `${e.clientX}px`);
-        auraRef.current.style.setProperty("--mouse-y", `${e.clientY}px`);
-      }
-    };
-    window.addEventListener("pointermove", updateAuraPosition);
+  // Observe sections for active state
+  useActiveSectionObserver(["about", "experience", "projects", "contact"]);
 
-    return () => {
-      window.removeEventListener("pointermove", updateAuraPosition);
-    };
+  const updateAuraPosition = useCallback((e: MouseEvent) => {
+    if (auraRef.current) {
+      auraRef.current.style.setProperty("--mouse-x", `${e.clientX}px`);
+      auraRef.current.style.setProperty("--mouse-y", `${e.clientY}px`);
+    }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("pointermove", updateAuraPosition);
+    return () => window.removeEventListener("pointermove", updateAuraPosition);
+  }, [updateAuraPosition]);
+
   return (
-    <>
-      <Head>
-        <style jsx global>{`
-          body {
-            font-family: "${inter.style.fontFamily}";
-          }
-        `}</style>
-      </Head>
-      <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0">
-        <div ref={auraRef} className="mouse-aura" />
-        <div className="lg:flex lg:justify-between lg:gap-4">
-          <Nav />
-          <main className="flex flex-col pt-6 lg:pt-24 lg:w-1/2 lg:py-24 gap-8">
+    <div className="relative min-h-screen bg-background">
+      <div ref={auraRef} className="mouse-aura" />
+      <div className="mx-auto max-w-screen-xl px-4 py-8 md:px-8 md:py-12 lg:px-12 lg:py-16 xl:px-24 xl:py-20">
+        <div className="lg:flex lg:justify-between lg:gap-8 xl:gap-12">
+          <div className="lg:w-1/2 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:pr-4 xl:pr-8">
+            <Nav />
+          </div>
+          <main className="lg:w-1/2 flex flex-col pt-6 lg:pt-24 gap-6 lg:gap-8">
             <About />
             <ExpCard />
             <Projects />
@@ -50,6 +46,6 @@ export default function Home() {
           </main>
         </div>
       </div>
-    </>
+    </div>
   );
 }

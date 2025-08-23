@@ -1,6 +1,6 @@
-# atiqisrak.me
+# atiqisrak.vercel.app
 
-A personal website inspired by the design of [Atiq Israk's website](https://atiqisrak.me). All design credits go to Atiq Israk. 🌟
+A personal website inspired by the design of [Atiq Israk's website](https://atiqisrak.vercel.app). All design credits go to Atiq Israk. 🌟
 
 ## Implementation 🛠️
 
@@ -36,7 +36,7 @@ Remember, it's essential to respect other people's work! Thanks.
 
 - The design of this website is inspired by and credited to Atiq Israk.
 - The site was independently coded and developed by me by re-creating Atiq's original design.
-- **You can fork this repo but make sure you attribute by linking back to [atiqisrak.me](atiqisrak.me)**
+- **You can fork this repo but make sure you attribute by linking back to [atiqisrak.vercel.app](atiqisrak.vercel.app)**
 
 ## Getting Started 🚀
 

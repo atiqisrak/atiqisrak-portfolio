@@ -76,10 +76,10 @@ export default function About() {
             implementation.
           </p>
           <p className="text-start text-muted-foreground lg:px-6">
-            Currently, I serve as the Product Manager at Webable Digital, where
-            I develop product vision and strategy, focusing on user journey
-            optimization and go-to-market execution. I&apos;ve successfully
-            launched and managed{" "}
+            Currently, I serve as the Product Manager at Ether Technologies,
+            where I develop product vision and strategy, focusing on user
+            journey optimization and go-to-market execution. I&apos;ve
+            successfully launched and managed{" "}
             <a
               className="no-wrap text-primary dark:text-white"
               href="https://mave.ethertech.ltd"

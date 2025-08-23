@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useActiveSection } from '@/contexts/ActiveSectionContext';
 
-const useActiveSection = (sectionIds: string[]): string => {
-  const [activeSection, setActiveSection] = useState<string>('');
+const useActiveSectionObserver = (sectionIds: string[]): void => {
+  const { setActiveSection } = useActiveSection();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -12,7 +13,10 @@ const useActiveSection = (sectionIds: string[]): string => {
           }
         });
       },
-      { threshold: 0.7 }
+      { 
+        threshold: 0.3,
+        rootMargin: '-20% 0px -35% 0px'
+      }
     );
 
     sectionIds.forEach((sectionId) => {
@@ -23,9 +27,7 @@ const useActiveSection = (sectionIds: string[]): string => {
     });
 
     return () => observer.disconnect();
-  }, [sectionIds]);
-
-  return activeSection;
+  }, [sectionIds, setActiveSection]);
 };
 
-export default useActiveSection;
+export default useActiveSectionObserver;
