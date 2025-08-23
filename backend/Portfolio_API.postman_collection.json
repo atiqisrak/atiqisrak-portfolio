@@ -1,7 +1,7 @@
 {
     "info": {
         "name": "Portfolio Backend API",
-        "description": "Complete API collection for testing Portfolio Backend endpoints",
+        "description": "Complete API collection for testing Portfolio Backend endpoints including vector search functionality",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
@@ -105,6 +105,161 @@
                                 "portfolio",
                                 "projects",
                                 "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Project by Slug",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/portfolio/projects/slug/mave-cms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "portfolio",
+                                "projects",
+                                "slug",
+                                "mave-cms"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Featured Projects",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/portfolio/projects/featured?limit=6",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "portfolio",
+                                "projects",
+                                "featured"
+                            ],
+                            "query": [
+                                {
+                                    "key": "limit",
+                                    "value": "6"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Projects by Technology",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/portfolio/projects/technology/NextJS?limit=10",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "portfolio",
+                                "projects",
+                                "technology",
+                                "NextJS"
+                            ],
+                            "query": [
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Vector Search Projects",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"React web application\",\n  \"limit\": 5,\n  \"threshold\": 0.7\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/portfolio/projects/search",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "portfolio",
+                                "projects",
+                                "search"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Vector Search - AI/ML Projects",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"AI machine learning\",\n  \"limit\": 3,\n  \"threshold\": 0.6\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/portfolio/projects/search",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "portfolio",
+                                "projects",
+                                "search"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Vector Search - GraphQL API",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"GraphQL API\",\n  \"limit\": 2,\n  \"threshold\": 0.6\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/portfolio/projects/search",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "portfolio",
+                                "projects",
+                                "search"
                             ]
                         }
                     }
