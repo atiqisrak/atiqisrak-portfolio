@@ -81,7 +81,7 @@ export default function About() {
             journey optimization and go-to-market execution. I&apos;ve
             successfully launched and managed{" "}
             <a
-              className="no-wrap text-primary dark:text-white"
+              className="no-wrap text-primary dark:text-white font-bold"
               href="https://mave.ethertech.ltd"
               target="blank"
               rel="noopener noreferrer"
@@ -90,7 +90,7 @@ export default function About() {
             </a>{" "}
             , a MACH architecture based Headless CMS, and{" "}
             <a
-              className="no-wrap text-primary dark:text-white"
+              className="no-wrap text-primary dark:text-white font-bold"
               href="https://mave-lms.ethertech.ltd"
               target="blank"
               rel="noopener noreferrer"
@@ -105,7 +105,7 @@ export default function About() {
             AI-driven chatbot projects and digital transformation initiatives.
             At{" "}
             <a
-              className="no-wrap text-primary dark:text-white"
+              className="no-wrap text-primary dark:text-white font-bold"
               href="https://gloriajeanscoffeesbd.com/menu"
               target="blank"
               rel="noopener noreferrer"
