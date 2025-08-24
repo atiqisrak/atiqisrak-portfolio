@@ -1,0 +1,52 @@
+{
+    "id": "mave-cms",
+    "title": "MAVE CMS - Enterprise SaaS Platform",
+    "type": "Enterprise SaaS",
+    "category": "Content Management System",
+    "overview": "MAVE CMS is an enterprise-grade headless CMS built on MACH architecture, designed to revolutionize content management for large organizations.",
+    "challenge": "Enterprise organizations struggled with traditional CMS platforms that were inflexible, slow to deploy, and costly to maintain. The challenge was to create a modern, scalable solution that could handle complex content structures while remaining user-friendly.",
+    "solution": "Our approach focused on three key areas:\n1. MACH Architecture Implementation\n2. Microservices-based Design\n3. API-First Development",
+    "impact": [
+        "30% reduction in deployment cycles",
+        "20% decrease in operational costs",
+        "40% improvement in content delivery speed",
+        "95% positive feedback from content editors"
+    ],
+    "technicalDetails": {
+        "architecture": [
+            "Microservices Architecture",
+            "Containerized Deployments",
+            "Event-Driven Design",
+            "GraphQL API Layer"
+        ],
+        "technologies": [
+            "Next.js",
+            "Node.js",
+            "PostgreSQL",
+            "Redis",
+            "Docker",
+            "Kubernetes"
+        ],
+        "patterns": [
+            "MACH Architecture",
+            "Headless CMS",
+            "API-First Design",
+            "Event Sourcing"
+        ]
+    },
+    "processAndMethodology": [
+        "Discovery workshops with stakeholders",
+        "Iterative development with bi-weekly releases",
+        "Continuous feedback integration",
+        "Performance monitoring and optimization"
+    ],
+    "keyFeatures": [
+        "Headless content management",
+        "Multi-tenant support",
+        "Real-time collaboration",
+        "Advanced workflow management",
+        "API-driven architecture"
+    ],
+    "businessValue": "Enterprise-grade CMS solution that reduces operational costs and improves content delivery efficiency",
+    "projectUrl": "https://mave.ethertech.ltd"
+}

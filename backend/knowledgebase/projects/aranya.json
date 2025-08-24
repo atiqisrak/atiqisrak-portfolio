@@ -1,0 +1,54 @@
+{
+    "id": "aranya",
+    "title": "Aranya - E-Commerce Transformation",
+    "type": "E-Commerce",
+    "category": "Digital Transformation",
+    "overview": "Led the digital transformation of Aranya's e-commerce platform, focusing on user experience optimization and conversion rate improvement through data-driven decision making.",
+    "challenge": "Aranya faced significant challenges with their existing e-commerce platform, including poor mobile performance, high cart abandonment rates, and complex checkout processes. The platform needed a complete overhaul to meet modern e-commerce standards while preserving the brand's premium positioning.",
+    "solution": "Our approach included:\n1. Complete UX/UI Redesign\n2. Mobile-First Performance Optimization\n3. Streamlined Checkout Process\n4. Advanced Analytics Integration\n5. Personalized Product Recommendations",
+    "impact": [
+        "35% improvement in page load times",
+        "20% increase in conversion rates",
+        "45% reduction in cart abandonment",
+        "50% increase in mobile transactions",
+        "28% growth in average order value"
+    ],
+    "technicalDetails": {
+        "architecture": [
+            "Headless Commerce",
+            "Progressive Web App",
+            "CDN Integration",
+            "Microservices Architecture"
+        ],
+        "technologies": [
+            "Next.js",
+            "Node.js",
+            "MongoDB",
+            "Redis",
+            "Elasticsearch",
+            "Stripe"
+        ],
+        "ecommerceFeatures": [
+            "Headless commerce architecture",
+            "PWA capabilities",
+            "Advanced search and filtering",
+            "Personalized recommendations"
+        ]
+    },
+    "processAndMethodology": [
+        "Comprehensive UX research and analysis",
+        "A/B testing of key user journeys",
+        "Performance optimization sprints",
+        "Continuous user feedback integration",
+        "Phased feature rollout strategy"
+    ],
+    "keyFeatures": [
+        "Mobile-first responsive design",
+        "Streamlined checkout process",
+        "Advanced product search",
+        "Personalized recommendations",
+        "Performance optimization"
+    ],
+    "businessValue": "Digital transformation that significantly improves conversion rates and user experience",
+    "projectUrl": "https://www.aranya.com.bd/"
+}

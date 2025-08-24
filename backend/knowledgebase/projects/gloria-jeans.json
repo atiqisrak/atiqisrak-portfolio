@@ -1,0 +1,54 @@
+{
+    "id": "gloria-jeans",
+    "title": "Gloria Jean's Digital Transformation",
+    "type": "Retail",
+    "category": "Digital Transformation",
+    "overview": "Led the digital transformation of Gloria Jean's Coffees Bangladesh, implementing an integrated digital ecosystem for enhanced customer experience and operational efficiency.",
+    "challenge": "The brand needed to modernize its ordering system, improve customer engagement, and streamline operations across multiple locations. The existing system was fragmented and unable to handle increasing digital demands.",
+    "solution": "Implemented a comprehensive digital solution including:\n1. Mobile Ordering Platform\n2. Digital Menu Management\n3. Loyalty Program Integration\n4. Multi-location Order Management\n5. Analytics Dashboard",
+    "impact": [
+        "27% increase in overall sales",
+        "40% growth in repeat customers",
+        "65% adoption of digital ordering",
+        "35% reduction in order processing time",
+        "25% increase in average order value"
+    ],
+    "technicalDetails": {
+        "architecture": [
+            "Cloud-Native Architecture",
+            "Microservices",
+            "Real-time Order Processing",
+            "Multi-tenant System"
+        ],
+        "technologies": [
+            "React Native",
+            "Node.js",
+            "PostgreSQL",
+            "Redis",
+            "AWS Services",
+            "Firebase"
+        ],
+        "retailFeatures": [
+            "Mobile ordering platform",
+            "Digital menu management",
+            "Loyalty program",
+            "Multi-location support"
+        ]
+    },
+    "processAndMethodology": [
+        "User experience research",
+        "Phased feature rollout",
+        "Staff training programs",
+        "Customer feedback integration",
+        "Performance optimization"
+    ],
+    "keyFeatures": [
+        "Mobile ordering app",
+        "Digital menu system",
+        "Loyalty program",
+        "Multi-location management",
+        "Analytics dashboard"
+    ],
+    "businessValue": "Digital transformation that increases sales and improves customer engagement",
+    "projectUrl": "https://gloriajeanscoffeesbd.com/menu"
+}

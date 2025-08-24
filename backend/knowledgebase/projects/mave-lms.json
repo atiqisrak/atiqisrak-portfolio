@@ -1,0 +1,49 @@
+{
+    "id": "mave-lms",
+    "title": "MAVE LMS - AI-Driven Learning Platform",
+    "type": "Educational Technology",
+    "category": "Learning Management System",
+    "overview": "An innovative learning management system that leverages AI to personalize learning experiences and improve outcomes.",
+    "challenge": "Traditional learning platforms were unable to provide personalized learning experiences or adapt to individual learner needs. The challenge was to create a platform that could deliver tailored learning paths while maintaining a user-friendly interface.",
+    "solution": "Our solution focused on:\n1. AI-Powered Personalization\n2. Adaptive Learning Paths\n3. Gamification Elements",
+    "impact": [
+        "90% increase in user engagement",
+        "85% reduction in learning time",
+        "92% satisfaction rating from learners"
+    ],
+    "technicalDetails": {
+        "architecture": [
+            "Microservices Architecture",
+            "Containerized Deployments",
+            "Event-Driven Design",
+            "AI Integration Layer"
+        ],
+        "technologies": [
+            "React",
+            "Node.js",
+            "PostgreSQL",
+            "OpenAI API",
+            "Docker"
+        ],
+        "aiFeatures": [
+            "Personalized learning paths",
+            "Adaptive content delivery",
+            "Intelligent assessment",
+            "Learning analytics"
+        ]
+    },
+    "processAndMethodology": [
+        "Agile development with bi-weekly sprints",
+        "User testing and feedback integration",
+        "Continuous performance monitoring"
+    ],
+    "keyFeatures": [
+        "AI-powered personalization",
+        "Adaptive learning algorithms",
+        "Gamification elements",
+        "Real-time progress tracking",
+        "Multi-format content support"
+    ],
+    "businessValue": "AI-driven LMS that significantly improves learning outcomes and user engagement",
+    "projectUrl": "https://mave.ethertech.ltd"
+}

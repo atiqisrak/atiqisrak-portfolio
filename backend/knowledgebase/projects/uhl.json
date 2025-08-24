@@ -1,0 +1,54 @@
+{
+    "id": "uhl",
+    "title": "UHL - Healthcare Digital Transformation",
+    "type": "Healthcare",
+    "category": "Digital Transformation",
+    "overview": "Spearheaded the digital transformation of United Hospital Limited's healthcare management system, implementing modern digital solutions to enhance patient care and operational efficiency.",
+    "challenge": "The hospital faced critical challenges with patient data management, appointment scheduling, and resource allocation. Manual processes were causing delays in patient care, increasing administrative overhead, and limiting the hospital's ability to scale operations effectively.",
+    "solution": "We implemented a comprehensive digital solution focusing on:\n1. Centralized Patient Management System\n2. Digital Appointment Scheduling\n3. Electronic Health Records (EHR)\n4. Resource Management Dashboard\n5. Mobile Patient Portal",
+    "impact": [
+        "40% improvement in operational efficiency",
+        "60% reduction in appointment scheduling time",
+        "90% patient satisfaction with digital services",
+        "50% decrease in administrative overhead",
+        "30% increase in resource utilization"
+    ],
+    "technicalDetails": {
+        "architecture": [
+            "Cloud-Native Architecture",
+            "HIPAA Compliant Infrastructure",
+            "Real-time Data Synchronization",
+            "Multi-tenant System"
+        ],
+        "technologies": [
+            "React",
+            "Node.js",
+            "PostgreSQL",
+            "Redis",
+            "Docker",
+            "AWS Healthcare APIs"
+        ],
+        "healthcareFeatures": [
+            "HIPAA compliance",
+            "Electronic Health Records",
+            "Patient portal",
+            "Resource management"
+        ]
+    },
+    "processAndMethodology": [
+        "Stakeholder requirement analysis",
+        "HIPAA compliance implementation",
+        "Phased deployment strategy",
+        "Staff training programs",
+        "Continuous monitoring and optimization"
+    ],
+    "keyFeatures": [
+        "HIPAA-compliant patient management",
+        "Digital appointment scheduling",
+        "Electronic health records",
+        "Resource optimization",
+        "Mobile patient portal"
+    ],
+    "businessValue": "Healthcare digital transformation that improves patient care and operational efficiency",
+    "projectUrl": "https://www.uhlbd.com/"
+}

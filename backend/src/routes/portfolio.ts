@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import pool from "../database/config";
 import { VectorSearchService } from "../services/vectorSearch";
 import { OpenAIService } from "../services/openai";
+import { KnowledgeBaseService } from "../services/knowledgeBase";
 
 const router: express.Router = express.Router();
 
@@ -599,7 +600,7 @@ router.post("/projects/search", async (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /api/portfolio/projects/technology/:tech:
+ * /api/portfolio/projects/technology/{tech}:
  *   get:
  *     summary: Get projects by technology
  *     description: Retrieve projects that use a specific technology
@@ -613,6 +614,7 @@ router.post("/projects/search", async (req: Request, res: Response) => {
  *         description: Technology name
  *       - in: query
  *         name: limit
+ *         required: false
  *         schema:
  *           type: integer
  *         description: Maximum number of results (default: 10)
@@ -632,6 +634,8 @@ router.post("/projects/search", async (req: Request, res: Response) => {
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
+
+
 router.get("/projects/technology/:tech", async (req: Request, res: Response) => {
   try {
     const { tech } = req.params;
@@ -655,6 +659,7 @@ router.get("/projects/technology/:tech", async (req: Request, res: Response) => 
  *     parameters:
  *       - in: query
  *         name: limit
+ *         required: false
  *         schema:
  *           type: integer
  *         description: Maximum number of results (default: 6)
@@ -674,6 +679,7 @@ router.get("/projects/technology/:tech", async (req: Request, res: Response) => 
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
+
 router.get("/projects/featured", async (req: Request, res: Response) => {
   try {
     const limit = parseInt(req.query.limit as string) || 6;
@@ -705,7 +711,7 @@ router.get("/projects/featured", async (req: Request, res: Response) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/slug'
+ *               $ref: '#/components/schemas/Project'
  *       404:
  *         description: Project not found
  *         content:
@@ -746,23 +752,23 @@ router.get("/projects/slug/:slug", async (req: Request, res: Response) => {
  *       required: true
  *       content:
  *         application/json:
- *         schema:
- *           type: object
- *           properties:
- *             query:
- *               type: string
- *               description: Original search query
+ *           schema:
+ *             type: object
+ *             properties:
+ *               query:
+ *                 type: string
+ *                 description: Original search query
  *     responses:
  *       200:
  *         description: Optimized search query
  *         content:
  *           application/json:
  *             schema:
- *             type: object
- *             properties:
- *               optimized_query:
- *                 type: string
- *                 description: AI-optimized search query
+ *               type: object
+ *               properties:
+ *                 optimized_query:
+ *                   type: string
+ *                   description: AI-optimized search query
  *       500:
  *         description: Internal server error
  *         content:
@@ -783,6 +789,319 @@ router.post("/ai/optimize-query", async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Query optimization error:", error);
     return res.status(500).json({ error: "Failed to optimize query" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/search:
+ *   post:
+ *   summary: Search knowledge base using semantic similarity
+ *   description: Search the knowledge base for relevant information using AI embeddings
+ *   tags: [Knowledge Base]
+ *   requestBody:
+ *     required: true
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             query:
+ *               type: string
+ *               description: Search query
+ *             limit:
+ *               type: integer
+ *               description: Maximum number of results (default: 5)
+ *             threshold:
+ *               type: number
+ *               description: Similarity threshold (default: 0.7)
+ *   responses:
+ *     200:
+ *       description: Search results from knowledge base
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 content:
+ *                   type: object
+ *                   description: Content from knowledge base
+ *                 similarity:
+ *                   type: number
+ *                   description: Similarity score
+ *                 type:
+ *                   type: string
+ *                   description: Type of content (project, skill, personal)
+ *                 id:
+ *                   type: string
+ *                   description: Content identifier
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.post("/knowledge/search", async (req: Request, res: Response) => {
+  try {
+    const { query, limit = 5, threshold = 0.7 } = req.body;
+    
+    if (!query) {
+      return res.status(400).json({ error: "Search query is required" });
+    }
+
+    const results = await KnowledgeBaseService.searchKnowledge(query, limit, threshold);
+    return res.json(results);
+  } catch (error) {
+    console.error("Knowledge search error:", error);
+    return res.status(500).json({ error: "Failed to search knowledge base" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/contextual-response:
+ *   post:
+ *   summary: Get contextual response from knowledge base
+ *   description: Get an AI-generated contextual response based on knowledge base content
+ *   tags: [Knowledge Base]
+ *   requestBody:
+ *     required: true
+ *     content:
+ *       application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               query:
+ *                 type: string
+ *                 description: User query
+ *   responses:
+ *     200:
+ *       description: Contextual response
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               response:
+ *                 type: string
+ *                 description: Contextual response from knowledge base
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.post("/knowledge/contextual-response", async (req: Request, res: Response) => {
+  try {
+    const { query } = req.body;
+    
+    if (!query) {
+      return res.status(400).json({ error: "Query is required" });
+    }
+
+    const response = await KnowledgeBaseService.getContextualResponse(query);
+    return res.json({ response });
+  } catch (error) {
+    console.error("Contextual response error:", error);
+    return res.status(500).json({ error: "Failed to get contextual response" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/projects:
+ *   get:
+ *   summary: Get all projects from knowledge base
+ *   description: Retrieve all projects stored in the knowledge base
+ *   tags: [Knowledge Base]
+ *   responses:
+ *     200:
+ *       description: List of all projects
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               description: Project information
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.get("/knowledge/projects", async (req: Request, res: Response) => {
+  try {
+    const projects = await KnowledgeBaseService.getAllProjects();
+    return res.json(projects);
+  } catch (error) {
+    console.error("Get projects error:", error);
+    return res.status(500).json({ error: "Failed to fetch projects" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/projects/{id}:
+ *   get:
+ *   summary: Get specific project from knowledge base
+ *   description: Retrieve a specific project by ID from the knowledge base
+ *   tags: [Knowledge Base]
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       schema:
+ *         type: string
+ *         description: Project ID
+ *   responses:
+ *     200:
+ *       description: Project details
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             description: Project information
+ *     404:
+ *       description: Project not found
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.get("/knowledge/projects/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const project = await KnowledgeBaseService.getProject(id);
+    
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+    
+    return res.json(project);
+  } catch (error) {
+    console.error("Get project error:", error);
+    return res.status(500).json({ error: "Failed to fetch project" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/skills/{category}:
+ *   get:
+ *   summary: Get skills by category from knowledge base
+ *   description: Retrieve skills organized by category from the knowledge base
+ *   tags: [Knowledge Base]
+ *   parameters:
+ *     - in: path
+ *       name: category
+ *       required: true
+ *       schema:
+ *         type: string
+ *         description: Skill category (frontend, backend, ai_ml, devops)
+ *   responses:
+ *     200:
+ *       description: List of skills in the category
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               description: Skill information
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: #/components/schemas/Error'
+ */
+router.get("/knowledge/skills/:category", async (req: Request, res: Response) => {
+  try {
+    const { category } = req.params;
+    const skills = await KnowledgeBaseService.getSkillsByCategory(category);
+    return res.json(skills);
+  } catch (error) {
+    console.error("Get skills error:", error);
+    return res.status(500).json({ error: "Failed to fetch skills" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/personal-info:
+ *   get:
+ *   summary: Get personal information from knowledge base
+ *   description: Retrieve personal information and expertise from the knowledge base
+ *   tags: [Knowledge Base]
+ *   responses:
+ *     200:
+ *       description: Personal information
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             description: Personal information
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.get("/knowledge/personal-info", async (req: Request, res: Response) => {
+  try {
+    const personalInfo = await KnowledgeBaseService.getPersonalInfo();
+    return res.json(personalInfo);
+  } catch (error) {
+    console.error("Get personal info error:", error);
+    return res.status(500).json({ error: "Failed to fetch personal info" });
+  }
+});
+
+/**
+ * @swagger
+ * /api/portfolio/knowledge/refresh:
+ *   post:
+ *   summary: Refresh knowledge base
+ *   description: Reload and regenerate embeddings for the knowledge base
+ *   tags: [Knowledge Base]
+ *   responses:
+ *     200:
+ *       description: Knowledge base refreshed successfully
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 description: Success message
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.post("/knowledge/refresh", async (req: Request, res: Response) => {
+  try {
+    await KnowledgeBaseService.refreshKnowledgeBase();
+    return res.json({ message: "Knowledge base refreshed successfully" });
+  } catch (error) {
+    console.error("Refresh knowledge base error:", error);
+    return res.status(500).json({ error: "Failed to refresh knowledge base" });
   }
 });
 

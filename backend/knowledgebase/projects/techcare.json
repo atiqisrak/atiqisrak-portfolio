@@ -1,0 +1,54 @@
+{
+    "id": "techcare",
+    "title": "TechCare Web Template System",
+    "type": "Web Development",
+    "category": "Template System",
+    "overview": "Developed and maintained a comprehensive web template system that achieved over 863,000 global downloads, providing developers with responsive and accessible design solutions.",
+    "challenge": "Web developers needed high-quality, customizable templates that maintained performance and accessibility standards while being easy to implement. Existing solutions were either too complex or lacked modern features.",
+    "solution": "Created a template system featuring:\n1. Modular Component Architecture\n2. Responsive Design Framework\n3. Accessibility Standards Integration\n4. Performance Optimization\n5. Documentation System",
+    "impact": [
+        "863,000+ global downloads",
+        "98% positive user ratings",
+        "40% reduction in development time",
+        "100% WCAG compliance",
+        "30% improvement in page load times"
+    ],
+    "technicalDetails": {
+        "architecture": [
+            "Component-Based Architecture",
+            "Atomic Design System",
+            "Build Pipeline",
+            "Testing Framework"
+        ],
+        "technologies": [
+            "HTML5",
+            "CSS3/SASS",
+            "JavaScript",
+            "Webpack",
+            "Jest",
+            "Storybook"
+        ],
+        "templateFeatures": [
+            "Modular components",
+            "Responsive design",
+            "Accessibility compliance",
+            "Performance optimization"
+        ]
+    },
+    "processAndMethodology": [
+        "Component-first development",
+        "Accessibility testing",
+        "Performance benchmarking",
+        "Documentation automation",
+        "Community feedback integration"
+    ],
+    "keyFeatures": [
+        "Modular component system",
+        "Responsive design framework",
+        "WCAG accessibility compliance",
+        "Performance optimization",
+        "Comprehensive documentation"
+    ],
+    "businessValue": "High-quality web template system that accelerates development and ensures accessibility",
+    "projectUrl": "https://templately.com"
+}

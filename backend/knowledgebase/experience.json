@@ -1,0 +1,77 @@
+{
+    "workHistory": [
+        {
+            "position": "Product Manager",
+            "company": "Ether Technologies",
+            "timeline": "June 2023 – Present",
+            "description": "Leading product vision and strategy for enterprise SaaS solutions",
+            "keyAchievements": [
+                "20% increase in new user acquisition within six months",
+                "20% reduction in operational overhead through strategic cost controls",
+                "30% elevation in team productivity while retaining high engineering quality",
+                "160% boost in revenue through AI-driven customer engagement",
+                "$60k in cost savings via process automation"
+            ],
+            "technologies": [
+                "MACH Architecture",
+                "GraphQL APIs",
+                "CI/CD",
+                "AWS",
+                "Microservices"
+            ],
+            "projects": [
+                "MAVE CMS",
+                "AssetIQ"
+            ]
+        },
+        {
+            "position": "Technical Project Manager, Product & Engineering",
+            "company": "Navana Group",
+            "timeline": "August 2020 – March 2023",
+            "description": "Oversaw AI-driven chatbot projects and digital transformation initiatives",
+            "keyAchievements": [
+                "$20K+ annual cost savings through containerized deployments",
+                "Consecutive Best Employer awards for culture and collaboration",
+                "Unified cross-departmental collaboration (Finance, Sales, IT)"
+            ],
+            "technologies": [
+                "Docker",
+                "AWS",
+                "AI/ML",
+                "Chatbots"
+            ],
+            "projects": [
+                "Gloria Jean's E-Commerce",
+                "NAVBOT AI CRM"
+            ]
+        },
+        {
+            "position": "Frontend Web Developer",
+            "company": "TechCare Inc.",
+            "timeline": "February 2019 – July 2020",
+            "description": "Developed and productized web templates using React/NextJS",
+            "keyAchievements": [
+                "863,000+ global downloads and 430,000+ purchases",
+                "27% increase in template conversion rates",
+                "170% scaling of user base"
+            ],
+            "technologies": [
+                "React",
+                "NextJS",
+                "Lottiefiles",
+                "GSAP"
+            ],
+            "projects": [
+                "Web Template System"
+            ]
+        }
+    ],
+    "projectTypes": [
+        "Enterprise SaaS Platforms",
+        "E-commerce Solutions",
+        "Healthcare Management Systems",
+        "AI-Powered Applications",
+        "Asset Management Systems",
+        "Web Template Systems"
+    ]
+}

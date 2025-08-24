@@ -1,0 +1,23 @@
+{
+    "development": [
+        "Agile Development",
+        "Test-Driven Development",
+        "Continuous Integration/Deployment",
+        "Microservices Architecture",
+        "API-First Design"
+    ],
+    "design": [
+        "User-Centered Design",
+        "Mobile-First Approach",
+        "Performance Optimization",
+        "Accessibility Standards",
+        "Responsive Design"
+    ],
+    "projectManagement": [
+        "Stakeholder Collaboration",
+        "Iterative Development",
+        "User Feedback Integration",
+        "Performance Monitoring",
+        "Phased Rollouts"
+    ]
+}
