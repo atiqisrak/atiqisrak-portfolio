@@ -83,4 +83,29 @@ export class OpenAIService {
       return query; // Fallback to original query
     }
   }
+
+  static async generateContextualResponse(prompt: string): Promise<string> {
+    try {
+      const response = await openai.chat.completions.create({
+        model: process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are Atiq Israk, a Product Manager and Software Engineer. Respond with authenticity, personality, and deep insights from your perspective. Be conversational and engaging.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 800,
+        temperature: 0.8,
+      });
+
+      return response.choices[0]?.message?.content || 'I apologize, but I encountered an error generating a response. Let me provide you with some information from my portfolio instead.';
+    } catch (error) {
+      console.error('Error generating contextual response:', error);
+      throw new Error('Failed to generate contextual response');
+    }
+  }
 }

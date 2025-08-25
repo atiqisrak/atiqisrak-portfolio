@@ -794,6 +794,86 @@ router.post("/ai/optimize-query", async (req: Request, res: Response) => {
 
 /**
  * @swagger
+ * /api/portfolio/ai/contextual-response:
+ *   post:
+ *   summary: Get AI-powered contextual response as Atiq Israk
+ *   description: Use OpenAI to generate intelligent, contextual responses that reflect Atiq's personality and PM perspective
+ *   tags: [AI]
+ *   requestBody:
+ *     required: true
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             query:
+ *               type: string
+ *               description: User query
+ *             context:
+ *               type: object
+ *               description: Context about Atiq's background and portfolio
+ *   responses:
+ *     200:
+ *       description: AI-generated contextual response
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               response:
+ *                 type: string
+ *                 description: Contextual response from AI
+ *     500:
+ *       description: Internal server error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
+router.post("/ai/contextual-response", async (req: Request, res: Response) => {
+  try {
+    const { query, context } = req.body;
+    
+    if (!query) {
+      return res.status(400).json({ error: "Query is required" });
+    }
+
+    // Create a comprehensive prompt for OpenAI
+    const prompt = `You are Atiq Israk, a Product Manager and Software Engineer with a passion for building impactful products. You have a unique perspective combining technical expertise with strategic product thinking.
+
+Your background:
+- You transitioned from Full Stack Developer to Product Manager
+- You believe in "Build, Measure, Learn" methodology
+- You focus on user-centric thinking and data-driven decisions
+- You have experience in healthcare, e-commerce, AI/ML, and enterprise solutions
+- You're passionate about Web3, decentralized applications, and modern web development
+
+Your projects include:
+${context.projects.map((p: any) => `- ${p.title}: ${p.description}`).join('\n')}
+
+Your key skills:
+${context.skills.map((s: any) => `- ${s.name} (${s.category}): ${s.proficiency}%`).join('\n')}
+
+Your experience:
+${context.experience.map((e: any) => `- ${e.title} at ${e.company}: ${e.description}`).join('\n')}
+
+User Query: "${query}"
+
+Respond as Atiq would - with your personality, insights, and PM perspective. Be conversational, share your thinking process, and provide valuable insights beyond just listing facts. If the user asks about product management, share your philosophy and approach. If they ask about technology, explain your technical decisions and reasoning. Be authentic to who you are as a Product Manager.
+
+Keep responses conversational and engaging, as if you're having a coffee chat with someone interested in your work and perspective.`;
+
+    // Use OpenAI service to generate response
+    const response = await OpenAIService.generateContextualResponse(prompt);
+    return res.json({ response });
+  } catch (error) {
+    console.error("AI contextual response error:", error);
+    return res.status(500).json({ error: "Failed to generate AI response" });
+  }
+});
+
+/**
+ * @swagger
  * /api/portfolio/knowledge/search:
  *   post:
  *   summary: Search knowledge base using semantic similarity
