@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Message } from "@/types/chat";
-import { generateIntelligentResponse } from "@/components/Assistant/AIResponseGenerator";
+import { generateIntelligentResponse } from "@/components/Assistant";
 import { fetchAIData } from "@/components/Assistant/AIDataFetcher";
 import { X, MessageCircle, Send, Minimize2 } from "lucide-react";
 

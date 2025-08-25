@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import MessageList from "@/components/Assistant/MessageList";
 import ChatInput from "@/components/Assistant/ChatInput";
 import AIHeader from "@/components/Assistant/AIHeader";
-import { generateIntelligentResponse } from "@/components/Assistant/AIResponseGenerator";
+import { generateIntelligentResponse } from "@/components/Assistant";
 import { fetchAIData } from "@/components/Assistant/AIDataFetcher";
 import { Message } from "@/types/chat";
 
