@@ -13,7 +13,7 @@ const AIPage = () => {
     {
       id: "1",
       content:
-        "Hi! I'm Atiq Israk, your AI portfolio assistant. I can help you learn about my projects, skills, and experience. What would you like to know?",
+        "Hi! I'm Atiq Israk, your AI portfolio assistant. I can help you learn about my projects, skills, and experience. I remember our conversations, so feel free to ask follow-up questions or dive deeper into any topic we discuss. What would you like to know?",
       role: "assistant",
       timestamp: new Date("2024-01-01T00:00:00Z"),
     },
@@ -44,12 +44,36 @@ const AIPage = () => {
       // Fetch all data using the extracted function
       const { projects, skills, experience } = await fetchAIData(content);
 
-      // Generate intelligent response using the extracted function
+      // Get chat history for context, with smart summarization for long conversations
+      let chatHistory = "";
+      if (messages.length > 10) {
+        // For long conversations, create a summary of key topics
+        const recentMessages = messages.slice(-8);
+        const summary = `Conversation summary: We've discussed ${
+          recentMessages.filter((m) => m.role === "user").length
+        } topics including projects, skills, and experience. Recent focus: ${recentMessages
+          .slice(-3)
+          .map((m) => m.content.substring(0, 50))
+          .join(", ")}...`;
+        chatHistory =
+          summary +
+          "\n\nRecent messages:\n" +
+          recentMessages.map((msg) => `${msg.role}: ${msg.content}`).join("\n");
+      } else {
+        // For shorter conversations, use all messages
+        const recentMessages = messages.slice(-5);
+        chatHistory = recentMessages
+          .map((msg) => `${msg.role}: ${msg.content}`)
+          .join("\n");
+      }
+
+      // Generate intelligent response using the extracted function with chat history
       const responseContent = await generateIntelligentResponse(
         content,
         projects,
         skills,
-        experience
+        experience,
+        chatHistory
       );
 
       const assistantMessage: Message = {

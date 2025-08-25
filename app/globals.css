@@ -258,3 +258,59 @@ html {
 .bg-secondary:hover {
   color: white !important;
 }
+
+/* Floating Chatbot Styles */
+.floating-chatbot {
+  font-family: inherit;
+}
+
+.floating-chatbot .prose {
+  @apply text-sm leading-relaxed;
+}
+
+.floating-chatbot .prose strong {
+  @apply font-semibold;
+}
+
+.floating-chatbot .prose h1,
+.floating-chatbot .prose h2,
+.floating-chatbot .prose h3,
+.floating-chatbot .prose h4,
+.floating-chatbot .prose h5,
+.floating-chatbot .prose h6 {
+  @apply font-semibold mb-2 text-base;
+}
+
+.floating-chatbot .prose ul {
+  @apply list-disc list-inside space-y-1 mb-2;
+}
+
+.floating-chatbot .prose li {
+  @apply text-sm;
+}
+
+.floating-chatbot .prose p {
+  @apply mb-2 last:mb-0;
+}
+
+/* Ensure chatbot is above other elements */
+.floating-chatbot {
+  z-index: 9999;
+}
+
+/* Smooth transitions for chatbot */
+.floating-chatbot * {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Mobile-specific chatbot styles */
+@media (max-width: 1024px) {
+  .floating-chatbot-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+  }
+}

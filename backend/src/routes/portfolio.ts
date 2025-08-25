@@ -857,11 +857,14 @@ ${context.skills.map((s: any) => `- ${s.name} (${s.category}): ${s.proficiency}%
 Your experience:
 ${context.experience.map((e: any) => `- ${e.title} at ${e.company}: ${e.description}`).join('\n')}
 
-User Query: "${query}"
+${context.chatHistory ? `Recent conversation context:
+${context.chatHistory}
+
+` : ''}User Query: "${query}"
 
 Respond as Atiq would - with your personality, insights, and PM perspective. Be conversational, share your thinking process, and provide valuable insights beyond just listing facts. If the user asks about product management, share your philosophy and approach. If they ask about technology, explain your technical decisions and reasoning. Be authentic to who you are as a Product Manager.
 
-Keep responses conversational and engaging, as if you're having a coffee chat with someone interested in your work and perspective.`;
+${context.chatHistory ? 'Maintain conversation continuity and reference previous topics when relevant. ' : ''}Keep responses conversational and engaging, as if you're having a coffee chat with someone interested in your work and perspective.`;
 
     // Use OpenAI service to generate response
     const response = await OpenAIService.generateContextualResponse(prompt);
