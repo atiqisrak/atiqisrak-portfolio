@@ -4,9 +4,25 @@ async function cleanup() {
   try {
     console.log("Starting database cleanup...");
 
-    // Fix malformed embedding values
-    await pool.query("UPDATE projects SET embedding = NULL WHERE embedding = 'null'");
-    console.log("✓ Fixed malformed embedding values");
+    // Drop all tables in the correct order
+    const dropQueries = [
+      "DROP TABLE IF EXISTS ai_training CASCADE",
+      "DROP TABLE IF EXISTS methodologies CASCADE",
+      "DROP TABLE IF EXISTS expertise CASCADE",
+      "DROP TABLE IF EXISTS achievements CASCADE",
+      "DROP TABLE IF EXISTS certifications CASCADE",
+      "DROP TABLE IF EXISTS education CASCADE",
+      "DROP TABLE IF EXISTS experience CASCADE",
+      "DROP TABLE IF EXISTS skills CASCADE",
+      "DROP TABLE IF EXISTS projects CASCADE",
+      "DROP TABLE IF EXISTS portfolio_sections CASCADE",
+      "DROP TABLE IF EXISTS personal_info CASCADE"
+    ];
+
+    for (const query of dropQueries) {
+      await pool.query(query);
+      console.log(`✓ Dropped table: ${query.split(' ')[4]}`);
+    }
 
     console.log("Cleanup completed successfully!");
   } catch (error) {

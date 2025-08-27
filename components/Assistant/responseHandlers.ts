@@ -13,11 +13,11 @@ export const handleSimpleQuestions = (queryLower: string): string | null => {
   // Check for simple questions that need short answers
   if (queryLower.includes("what is") || queryLower.includes("what's")) {
     if (queryLower.includes("mave cms")) {
-      return "Mave CMS is a modern headless content management system built with Next.js, TypeScript, and PostgreSQL. It's designed for developers who need fast, flexible content management.";
+      return "Mave CMS is a modern headless content management system. Ask me for more details about this project!";
     } else if (queryLower.includes("navbot")) {
-      return "NavBot AI is an AI-powered navigation assistant that helps users navigate complex applications using natural language commands and real-time assistance.";
+      return "NavBot AI is an AI-powered navigation assistant. I'd be happy to tell you more about this project!";
     } else if (queryLower.includes("aranya")) {
-      return "Aranya is a full-stack e-commerce platform with Stripe payments, product management, and responsive design built with Next.js and PostgreSQL.";
+      return "Aranya is a full-stack e-commerce platform. Let me know if you'd like to hear more about it!";
     }
   }
 
@@ -58,20 +58,12 @@ export const handleFollowUpQuestions = (
       historyLower.includes("mave cms") ||
       historyLower.includes("mave-cms")
     ) {
-      return `**Technical Architecture:** Headless design with Next.js, TypeScript, and PostgreSQL. Features real-time collaboration, image optimization, and Redis caching.
-
-**Key Challenges Solved:** Operational Transformation for conflict resolution, WebSocket real-time updates, and microservices architecture for scalability.
-
-**Business Impact:** Developer experience focus, performance optimization, and flexibility for different frontends.`;
+      return "I'd be happy to provide more details about Mave CMS! Let me fetch the latest information from my portfolio.";
     } else if (
       historyLower.includes("navbot") ||
       historyLower.includes("navbot-ai")
     ) {
-      return `**AI Integration:** OpenAI for natural language understanding, intent classification, and context memory across interactions.
-
-**Technical Features:** WebSocket real-time communication, streaming responses, and hybrid AI approach for reliability.
-
-**UX Design:** Proactive assistance with voice commands, accessibility compliance, and multi-language support.`;
+      return "I'd be happy to provide more details about NavBot AI! Let me fetch the latest information from my portfolio.";
     }
   }
 
@@ -85,11 +77,7 @@ export const handleFollowUpQuestions = (
       historyLower.includes("mave cms") ||
       historyLower.includes("navbot")
     ) {
-      return `**Mave CMS:** Content management for developers - focuses on performance, scalability, and developer experience.
-
-**NavBot AI:** AI-powered navigation for end users - focuses on real-time processing and user behavior.
-
-**Common Thread:** Both showcase user-centric design and solve real problems through iterative development.`;
+      return "I'd be happy to compare these projects! Let me fetch the latest information from my portfolio to give you an accurate comparison.";
     }
   }
 
@@ -98,58 +86,28 @@ export const handleFollowUpQuestions = (
 
 export const handleProjectQueries = (queryLower: string): string | null => {
   if (queryLower.includes("mave cms") || queryLower.includes("mave-cms")) {
-    return `**What it is:** A modern, headless content management system built with Next.js and TypeScript.
-
-**Key Features:** Headless architecture, real-time collaboration, role-based access, media management, SEO optimization, and responsive design.
-
-**Technologies:** Next.js 13+, TypeScript, Tailwind CSS, PostgreSQL, JWT authentication, RESTful API.
-
-**Why I Built It:** To solve the pain points of traditional CMS platforms - slow performance, complex interfaces, and limited customization options.`;
+    return "I'd be happy to tell you about Mave CMS! Let me fetch the latest project details from my portfolio.";
   } else if (
     queryLower.includes("navbot") ||
     queryLower.includes("navbot-ai")
   ) {
-    return `**What it is:** An intelligent navigation system that helps users navigate complex applications using natural language.
-
-**Key Features:** Natural language processing, context awareness, smart suggestions, voice integration, and learning capability.
-
-**Technologies:** React, Node.js, OpenAI API, MongoDB, WebSocket connections.
-
-**Impact:** Demonstrates my skills in AI integration, real-time applications, and creating intuitive user experiences.`;
+    return "I'd be happy to tell you about NavBot AI! Let me fetch the latest project details from my portfolio.";
   } else if (
     queryLower.includes("aranya") ||
     queryLower.includes("ecommerce")
   ) {
-    return `**What it is:** A comprehensive online shopping platform with product management, payments, and order management.
-
-**Key Features:** Product catalog, shopping cart, secure payments (Stripe), order tracking, admin panel, and responsive design.
-
-**Technologies:** Next.js, TypeScript, Stripe integration, PostgreSQL, Tailwind CSS, JWT authentication.
-
-**Impact:** Showcases my full-stack development skills, payment integration expertise, and ability to build scalable e-commerce solutions.`;
+    return "I'd be happy to tell you about Aranya! Let me fetch the latest project details from my portfolio.";
   } else if (
     queryLower.includes("uhl") ||
     queryLower.includes("hospital") ||
     queryLower.includes("healthcare")
   ) {
-    return `**Project:** Hospital Management System for United Hospital Limited - a complete operational overhaul transforming healthcare delivery.
-
-**Key Solutions:** Centralized patient management, digital appointment scheduling, Electronic Health Records (EHR), resource optimization dashboard, and mobile patient portal.
-
-**Technologies:** React, Node.js, PostgreSQL, Redis, Docker on AWS, HIPAA-compliant infrastructure.
-
-**Impact:** 40% operational efficiency improvement, 60% reduction in scheduling time, 90% patient satisfaction, 50% decrease in administrative overhead.`;
+    return "I'd be happy to tell you about the UHL Hospital Management System! Let me fetch the latest project details from my portfolio.";
   } else if (
     queryLower.includes("gloria jeans") ||
     queryLower.includes("coffee")
   ) {
-    return `**What it is:** A comprehensive point-of-sale and management system designed specifically for coffee shops and cafes.
-
-**Key Features:** Menu management, real-time order processing, inventory tracking, staff management, customer loyalty program, and analytics dashboard.
-
-**Technologies:** Vue.js, Node.js, MongoDB, Socket.io, multiple payment methods, responsive mobile design.
-
-**Impact:** Demonstrates my skills in real-time applications, restaurant management systems, and creating user-friendly interfaces for fast-paced environments.`;
+    return "I'd be happy to tell you about the Gloria Jeans project! Let me fetch the latest project details from my portfolio.";
   }
 
   return null;
@@ -174,13 +132,7 @@ export const handleSpecificTopics = (queryLower: string): string | null => {
     queryLower.includes("medical system") ||
     queryLower.includes("healthcare management")
   ) {
-    return `**Project:** UHL Hospital Management System - a comprehensive digital transformation.
-
-**Key Solutions:** Centralized patient database, Electronic Health Records (EHR), digital appointment scheduling with AI optimization, resource management dashboard, and mobile patient portal.
-
-**Technical Stack:** React, Node.js, PostgreSQL, Redis, Docker on AWS, HIPAA-compliant infrastructure.
-
-**Impact:** 40% operational efficiency improvement, 60% reduction in scheduling time, 90% patient satisfaction, 50% decrease in administrative overhead.`;
+    return "I'd be happy to tell you about my healthcare experience! Let me fetch the latest details from my portfolio.";
   } else if (
     queryLower.includes("what do you know") ||
     queryLower.includes("tell me about") ||
@@ -206,7 +158,7 @@ export const handleGeneralQueries = (
       });
       return response;
     } else {
-      return "I'm currently working on several exciting projects.";
+      return "I'm currently working on several exciting projects. Let me fetch the latest information from my portfolio!";
     }
   } else if (
     queryLower.includes("skill") ||
@@ -223,7 +175,7 @@ export const handleGeneralQueries = (
       });
       return response;
     } else {
-      return "I work with modern technologies including React, Node.js, Python, and cloud platforms.";
+      return "I work with modern technologies. Let me fetch the latest skills information from my portfolio!";
     }
   } else if (
     queryLower.includes("experience") ||
@@ -238,7 +190,7 @@ export const handleGeneralQueries = (
       });
       return response;
     } else {
-      return "I have experience in healthcare systems, e-commerce platforms, and AI-powered tools.";
+      return "I have experience in various domains. Let me fetch the latest experience information from my portfolio!";
     }
   } else if (
     queryLower.includes("journey") ||
