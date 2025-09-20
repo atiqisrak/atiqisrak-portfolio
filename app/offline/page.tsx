@@ -7,10 +7,11 @@ export default function OfflinePage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="text-center max-w-md mx-auto px-6">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">You're Offline</h1>
+          <h1 className="text-4xl font-bold mb-4">You&apos;re Offline</h1>
           <p className="text-gray-300 mb-6">
-            It looks like you've lost your internet connection. Don't worry, you
-            can still view some parts of my portfolio that are cached.
+            It looks like you&apos;ve lost your internet connection. Don&apos;t
+            worry, you can still view some parts of my portfolio that are
+            cached.
           </p>
         </div>
 

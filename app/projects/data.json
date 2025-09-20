@@ -34,7 +34,81 @@
             "Performance monitoring and optimization"
         ]
     },
-    "mave-lms": {
+    "sumo": {
+        "title": "SUMO - Restaurant Inventory Tracking and Management System",
+        "banner": "/sumo.webp",
+        "overview": "SUMO is a restaurant inventory tracking and management system that helps restaurants manage their inventory and orders.",
+        "challenge": "Restaurants faced challenges with managing their inventory and orders. The challenge was to create a system that could help restaurants manage their inventory and orders.",
+        "solution": "Our solution focused on:\n1. Inventory Management\n2. Order Management\n3. Reporting and Analytics",
+        "impact": [
+            "35% improvement in page load times",
+            "20% increase in conversion rates",
+            "45% reduction in cart abandonment",
+            "50% increase in mobile transactions",
+            "28% growth in average order value"
+        ],
+        "technicalDetails": {
+            "architecture": [
+                "Headless Commerce",
+                "Progressive Web App",
+                "CDN Integration",
+                "Microservices Architecture"
+            ],
+            "technologies": [
+                "Next.js",
+                "Node.js",
+                "MongoDB",
+                "Redis",
+                "Elasticsearch",
+                "Stripe"
+            ]
+        },
+        "processAndMethodology": [
+            "Comprehensive UX research and analysis",
+            "A/B testing of key user journeys",
+            "Performance optimization sprints",
+            "Continuous user feedback integration",
+            "Phased feature rollout strategy"
+        ]
+    },
+    "assetiq": {
+        "title": "AssetIQ - RFID-based Asset Management System",
+        "banner": "/assetiq.webp",
+        "overview": "AssetIQ is a RFID-based asset management system that helps organizations manage their assets.",
+        "challenge": "Organizations faced challenges with managing their assets. The challenge was to create a system that could help organizations manage their assets.",
+        "solution": "Our solution focused on:\n1. Asset Management\n2. RFID Technology\n3. Reporting and Analytics",
+        "impact": [
+            "40% improvement in operational efficiency",
+            "60% reduction in appointment scheduling time",
+            "90% patient satisfaction with digital services",
+            "50% decrease in administrative overhead",
+            "30% increase in resource utilization"
+        ],
+        "technicalDetails": {
+            "architecture": [
+                "Cloud-Native Architecture",
+                "HIPAA Compliant Infrastructure",
+                "Real-time Data Synchronization",
+                "Multi-tenant System"
+            ],
+            "technologies": [
+                "React",
+                "Node.js",
+                "PostgreSQL",
+                "Redis",
+                "Docker",
+                "AWS Healthcare APIs"
+            ]
+        },
+        "processAndMethodology": [
+            "Stakeholder requirement analysis",
+            "HIPAA compliance implementation",
+            "Phased deployment strategy",
+            "Staff training programs",
+            "Continuous monitoring and optimization"
+        ]
+    },
+    "lms": {
         "title": "MAVE LMS - AI-Driven Learning Platform",
         "banner": "/mave-lms.webp",
         "overview": "An innovative learning management system that leverages AI to personalize learning experiences and improve outcomes.",

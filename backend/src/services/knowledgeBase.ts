@@ -167,7 +167,8 @@ export class KnowledgeBaseService {
       const results: Array<{ content: any; similarity: number; type: string; id: string }> = [];
 
       // Search through all embeddings
-      for (const [key, embedding] of this.knowledgeEmbeddings.entries()) {
+      const entries = Array.from(this.knowledgeEmbeddings.entries());
+      for (const [key, embedding] of entries) {
         const similarity = this.calculateCosineSimilarity(queryEmbedding, embedding);
         
         if (similarity >= threshold) {

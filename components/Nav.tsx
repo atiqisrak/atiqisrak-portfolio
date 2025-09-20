@@ -80,8 +80,9 @@ export default function Nav() {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <p className="text-sm lg:text-base xl:text-lg leading-relaxed">
-            Product leader with 6+ years of experience in tech, specializing in
-            building innovative digital solutions that drive business growth.
+            Product leader with 6+ years of experience in tech, <br />{" "}
+            specializing in building innovative digital solutions that <br />{" "}
+            drive business growth.
           </p>
           <ul className="space-y-2 text-xs lg:text-sm xl:text-base">
             <li className="flex items-center gap-2">

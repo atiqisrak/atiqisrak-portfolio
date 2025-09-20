@@ -8,13 +8,13 @@ export default function Footer() {
       <div className="w-full">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold mb-2">
-            🚀 Let's Build Something Amazing Together!
+            🚀 Let&apos;s Build Something Amazing Together!
           </h2>
           <p className="text-gray-400">
-            Whether it's a groundbreaking product strategy, a tech innovation,
-            or just a friendly chat about the future of product management and
-            software engineering, I'm all ears. Let's connect and create
-            something extraordinary!
+            Whether it&apos;s a groundbreaking product strategy, a tech
+            innovation, or just a friendly chat about the future of product
+            management and software engineering, I&apos;m all ears. Let&apos;s
+            connect and create something extraordinary!
           </p>
         </div>
 

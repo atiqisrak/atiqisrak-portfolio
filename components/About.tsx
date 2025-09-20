@@ -88,14 +88,23 @@ export default function About() {
             >
               MAVE CMS
             </a>{" "}
-            , a MACH architecture based Headless CMS, and{" "}
+            - a MACH architecture based Headless CMS,{" "}
             <a
               className="no-wrap text-primary dark:text-white font-bold"
-              href="https://mave-lms.ethertech.ltd"
+              href="https://sumo.ethertech.ltd"
               target="blank"
               rel="noopener noreferrer"
             >
-              MAVE LMS
+              SUMO
+            </a>{" "}
+            - a resturant inventory tracking and management system and{" "}
+            <a
+              className="no-wrap text-primary dark:text-white font-bold"
+              href="https://assetiq.ethertech.ltd"
+              target="blank"
+              rel="noopener noreferrer"
+            >
+              AssetIQ
             </a>
             , achieving a 20% reduction in operational overhead through
             strategic cost controls and efficient resource management.
@@ -164,7 +173,7 @@ export default function About() {
       {/* Add downloadable CV button */}
       <div className="mt-8 text-center">
         <a
-          href="https://drive.google.com/file/d/1k9u8kSZBKRf637oK06XbSLjdqR8oc4bJ/view?usp=sharing"
+          href="https://drive.google.com/file/d/13h7J03vULHZds3JOza6DOkFJN59OhkPR/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"

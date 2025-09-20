@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .mouse-aura {
+  /* .mouse-aura {
     @apply fixed inset-0 pointer-events-none z-[1];
     background-image: radial-gradient(
       circle at var(--mouse-x) var(--mouse-y),
@@ -14,7 +14,6 @@
     );
     transition: background-image 0.1s ease-out;
 
-    /* Media query for touch devices */
     @media (hover: none) and (pointer: coarse) {
       background-image: radial-gradient(
         circle at top left,
@@ -22,8 +21,8 @@
         rgba(252, 109, 38, 0.15) 30%,
         rgba(252, 109, 38, 0) 50%
       );
-    }
-  }
+    } 
+  } */
 
   .prose {
     @apply text-gray-900 dark:text-gray-100;
@@ -219,10 +218,10 @@ html {
 }
 
 /* Ensure mouse aura works across all content */
-.mouse-aura {
+/* .mouse-aura {
   will-change: background-image;
   z-index: 1;
-}
+} */
 
 /* Global scrollbar styling */
 ::-webkit-scrollbar {

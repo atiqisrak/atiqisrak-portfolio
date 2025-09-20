@@ -1,16 +1,9 @@
 "use client";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveUpRight } from "lucide-react";
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 const jobProjects = [
@@ -31,7 +24,38 @@ const jobProjects = [
     link: "https://mave.ethertech.ltd",
   },
   {
-    imagePath: "/mave-lms.webp",
+    imagePath: "/sumo.webp",
+    title: "SUMO - Restaurant Inventory Tracking and Management System",
+    slug: "sumo",
+    description:
+      "Led the product strategy and development of SUMO, a restaurant inventory tracking and management system. Spearheaded stakeholder negotiations, defined product roadmap, and implemented data-driven feature prioritization. Successfully shortened deployment cycles by 30% while maintaining high engineering quality and achieving a 20% reduction in operational costs.",
+    skills: [
+      "Product Strategy",
+      "Inventory Management",
+      "Go-to-Market",
+      "Stakeholder Management",
+      "Technical Product Management",
+      "Analytics",
+    ],
+    link: "https://sumo.ethertech.ltd",
+  },
+  {
+    imagePath: "/assetiq.webp",
+    title: "AssetIQ - RFID-based Asset Management System",
+    slug: "assetiq",
+    description:
+      "Led the product strategy and development of AssetIQ, an RFID-based asset management system. Spearheaded stakeholder negotiations, defined product roadmap, and implemented data-driven feature prioritization. Successfully shortened deployment cycles by 30% while maintaining high engineering quality and achieving a 20% reduction in operational costs.",
+    skills: [
+      "Product Strategy",
+      "RFID Technology",
+      "Go-to-Market",
+      "Stakeholder Management",
+      "Technical Product Management",
+      "Analytics",
+    ],
+    link: "https://assetiq.ethertech.ltd",
+  },
+  {
     title: "MAVE LMS - AI-Driven Learning Platform",
     slug: "mave-lms",
     description:
@@ -130,7 +154,7 @@ const jobProjects = [
 
 // First, update the interface to match your actual project data
 interface Project {
-  imagePath: string;
+  imagePath?: string;
   title: string;
   slug: string;
   description: string;
@@ -139,17 +163,18 @@ interface Project {
 }
 
 export default function Projects() {
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>(jobProjects);
-  
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
+  const [filteredProjects, setFilteredProjects] =
+    useState<Project[]>(jobProjects);
+
   // Remove the githubStats state and useEffect for GitHub stats
   // Keep only the filtering useEffect
   useEffect(() => {
-    if (selectedFilter === 'all') {
+    if (selectedFilter === "all") {
       setFilteredProjects(jobProjects);
     } else {
-      const filtered = jobProjects.filter(project => 
-        project.skills.some(skill => 
+      const filtered = jobProjects.filter((project) =>
+        project.skills.some((skill) =>
           skill.toLowerCase().includes(selectedFilter.toLowerCase())
         )
       );
@@ -158,13 +183,12 @@ export default function Projects() {
   }, [selectedFilter]);
 
   return (
-    <section id="projects" className="scroll-mt-16 lg:mt-16">
+    <section id="projects" className="scroll-mt-16 lg:mt-16 z-50">
       <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
         <h2 className="text-sm font-bold uppercase tracking-widest lg:sr-only">
           Projects
         </h2>
       </div>
-
 
       {/* Projects grid */}
       <div className="space-y-4">
@@ -176,43 +200,59 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="bg-card rounded-lg overflow-hidden border border-muted hover:border-primary transition-colors"
+              className="bg-card rounded-lg overflow-hidden border border-muted hover:border-primary transition-colors cursor-pointer"
             >
               <div className="flex flex-col">
-                <div className="relative w-full h-[240px]">
-                  <Image
-                    src={project.imagePath}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 800px"
-                  />
-                </div>
-                
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
+                {project.imagePath && (
+                  <div className="relative w-full h-[240px]">
+                    <Image
+                      src={project.imagePath}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 800px"
+                    />
+                  </div>
+                )}
+
+                <div className="p-6 flex flex-col flex-1 cursor-pointer">
+                  <h3
+                    className="text-xl font-bold mb-2 cursor-pointer"
+                    onClick={(e) => {
+                      window.open(project.link, "_blank");
+                      e.stopPropagation();
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 line-clamp-3 cursor-pointer">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-4 cursor-pointer">
                     {project.skills.map((skill, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
+                      <Badge
+                        key={index}
+                        variant="secondary"
+                        className="text-xs"
+                      >
                         {skill}
                       </Badge>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <a
+                  <div className="flex items-center gap-4 cursor-pointer">
+                    <Link
                       href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-primary hover:underline"
+                      className="inline-flex items-center text-primary hover:underline cursor-pointer"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       View Project <MoveUpRight className="ml-1 h-4 w-4" />
-                    </a>
+                    </Link>
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center text-primary hover:underline"
+                      className="inline-flex items-center text-primary hover:underline cursor-pointer"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       Case Study <MoveUpRight className="ml-1 h-4 w-4" />
                     </Link>
