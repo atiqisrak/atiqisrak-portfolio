@@ -176,7 +176,7 @@ const ExpCards = () => {
       <div className="mt-12">
         <a
           className="inline-flex items-center font-medium leading-tight text-foreground group"
-          href="https://drive.google.com/file/d/1k9u8kSZBKRf637oK06XbSLjdqR8oc4bJ/view?usp=sharing"
+          href="https://drive.google.com/file/d/13h7J03vULHZds3JOza6DOkFJN59OhkPR/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
         >
