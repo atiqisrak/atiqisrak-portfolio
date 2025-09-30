@@ -36,8 +36,11 @@
         "tables": [],
         "images": [
           {
-            "url": "https://atiqisrak.vercel.app/assets/ai-tools-pms.jpg",
-            "alt_text": "Top generative AI tools for product managers 2025"
+            "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "alt_text": "Top generative AI tools for product managers 2025",
+            "caption": "Essential AI tools for modern product management",
+            "width": 1260,
+            "height": 750
           }
         ]
       },
@@ -127,7 +130,7 @@
             "url": "https://bd.linkedin.com/in/atiq-israk"
           },
           "datePublished": "2025-10-21",
-          "image": "https://atiqisrak.vercel.app/assets/ai-tools-pms.jpg",
+          "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
           "publisher": {
             "@type": "Organization",
             "name": "Atiq Israk",

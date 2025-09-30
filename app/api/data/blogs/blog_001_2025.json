@@ -36,8 +36,11 @@
                     "tables": [],
                     "images": [
                         {
-                            "url": "https://atiqisrak.vercel.app/assets/ai-pm-skills.jpg",
-                            "alt_text": "AI product manager skills infographic for 2025"
+                            "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                            "alt_text": "AI product manager skills infographic for 2025",
+                            "caption": "Modern AI tools transforming product management workflows",
+                            "width": 1260,
+                            "height": 750
                         }
                     ]
                 },
@@ -101,8 +104,11 @@
                     "tables": [],
                     "images": [
                         {
-                            "url": "https://atiqisrak.vercel.app/assets/navbot-case-study.jpg",
-                            "alt_text": "NAVBOT AI chatbot case study for product managers"
+                            "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                            "alt_text": "NAVBOT AI chatbot case study for product managers",
+                            "caption": "AI chatbot implementation driving business growth",
+                            "width": 1260,
+                            "height": 750
                         }
                     ]
                 }
@@ -140,7 +146,7 @@
                             "url": "https://bd.linkedin.com/in/atiq-israk"
                         },
                         "datePublished": "2025-10-07",
-                        "image": "https://atiqisrak.vercel.app/assets/ai-pm-skills.jpg",
+                        "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                         "publisher": {
                             "@type": "Organization",
                             "name": "Atiq Israk",

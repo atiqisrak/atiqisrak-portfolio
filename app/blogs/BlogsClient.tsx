@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User, ArrowRight, Grid, List, Search, Filter, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Blog, BlogTemplate, BlogResponse, BlogFilters } from '@/types/blog';
 
 const fadeIn = {
@@ -74,6 +75,10 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    console.log("Blogs: ", blogs?.map(blog => blog.metadata.seo.schema_markup?.properties?.image));
+  }, [blogs]);
 
   const handleSearch = (value: string) => {
     const newFilters = { ...filters, search: value, page: 1 };
@@ -290,51 +295,131 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
             <motion.div key={blog.id} variants={fadeIn} className="h-full">
               <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
                 <Link href={`/blogs/${blog.slug}?template=${selectedTemplate}`} className="h-full flex flex-col">
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {blog.metadata.tags.slice(0, 3).map((tag, tagIndex) => (
-                        <Badge key={tagIndex} variant="secondary" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
-                      {blog.title}
-                    </h3>
-                    
-                    <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
-                      {blog.description}
-                    </p>
-
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                          <User className="h-4 w-4" />
-                          <span>{blog.author.name}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          <span>{new Date(blog.metadata.publish_date).toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: '2-digit', 
-                            day: '2-digit' 
-                          })}</span>
+                  {viewMode === 'grid' ? (
+                    <>
+                      {/* Grid View - Thumbnail on top */}
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={blog.metadata.seo.schema_markup?.properties?.image ? blog.metadata.seo.schema_markup?.properties?.image : '/avatar.webp'}
+                          alt={blog.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                        
+                        {/* Tags overlay */}
+                        <div className="absolute top-3 left-3 flex flex-wrap gap-1">
+                          {blog.metadata.tags.slice(0, 2).map((tag, tagIndex) => (
+                            <Badge key={tagIndex} variant="secondary" className="text-xs bg-background/80 backdrop-blur-sm">
+                              {tag}
+                            </Badge>
+                          ))}
                         </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        <span>{Math.ceil(blog.metadata.word_count / 200)} min</span>
-                      </div>
-                    </div>
 
-                    <div className="flex items-center justify-between mt-auto">
-                      <Button variant="ghost" size="sm" className="group-hover:bg-primary/10">
-                        Read More
-                        <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </div>
-                  </div>
+                      <div className="p-6 flex flex-col h-full">
+                        <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
+                          {blog.title}
+                        </h3>
+                        
+                        <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                          {blog.description}
+                        </p>
+
+                        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-1">
+                              <User className="h-4 w-4" />
+                              <span>{blog.author.name}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-4 w-4" />
+                              <span>{new Date(blog.metadata.publish_date).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: '2-digit', 
+                                day: '2-digit' 
+                              })}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-4 w-4" />
+                            <span>{Math.ceil(blog.metadata.word_count / 200)} min</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between mt-auto">
+                          <Button variant="ghost" size="sm" className="group-hover:bg-primary/10">
+                            Read More
+                            <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* List View - Thumbnail on left */}
+                      <div className="flex h-full">
+                        <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden">
+                          <Image
+                            src={blog.metadata.seo.image}
+                            alt={blog.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 768px) 100vw, 200px"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                          
+                          {/* Tags overlay */}
+                          <div className="absolute top-3 left-3 flex flex-wrap gap-1">
+                            {blog.metadata.tags.slice(0, 2).map((tag, tagIndex) => (
+                              <Badge key={tagIndex} variant="secondary" className="text-xs bg-background/80 backdrop-blur-sm">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="p-6 flex flex-col flex-grow">
+                          <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                            {blog.title}
+                          </h3>
+                          
+                          <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                            {blog.description}
+                          </p>
+
+                          <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-1">
+                                <User className="h-4 w-4" />
+                                <span>{blog.author.name}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Calendar className="h-4 w-4" />
+                                <span>{new Date(blog.metadata.publish_date).toLocaleDateString('en-US', { 
+                                  year: 'numeric', 
+                                  month: '2-digit', 
+                                  day: '2-digit' 
+                                })}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-4 w-4" />
+                              <span>{Math.ceil(blog.metadata.word_count / 200)} min</span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between mt-auto">
+                            <Button variant="ghost" size="sm" className="group-hover:bg-primary/10">
+                              Read More
+                              <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </Link>
               </Card>
             </motion.div>

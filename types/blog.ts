@@ -47,6 +47,7 @@ export interface BlogContent {
 export interface BlogSEO {
   meta_title: string;
   meta_description: string;
+  image: string;
   schema_markup: {
     type: string;
     properties: Record<string, any>;

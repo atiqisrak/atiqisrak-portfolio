@@ -36,8 +36,11 @@
         "tables": [],
         "images": [
           {
-            "url": "https://atiqisrak.vercel.app/assets/ai-roadmaps.jpg",
-            "alt_text": "AI-driven product roadmap guide 2025"
+            "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "alt_text": "AI-driven product roadmap guide 2025",
+            "caption": "AI-powered product roadmapping for modern teams",
+            "width": 1260,
+            "height": 750
           }
         ]
       },
@@ -127,7 +130,7 @@
             "url": "https://bd.linkedin.com/in/atiq-israk"
           },
           "datePublished": "2025-10-28",
-          "image": "https://atiqisrak.vercel.app/assets/ai-roadmaps.jpg",
+          "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
           "publisher": {
             "@type": "Organization",
             "name": "Atiq Israk",
