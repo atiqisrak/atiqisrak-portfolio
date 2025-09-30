@@ -7,6 +7,7 @@ import Script from "next/script";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import { ActiveSectionProvider } from "@/contexts/ActiveSectionContext";
+import FloatingActionContainer from "@/components/FloatingActionContainer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -150,6 +151,7 @@ export default function RootLayout({
             <Analytics />
             <ServiceWorkerRegistration />
             <PerformanceMonitor />
+            <FloatingActionContainer />
           </ThemeProvider>
         </ActiveSectionProvider>
       </body>

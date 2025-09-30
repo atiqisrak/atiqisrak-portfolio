@@ -5,7 +5,6 @@ import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import FloatingChatbot from "@/components/FloatingChatbot";
 import { useEffect, useRef, useCallback } from "react";
 import { Inter } from "next/font/google";
 import useActiveSectionObserver from "@/hooks/useActiveSection";
@@ -47,7 +46,6 @@ export default function Home() {
           </main>
         </div>
       </div>
-      <FloatingChatbot />
     </div>
   );
 }

@@ -19,6 +19,7 @@ export default function Nav() {
     { name: "Experience", href: "/#experience", id: "experience" },
     { name: "Projects", href: "/#projects", id: "projects" },
     { name: "Contact", href: "/#contact", id: "contact" },
+    { name: "Blog", href: "/blogs", id: "blog" },
     { name: "Product Hunt", href: "/producthunter", id: "producthunter" },
   ];
 

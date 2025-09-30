@@ -1,0 +1,96 @@
+{
+    "blogs": [
+        {
+            "id": "string",
+            "slug": "string",
+            "title": "string",
+            "description": "string",
+            "keywords": [
+                "string"
+            ],
+            "author": {
+                "name": "string",
+                "bio": "string",
+                "profile_url": "string"
+            },
+            "content": {
+                "introduction": "string",
+                "sections": [
+                    {
+                        "heading": "string",
+                        "body": "string",
+                        "lists": [
+                            {
+                                "type": "string",
+                                "items": [
+                                    "string"
+                                ]
+                            }
+                        ],
+                        "tables": [
+                            {
+                                "headers": [
+                                    "string"
+                                ],
+                                "rows": [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            }
+                        ],
+                        "images": [
+                            {
+                                "url": "string",
+                                "alt_text": "string"
+                            }
+                        ]
+                    }
+                ],
+                "faqs": [
+                    {
+                        "question": "string",
+                        "answer": "string"
+                    }
+                ],
+                "cta": {
+                    "text": "string",
+                    "url": "string"
+                }
+            },
+            "metadata": {
+                "publish_date": "string",
+                "platform": "string",
+                "seo": {
+                    "meta_title": "string",
+                    "meta_description": "string",
+                    "schema_markup": {
+                        "type": "string",
+                        "properties": {}
+                    }
+                },
+                "word_count": "number",
+                "tags": [
+                    "string"
+                ]
+            },
+            "links": {
+                "internal": [
+                    {
+                        "text": "string",
+                        "url": "string"
+                    }
+                ],
+                "external": [
+                    {
+                        "text": "string",
+                        "url": "string"
+                    }
+                ]
+            },
+            "status": "string",
+            "published_at": "string",
+            "template": "string"
+        }
+    ]
+}
