@@ -1,0 +1,177 @@
+{
+  "id": "blog_002_2025",
+  "slug": "top-10-generative-ai-tools-every-product-manager-needs-in-2025",
+  "title": "Top 10 Generative AI Tools Every Product Manager Needs in 2025",
+  "description": "Explore the top 10 generative AI tools for product managers in 2025, from Perplexity for research to Grok for ideation. Atiq Israk, a Bangladesh PM, shares how these tools drove 20% user acquisition in SaaS projects.",
+  "keywords": [
+    "generative AI tools 2025",
+    "AI for product managers",
+    "Perplexity AI for PMs",
+    "Grok for product ideation",
+    "ChatGPT for PRDs",
+    "AI tools Bangladesh",
+    "SaaS product management"
+  ],
+  "author": {
+    "name": "Atiq Israk",
+    "bio": "Generative AI Product Manager at Ether Technologies | Built NAVBOT & MAVE CMS AI integrations | Driving 160% revenue growth through AI in SaaS & FinTech | Dhaka, Bangladesh",
+    "profile_url": "https://bd.linkedin.com/in/atiq-israk"
+  },
+  "content": {
+    "introduction": "Generative AI is reshaping product management. From drafting PRDs to market research, tools like Perplexity, Grok, and Gemini are must-haves. As a PM in Bangladesh, I used these tools to boost user acquisition by 20% in MAVE LMS. Here’s my curated list of the top 10 AI tools for PMs in 2025.",
+    "sections": [
+      {
+        "heading": "Why AI Tools Are a PM’s Superpower",
+        "body": "AI tools save time, enhance insights, and scale impact. My AssetIQ project used Perplexity to cut research time by 40%. Here’s why PMs need these tools...",
+        "lists": [
+          {
+            "type": "unordered",
+            "items": [
+              "Speed: Automate repetitive tasks like PRD drafting.",
+              "Insights: Deep market analysis with minimal resources.",
+              "Creativity: Ideate features with AI-driven brainstorming."
+            ]
+          }
+        ],
+        "tables": [],
+        "images": [
+          {
+            "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "alt_text": "Top generative AI tools for product managers 2025",
+            "caption": "Essential AI tools for modern product management",
+            "width": 1260,
+            "height": 750
+          }
+        ]
+      },
+      {
+        "heading": "Top 10 AI Tools for PMs",
+        "body": "These tools are game-changers for 2025, tested in my SaaS and FinTech projects.",
+        "lists": [
+          {
+            "type": "ordered",
+            "items": [
+              "Perplexity: Best for competitor and market research.",
+              "Grok: Ideal for creative feature ideation.",
+              "ChatGPT: Streamlines PRD and user story creation.",
+              "[... 7 more tools like Alloy, Synthesia, roadmap.sh]"
+            ]
+          }
+        ],
+        "tables": [
+          {
+            "headers": [
+              "Tool",
+              "Category",
+              "Best For",
+              "Cost"
+            ],
+            "rows": [
+              [
+                "Perplexity",
+                "Research",
+                "Market analysis",
+                "Free tier"
+              ],
+              [
+                "Grok",
+                "Ideation",
+                "Feature brainstorming",
+                "Subscription"
+              ],
+              [
+                "ChatGPT",
+                "Drafting",
+                "PRD creation",
+                "Free/Plus"
+              ],
+              [
+                "Gemini",
+                "Planning",
+                "Roadmap design",
+                "Free"
+              ]
+            ]
+          }
+        ],
+        "images": []
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which AI tool is best for PM research?",
+        "answer": "Perplexity excels for real-time, source-backed research, especially in emerging markets like Bangladesh."
+      },
+      {
+        "question": "Are free AI tools effective for PMs?",
+        "answer": "Yes, free tiers of Grok and ChatGPT powered my MAVE CMS integrations effectively."
+      }
+    ],
+    "cta": {
+      "text": "Get my free AI tool comparison guide!",
+      "url": "https://atiqisrak.vercel.app/ai-tools-guide"
+    }
+  },
+  "metadata": {
+    "publish_date": "2025-10-21",
+    "platform": "Medium, LinkedIn, atiqisrak.vercel.app",
+    "seo": {
+      "meta_title": "Top 10 Generative AI Tools for Product Managers in 2025",
+      "meta_description": "Discover the best AI tools for product managers in 2025, including Perplexity, Grok, and ChatGPT. Atiq Israk shares insights from 20% user acquisition growth in SaaS.",
+      "schema_markup": {
+        "type": "Article",
+        "properties": {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Top 10 Generative AI Tools Every Product Manager Needs in 2025",
+          "author": {
+            "@type": "Person",
+            "name": "Atiq Israk",
+            "url": "https://bd.linkedin.com/in/atiq-israk"
+          },
+          "datePublished": "2025-10-21",
+          "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Atiq Israk",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://atiqisrak.vercel.app/logo.png"
+            }
+          }
+        }
+      }
+    },
+    "word_count": 1700,
+    "tags": [
+      "generative AI tools",
+      "product management",
+      "Perplexity AI",
+      "Grok",
+      "ChatGPT",
+      "AI for PMs",
+      "Bangladesh tech"
+    ]
+  },
+  "links": {
+    "internal": [
+      {
+        "text": "MAVE LMS Project",
+        "url": "https://atiqisrak.vercel.app/projects/mave-lms"
+      }
+    ],
+    "external": [
+      {
+        "text": "Perplexity AI",
+        "url": "https://www.perplexity.ai"
+      },
+      {
+        "text": "xAI Grok",
+        "url": "https://x.ai/grok"
+      }
+    ]
+  },
+  "status": "published",
+  "published_at": "2025-10-21",
+  "template": "blog_3"
+}

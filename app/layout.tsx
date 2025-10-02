@@ -6,13 +6,18 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
+import WebVitalsTracker from "@/components/WebVitalsTracker";
 import { ActiveSectionProvider } from "@/contexts/ActiveSectionContext";
+import FloatingActionContainer from "@/components/FloatingActionContainer";
+import { generateOrganizationSchema } from "@/lib/structured-data";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   preload: true,
   fallback: ["system-ui", "arial"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -20,11 +25,29 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://atiqisrak.vercel.app",
   },
-  title: "Atiq Israk - Product Manager",
+  title: {
+    default: "Atiq Israk - Product Manager & AI Specialist",
+    template: "%s | Atiq Israk",
+  },
   description:
-    "Atiq Israk is a Product Manager and Software Engineer, founder, and Quality nerd specializing in Web3, decentralized applications, and modern web development.",
-  keywords:
-    "Atiq Israk, Product Manager, Software Engineer, Project Leader, Web Development, Web3, Decentralized Applications, Quality Assurance, Software Engineering, Blockchain, Cryptography, React, Next.js, TypeScript",
+    "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software. Leading innovative projects across healthcare, e-commerce, and SaaS platforms.",
+  keywords: [
+    "Atiq Israk",
+    "Product Manager",
+    "AI Specialist",
+    "Digital Transformation",
+    "Enterprise Software",
+    "Healthcare Technology",
+    "E-commerce",
+    "SaaS",
+    "Machine Learning",
+    "Product Strategy",
+    "User Experience",
+    "Software Engineering",
+    "React",
+    "Next.js",
+    "TypeScript",
+  ],
   authors: [{ name: "Atiq Israk" }],
   creator: "Atiq Israk",
   publisher: "Atiq Israk",
@@ -43,25 +66,27 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Atiq Israk Portfolio",
     type: "website",
-    title: "Atiq Israk - Product Manager",
+    title: "Atiq Israk - Product Manager & AI Specialist",
     description:
-      "Atiq Israk is a Product Manager and Software Engineer, founder, and Quality nerd specializing in Web3, decentralized applications, and modern web development.",
+      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
     url: "https://atiqisrak.vercel.app",
     images: [
       {
         url: "/og-large-meik.webp",
         width: 1200,
         height: 630,
-        alt: "Atiq Israk - Product Manager",
+        alt: "Atiq Israk - Product Manager & AI Specialist",
+        type: "image/webp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atiq Israk - Product Manager",
+    title: "Atiq Israk - Product Manager & AI Specialist",
     description:
-      "Product Manager and Software Engineer, founder, and Quality nerd specializing in Web3 and modern web development.",
+      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
     creator: "@atiqisrak",
+    site: "@atiqisrak",
     images: ["/og-large-meik.webp"],
   },
   verification: {
@@ -115,30 +140,40 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Atiq Israk",
-              jobTitle: "Product Manager & Software Engineer",
+              jobTitle: "Product Manager & AI Specialist",
               description:
-                "Product Manager and Software Engineer, founder, and Quality nerd specializing in Web3 and modern web development.",
+                "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
               url: "https://atiqisrak.vercel.app",
               image: "https://atiqisrak.vercel.app/avatar.webp",
               sameAs: [
                 "https://github.com/atiqisrak",
-                "https://linkedin.com/in/atiqisrak",
+                "https://linkedin.com/in/atiq-israk",
                 "https://twitter.com/atiqisrak",
               ],
               knowsAbout: [
                 "Product Management",
+                "Artificial Intelligence",
+                "Digital Transformation",
+                "Enterprise Software",
+                "Healthcare Technology",
+                "E-commerce",
+                "SaaS",
+                "Machine Learning",
+                "Product Strategy",
+                "User Experience",
                 "Software Engineering",
-                "Web3",
-                "Decentralized Applications",
-                "Quality Assurance",
-                "Blockchain",
-                "Cryptography",
               ],
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateOrganizationSchema()),
+          }}
+        />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${inter.variable}`}>
         <ActiveSectionProvider>
           <ThemeProvider
             attribute="class"
@@ -150,6 +185,8 @@ export default function RootLayout({
             <Analytics />
             <ServiceWorkerRegistration />
             <PerformanceMonitor />
+            <WebVitalsTracker />
+            <FloatingActionContainer />
           </ThemeProvider>
         </ActiveSectionProvider>
       </body>

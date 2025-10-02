@@ -1,0 +1,177 @@
+{
+  "id": "blog_004_2025",
+  "slug": "how-generative-ai-is-transforming-product-roadmaps-a-2025-guide",
+  "title": "How Generative AI is Transforming Product Roadmaps: A 2025 Guide",
+  "description": "Learn how generative AI tools like Gemini and roadmap.sh revolutionize product roadmapping in 2025. Atiq Israk shares strategies from his AssetIQ project, achieving 30% faster deployment cycles in Bangladesh.",
+  "keywords": [
+    "AI for product roadmaps",
+    "generative AI 2025",
+    "Gemini for PM planning",
+    "roadmap.sh for PMs",
+    "AI in product management",
+    "AI PM Bangladesh",
+    "SaaS roadmapping"
+  ],
+  "author": {
+    "name": "Atiq Israk",
+    "bio": "Generative AI Product Manager at Ether Technologies | Built NAVBOT & MAVE CMS AI integrations | Driving 160% revenue growth through AI in SaaS & FinTech | Dhaka, Bangladesh",
+    "profile_url": "https://bd.linkedin.com/in/atiq-israk"
+  },
+  "content": {
+    "introduction": "Product roadmapping is evolving with generative AI. Tools like Gemini and roadmap.sh streamline planning, prioritization, and stakeholder alignment. In my AssetIQ project, AI cut deployment cycles by 30%. This guide explores how AI transforms roadmaps for PMs in 2025, with a focus on emerging markets.",
+    "sections": [
+      {
+        "heading": "The Role of AI in Modern Roadmapping",
+        "body": "AI enhances roadmaps by automating prioritization and predicting trends. My work on AssetIQ used Gemini to forecast user needs, saving weeks. Here’s how AI reshapes the process...",
+        "lists": [
+          {
+            "type": "unordered",
+            "items": [
+              "Automation: Generate milestones with AI tools.",
+              "Insights: Use Perplexity for trend analysis.",
+              "Alignment: Visualize plans with roadmap.sh for stakeholders."
+            ]
+          }
+        ],
+        "tables": [],
+        "images": [
+          {
+            "url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "alt_text": "AI-driven product roadmap guide 2025",
+            "caption": "AI-powered product roadmapping for modern teams",
+            "width": 1260,
+            "height": 750
+          }
+        ]
+      },
+      {
+        "heading": "Step-by-Step AI Roadmapping Process",
+        "body": "Follow this process, inspired by my MAVE CMS and AssetIQ projects, to build AI-powered roadmaps.",
+        "lists": [
+          {
+            "type": "ordered",
+            "items": [
+              "Step 1: Use Perplexity to research market trends.",
+              "Step 2: Draft milestones with Gemini prompts.",
+              "Step 3: Visualize with roadmap.sh for clarity.",
+              "Step 4: Iterate with stakeholder feedback."
+            ]
+          }
+        ],
+        "tables": [
+          {
+            "headers": [
+              "Step",
+              "Tool",
+              "Outcome",
+              "Time Saved"
+            ],
+            "rows": [
+              [
+                "Research",
+                "Perplexity",
+                "Market insights",
+                "40%"
+              ],
+              [
+                "Drafting",
+                "Gemini",
+                "Milestone list",
+                "30%"
+              ],
+              [
+                "Visualization",
+                "roadmap.sh",
+                "Clear roadmap",
+                "20%"
+              ],
+              [
+                "Iteration",
+                "ChatGPT",
+                "Feedback integration",
+                "25%"
+              ]
+            ]
+          }
+        ],
+        "images": []
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How does AI improve roadmap efficiency?",
+        "answer": "AI automates research and drafting, as seen in my AssetIQ project, which cut deployment time by 30%."
+      },
+      {
+        "question": "Can small teams use AI for roadmapping?",
+        "answer": "Absolutely—free tools like Gemini and roadmap.sh are ideal for startups in Bangladesh."
+      }
+    ],
+    "cta": {
+      "text": "Need help building an AI-powered roadmap? Book a free consult!",
+      "url": "https://atiqisrak.vercel.app/consulting"
+    }
+  },
+  "metadata": {
+    "publish_date": "2025-10-28",
+    "platform": "Medium, LinkedIn, atiqisrak.vercel.app",
+    "seo": {
+      "meta_title": "How Generative AI Transforms Product Roadmaps in 2025",
+      "meta_description": "Discover how AI tools like Gemini and roadmap.sh revolutionize product roadmapping. Atiq Israk shares insights from 30% faster deployments in Bangladesh SaaS projects.",
+      "schema_markup": {
+        "type": "Article",
+        "properties": {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "How Generative AI is Transforming Product Roadmaps: A 2025 Guide",
+          "author": {
+            "@type": "Person",
+            "name": "Atiq Israk",
+            "url": "https://bd.linkedin.com/in/atiq-israk"
+          },
+          "datePublished": "2025-10-28",
+          "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Atiq Israk",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://atiqisrak.vercel.app/logo.png"
+            }
+          }
+        }
+      }
+    },
+    "word_count": 1900,
+    "tags": [
+      "AI roadmapping",
+      "generative AI",
+      "Gemini for PMs",
+      "roadmap.sh",
+      "product management",
+      "Bangladesh SaaS",
+      "AI for PMs"
+    ]
+  },
+  "links": {
+    "internal": [
+      {
+        "text": "AssetIQ Project",
+        "url": "https://atiqisrak.vercel.app/projects/assetiq"
+      }
+    ],
+    "external": [
+      {
+        "text": "roadmap.sh",
+        "url": "https://roadmap.sh"
+      },
+      {
+        "text": "Gemini AI",
+        "url": "https://gemini.google.com"
+      }
+    ]
+  },
+  "status": "published",
+  "published_at": "2025-10-28",
+  "template": "blog_3"
+}

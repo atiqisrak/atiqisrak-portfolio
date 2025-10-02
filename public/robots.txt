@@ -1,2 +1,19 @@
 User-agent: *
 Allow: /
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /blogs/
+Allow: /projects/
+Allow: /ai/
+Allow: /producthunter/
+
+# Sitemap location
+Sitemap: https://atiqisrak.vercel.app/sitemap.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 1

@@ -9,6 +9,8 @@ interface OptimizedImageProps {
   className?: string;
   priority?: boolean;
   sizes?: string;
+  fill?: boolean;
+  quality?: number;
 }
 
 export default function OptimizedImage({
@@ -19,6 +21,8 @@ export default function OptimizedImage({
   className = "",
   priority = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  fill = false,
+  quality = 85,
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,8 +31,9 @@ export default function OptimizedImage({
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={fill ? undefined : width}
+        height={fill ? undefined : height}
+        fill={fill}
         className={`
           duration-700 ease-in-out
           ${
@@ -40,6 +45,7 @@ export default function OptimizedImage({
         onLoadingComplete={() => setIsLoading(false)}
         priority={priority}
         sizes={sizes}
+        quality={quality}
         placeholder="blur"
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
       />
