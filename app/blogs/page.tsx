@@ -1,23 +1,23 @@
-import { Home } from 'lucide-react';
-import Link from 'next/link';
-import { Blog, BlogTemplate } from '@/types/blog';
-import BlogsClient from './BlogsClient';
+import { Home } from "lucide-react";
+import Link from "next/link";
+import { Blog, BlogTemplate } from "@/types/blog";
+import BlogsClient from "./BlogsClient";
 
 async function getBlogs(): Promise<Blog[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3054';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const response = await fetch(`${baseUrl}/api/blogs`, {
-      cache: 'no-store'
+      cache: "no-store",
     });
-    
+
     if (!response.ok) {
       return [];
     }
-    
+
     const data = await response.json();
     return data.blogs || [];
   } catch (error) {
-    console.error('Error fetching blogs:', error);
+    console.error("Error fetching blogs:", error);
     return [];
   }
 }
@@ -31,7 +31,7 @@ export default async function BlogsPage() {
         {/* Navigation */}
         <nav className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link 
+            <Link
               href="/"
               className="inline-flex items-center hover:text-primary transition-colors"
             >
@@ -41,8 +41,8 @@ export default async function BlogsPage() {
             <span>/</span>
             <span className="text-foreground">Blogs</span>
           </div>
-          
-          <Link 
+
+          <Link
             href="/"
             className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors text-sm"
           >
@@ -56,8 +56,8 @@ export default async function BlogsPage() {
             Blog & Insights
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Explore my thoughts on product management, AI, and technology through 
-            different perspectives and design approaches.
+            Explore my thoughts on product management, AI, and technology
+            through different perspectives and design approaches.
           </p>
         </header>
 

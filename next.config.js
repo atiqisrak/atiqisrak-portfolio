@@ -4,6 +4,15 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Exclude backend directory from build
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+    };
+    return config;
+  },
   // Enable image optimization
   images: {
     formats: ["image/webp", "image/avif"],

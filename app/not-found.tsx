@@ -9,7 +9,9 @@ import Image from "next/image";
 
 export default function NotFound() {
   const [isVisible, setIsVisible] = useState(false);
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{ id: number; x: number; y: number; delay: number }>
+  >([]);
   const auraRef = useRef<HTMLDivElement>(null);
 
   const updateAuraPosition = useCallback((e: MouseEvent) => {
@@ -22,13 +24,13 @@ export default function NotFound() {
   useEffect(() => {
     setIsVisible(true);
     window.addEventListener("pointermove", updateAuraPosition);
-    
+
     // Create floating particles
     const newParticles = Array.from({ length: 20 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      delay: Math.random() * 2
+      delay: Math.random() * 2,
     }));
     setParticles(newParticles);
 
@@ -43,9 +45,9 @@ export default function NotFound() {
       transition: {
         duration: 0.6,
         ease: "easeOut",
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -53,8 +55,8 @@ export default function NotFound() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   const floatingVariants = {
@@ -64,9 +66,9 @@ export default function NotFound() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const pulseVariants = {
@@ -76,9 +78,9 @@ export default function NotFound() {
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
@@ -107,16 +109,22 @@ export default function NotFound() {
             }}
           />
         ))}
-        
+
         {/* Gradient Orbs */}
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 right-1/3 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute top-1/2 right-1/3 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       {/* Mouse Aura Effect */}
-      <div 
-        ref={auraRef} 
+      <div
+        ref={auraRef}
         className="pointer-events-none fixed inset-0 opacity-30"
         style={{
           background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.15), transparent 40%)`,
@@ -135,11 +143,8 @@ export default function NotFound() {
               >
                 <Card className="relative w-full p-8 md:p-12 text-center backdrop-blur-sm bg-background/80 border-border/50 shadow-2xl">
                   {/* Animated 404 Icon */}
-                  <motion.div 
-                    className="mb-8"
-                    variants={itemVariants}
-                  >
-                    <motion.div 
+                  <motion.div className="mb-8" variants={itemVariants}>
+                    <motion.div
                       className="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-destructive/20 via-destructive/10 to-destructive/5 relative overflow-hidden"
                       variants={pulseVariants}
                       animate="animate"
@@ -149,17 +154,21 @@ export default function NotFound() {
                         className="text-6xl font-bold text-destructive relative z-10"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                        transition={{
+                          delay: 0.5,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
                       >
                         {/* 404 */}
                         <Image
-                src="/404.png"
-                alt="404"
-                  width={100}
-                  height={100}
-                />
+                          src="/404.png"
+                          alt="404"
+                          width={100}
+                          height={100}
+                        />
                       </motion.div>
-                      
+
                       {/* Floating Icons */}
                       <motion.div
                         className="absolute top-2 right-2"
@@ -172,29 +181,30 @@ export default function NotFound() {
                         className="absolute bottom-2 left-2"
                         variants={floatingVariants}
                         animate="animate"
-                        style={{ animationDelay: '1s' }}
+                        style={{ animationDelay: "1s" }}
                       >
                         <Sparkles className="h-5 w-5 text-blue-500" />
                       </motion.div>
                     </motion.div>
 
-                    <motion.h2 
+                    <motion.h2
                       className="mb-4 text-3xl font-bold text-foreground md:text-4xl bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text"
                       variants={itemVariants}
                     >
                       Page Not Found
                     </motion.h2>
-                    
-                    <motion.p 
+
+                    <motion.p
                       className="mb-8 text-muted-foreground md:text-lg leading-relaxed"
                       variants={itemVariants}
                     >
-                      Oops! The page you're looking for seems to have wandered off into the digital void. 
-                      Don't worry, even the best explorers sometimes take a wrong turn.
+                      Oops! The page you&apos;re looking for seems to have
+                      wandered off into the digital void. Don&apos;t worry, even
+                      the best explorers sometimes take a wrong turn.
                     </motion.p>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.div
                     className="mb-8 space-y-6"
                     variants={itemVariants}
                   >
@@ -203,19 +213,28 @@ export default function NotFound() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Button asChild size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90">
+                        <Button
+                          asChild
+                          size="lg"
+                          className="w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
+                        >
                           <Link href="/" className="flex items-center">
                             <Home className="mr-2 h-4 w-4" />
                             Go Home
                           </Link>
                         </Button>
                       </motion.div>
-                      
+
                       <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-2 hover:bg-primary/10">
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="lg"
+                          className="w-full sm:w-auto border-2 hover:bg-primary/10"
+                        >
                           <Link href="/projects" className="flex items-center">
                             <Search className="mr-2 h-4 w-4" />
                             View Projects
@@ -223,14 +242,14 @@ export default function NotFound() {
                         </Button>
                       </motion.div>
                     </div>
-                    
+
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={() => window.history.back()}
                         className="text-muted-foreground hover:text-foreground transition-colors"
                       >
@@ -240,19 +259,16 @@ export default function NotFound() {
                     </motion.div>
                   </motion.div>
 
-                  <motion.div 
-                    className="border-t pt-6"
-                    variants={itemVariants}
-                  >
+                  <motion.div className="border-t pt-6" variants={itemVariants}>
                     <p className="text-sm text-muted-foreground">
                       If you believe this is an error, please{" "}
-                      <Link 
-                        href="/contact" 
+                      <Link
+                        href="/contact"
                         className="text-primary hover:underline font-medium transition-colors"
                       >
                         contact me
                       </Link>{" "}
-                      and I'll help you find what you're looking for.
+                      and I&apos;ll help you find what you&apos;re looking for.
                     </p>
                   </motion.div>
                 </Card>
