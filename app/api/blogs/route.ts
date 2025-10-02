@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { revalidateTag } from 'next/cache';
+
+export const dynamic = 'force-dynamic';
 
 interface Blog {
   id: string;
@@ -39,7 +42,7 @@ interface QueryParams {
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const searchParams = request.nextUrl.searchParams;
     const params: QueryParams = {
       search: searchParams.get('search') || undefined,
       tags: searchParams.get('tags') || undefined,
@@ -128,7 +131,7 @@ export async function GET(request: NextRequest) {
     const endIndex = startIndex + params.limit!;
     const paginatedBlogs = blogs.slice(startIndex, endIndex);
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       blogs: paginatedBlogs,
       pagination: {
         currentPage: params.page,
@@ -139,6 +142,11 @@ export async function GET(request: NextRequest) {
         hasPrevPage: params.page! > 1
       }
     });
+
+    // Add cache headers
+    response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+    
+    return response;
   } catch (error) {
     console.error('Error fetching blogs:', error);
     return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 });

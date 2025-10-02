@@ -2,20 +2,11 @@ import { Home } from "lucide-react";
 import Link from "next/link";
 import { Blog, BlogTemplate } from "@/types/blog";
 import BlogsClient from "./BlogsClient";
+import { getBlogsData } from "@/lib/blogs";
 
 async function getBlogs(): Promise<Blog[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/api/blogs`, {
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const data = await response.json();
-    return data.blogs || [];
+    return await getBlogsData();
   } catch (error) {
     console.error("Error fetching blogs:", error);
     return [];

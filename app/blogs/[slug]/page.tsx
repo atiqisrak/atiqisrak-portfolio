@@ -3,6 +3,7 @@ import { Blog } from "@/types/blog";
 import Template1 from "@/components/Blog/Template1";
 import Template2 from "@/components/Blog/Template2";
 import Template3 from "@/components/Blog/Template3";
+import { getBlogBySlug, getBlogsData } from "@/lib/blogs";
 
 interface BlogPageProps {
   params: { slug: string };
@@ -11,17 +12,7 @@ interface BlogPageProps {
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/api/blogs/${slug}`, {
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return null;
-    }
-
-    const data = await response.json();
-    return data.blog;
+    return await getBlogBySlug(slug);
   } catch (error) {
     console.error("Error fetching blog:", error);
     return null;
@@ -30,21 +21,10 @@ async function getBlog(slug: string): Promise<Blog | null> {
 
 export async function generateStaticParams() {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/api/blogs`, {
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const data = await response.json();
-    return (
-      data.blogs?.map((blog: Blog) => ({
-        slug: blog.slug,
-      })) || []
-    );
+    const blogs = await getBlogsData();
+    return blogs.map((blog: Blog) => ({
+      slug: blog.slug,
+    }));
   } catch (error) {
     console.error("Error generating static params:", error);
     return [];
