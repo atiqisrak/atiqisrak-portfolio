@@ -1,11 +1,16 @@
 import Nav from "@/components/Nav";
 import ExpCard from "@/components/ExpCards";
-import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import HomeClient from "@/components/HomeClient";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+// Dynamic import for Projects component
+const Projects = dynamic(() => import("@/components/Projects"), {
+  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
+});
 
 export const metadata: Metadata = {
   title: "Atiq Israk - Product Manager & AI Specialist",

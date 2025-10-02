@@ -1,9 +1,22 @@
 import { notFound } from "next/navigation";
 import { Blog } from "@/types/blog";
-import Template1 from "@/components/Blog/Template1";
-import Template2 from "@/components/Blog/Template2";
-import Template3 from "@/components/Blog/Template3";
 import { getBlogBySlug, getBlogsData } from "@/lib/blogs";
+import {
+  generateArticleSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/structured-data";
+import dynamic from "next/dynamic";
+
+// Dynamic imports for blog templates
+const Template1 = dynamic(() => import("@/components/Blog/Template1"), {
+  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
+});
+const Template2 = dynamic(() => import("@/components/Blog/Template2"), {
+  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
+});
+const Template3 = dynamic(() => import("@/components/Blog/Template3"), {
+  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
+});
 
 interface BlogPageProps {
   params: { slug: string };
@@ -88,5 +101,34 @@ export default async function BlogPage({
     blog_3: Template3,
   }[template];
 
-  return <TemplateComponent blog={blog} />;
+  // Generate structured data
+  const articleSchema = generateArticleSchema({
+    title: blog.title,
+    description: blog.metadata.seo.meta_description,
+    publishedAt: blog.metadata.publish_date,
+    updatedAt: blog.metadata.publish_date,
+    image: blog.metadata.seo.schema_markup?.properties?.image || "/avatar.webp",
+    slug: blog.slug,
+    tags: blog.metadata.tags,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Blogs", url: "/blogs" },
+    { name: blog.title, url: `/blogs/${blog.slug}` },
+  ]);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <TemplateComponent blog={blog} />
+    </>
+  );
 }

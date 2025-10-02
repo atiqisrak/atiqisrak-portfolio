@@ -67,7 +67,10 @@ export default function Nav() {
       <div className="flex flex-col gap-4 lg:pr-8 xl:pr-12 mt-6 lg:mt-0 px-4 lg:px-0">
         <div className="w-full flex lg:items-center lg:justify-start">
           <Avatar className="w-20 h-20 lg:w-28 lg:h-28 xl:w-36 xl:h-36 border-2 border-primary bg-secondary">
-            <AvatarImage src="./avatar.webp" />
+            <AvatarImage
+              src="./avatar.webp"
+              alt="Atiq Israk - Product Manager and AI Specialist"
+            />
             <AvatarFallback className="w-20 h-20 lg:w-28 lg:h-28 xl:w-36 xl:h-36 rounded-full border-1 border-primary">
               AM
             </AvatarFallback>

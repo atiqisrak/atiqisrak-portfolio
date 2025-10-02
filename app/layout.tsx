@@ -6,14 +6,18 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
+import WebVitalsTracker from "@/components/WebVitalsTracker";
 import { ActiveSectionProvider } from "@/contexts/ActiveSectionContext";
 import FloatingActionContainer from "@/components/FloatingActionContainer";
+import { generateOrganizationSchema } from "@/lib/structured-data";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   preload: true,
   fallback: ["system-ui", "arial"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -72,6 +76,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Atiq Israk - Product Manager & AI Specialist",
+        type: "image/webp",
       },
     ],
   },
@@ -81,6 +86,7 @@ export const metadata: Metadata = {
     description:
       "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
     creator: "@atiqisrak",
+    site: "@atiqisrak",
     images: ["/og-large-meik.webp"],
   },
   verification: {
@@ -160,8 +166,14 @@ export default function RootLayout({
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateOrganizationSchema()),
+          }}
+        />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${inter.variable}`}>
         <ActiveSectionProvider>
           <ThemeProvider
             attribute="class"
@@ -173,6 +185,7 @@ export default function RootLayout({
             <Analytics />
             <ServiceWorkerRegistration />
             <PerformanceMonitor />
+            <WebVitalsTracker />
             <FloatingActionContainer />
           </ThemeProvider>
         </ActiveSectionProvider>

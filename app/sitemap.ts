@@ -13,8 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 1,
+      changeFrequency: 'weekly' as const,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/blogs`,
@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/producthunter`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/offline`,
@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/blogs/${blog.slug}`,
     lastModified: new Date(blog.metadata.publish_date),
     changeFrequency: 'monthly' as const,
-    priority: 0.6,
+    priority: 0.7,
   }));
 
   // Dynamic project pages
@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/projects/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
-    priority: 0.5,
+    priority: 0.6,
   }));
 
   return [...staticPages, ...blogPages, ...projectPages];
