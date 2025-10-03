@@ -7,6 +7,7 @@ import {
 } from "@/lib/structured-data";
 import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
+import BlogNav from "@/components/BlogNav";
 
 // Dynamic imports for blog templates
 const Template1 = dynamic(() => import("@/components/Blog/Template1"), {
@@ -129,6 +130,7 @@ export default async function BlogPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <BlogNav />
       <TemplateComponent blog={blog} />
       <Footer />
     </>
