@@ -1,27 +1,39 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, User, ArrowRight, Grid, List, Search, Filter, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Blog, BlogTemplate, BlogResponse, BlogFilters } from '@/types/blog';
+import {
+  Calendar,
+  Clock,
+  User,
+  ArrowRight,
+  Grid,
+  List,
+  Search,
+  Filter,
+  ChevronLeft,
+  ChevronRight,
+  X,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { Blog, BlogTemplate, BlogResponse, BlogFilters } from "@/types/blog";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
+  transition: { duration: 0.5 },
 };
 
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 interface BlogsClientProps {
@@ -29,21 +41,22 @@ interface BlogsClientProps {
 }
 
 export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [selectedTemplate, setSelectedTemplate] = useState<BlogTemplate>('blog_3');
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<BlogTemplate>("blog_3");
   const [blogs, setBlogs] = useState<Blog[]>(initialBlogs);
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<BlogFilters>({
-    search: '',
-    tags: '',
-    author: '',
-    dateFrom: '',
-    dateTo: '',
-    sortBy: 'date',
-    sortOrder: 'desc',
+    search: "",
+    tags: "",
+    author: "",
+    dateFrom: "",
+    dateTo: "",
+    sortBy: "date",
+    sortOrder: "desc",
     page: 1,
-    limit: 10
+    limit: 10,
   });
   const [pagination, setPagination] = useState({
     currentPage: 1,
@@ -51,7 +64,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
     totalCount: initialBlogs.length,
     limit: 10,
     hasNextPage: false,
-    hasPrevPage: false
+    hasPrevPage: false,
   });
 
   const fetchBlogs = useCallback(async (newFilters: BlogFilters) => {
@@ -59,25 +72,28 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
     try {
       const params = new URLSearchParams();
       Object.entries(newFilters).forEach(([key, value]) => {
-        if (value !== undefined && value !== '') {
+        if (value !== undefined && value !== "") {
           params.append(key, value.toString());
         }
       });
 
       const response = await fetch(`/api/blogs?${params.toString()}`);
       const data: BlogResponse = await response.json();
-      
+
       setBlogs(data.blogs);
       setPagination(data.pagination);
     } catch (error) {
-      console.error('Error fetching blogs:', error);
+      console.error("Error fetching blogs:", error);
     } finally {
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    console.log("Blogs: ", blogs?.map(blog => blog.metadata.seo.schema_markup?.properties?.image));
+    console.log(
+      "Blogs: ",
+      blogs?.map((blog) => blog.metadata.seo.schema_markup?.properties?.image)
+    );
   }, [blogs]);
 
   const handleSearch = (value: string) => {
@@ -100,15 +116,15 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
   const clearFilters = () => {
     const clearedFilters: BlogFilters = {
-      search: '',
-      tags: '',
-      author: '',
-      dateFrom: '',
-      dateTo: '',
-      sortBy: 'date',
-      sortOrder: 'desc',
+      search: "",
+      tags: "",
+      author: "",
+      dateFrom: "",
+      dateTo: "",
+      sortBy: "date",
+      sortOrder: "desc",
       page: 1,
-      limit: 10
+      limit: 10,
     };
     setFilters(clearedFilters);
     fetchBlogs(clearedFilters);
@@ -116,8 +132,8 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
   const getAllTags = () => {
     const allTags = new Set<string>();
-    initialBlogs.forEach(blog => {
-      blog.metadata.tags.forEach(tag => allTags.add(tag));
+    initialBlogs.forEach((blog) => {
+      blog.metadata.tags.forEach((tag) => allTags.add(tag));
     });
     return Array.from(allTags).sort();
   };
@@ -125,10 +141,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
   return (
     <>
       {/* Search and Filter Header */}
-      <motion.div 
-        variants={fadeIn}
-        className="space-y-6 mb-8"
-      >
+      <motion.div variants={fadeIn} className="space-y-6 mb-8">
         {/* Search Bar */}
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -148,7 +161,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
               All Posts ({pagination.totalCount})
             </h2>
             <Button
-              variant={showFilters ? 'default' : 'outline'}
+              variant={showFilters ? "default" : "outline"}
               size="sm"
               onClick={() => setShowFilters(!showFilters)}
             >
@@ -156,19 +169,21 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
               Filters
             </Button>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Button
-              variant={viewMode === 'grid' ? 'default' : 'outline'}
+              variant={viewMode === "grid" ? "default" : "outline"}
               size="sm"
-              onClick={() => setViewMode('grid')}
+              onClick={() => setViewMode("grid")}
+              aria-label="Switch to grid view"
             >
               <Grid className="h-4 w-4" />
             </Button>
             <Button
-              variant={viewMode === 'list' ? 'default' : 'outline'}
+              variant={viewMode === "list" ? "default" : "outline"}
               size="sm"
-              onClick={() => setViewMode('list')}
+              onClick={() => setViewMode("list")}
+              aria-label="Switch to list view"
             >
               <List className="h-4 w-4" />
             </Button>
@@ -177,18 +192,20 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
         {/* Advanced Filters */}
         {showFilters && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 border border-border rounded-lg bg-muted/50"
           >
             {/* Sort By */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Sort By</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Sort By
+              </label>
               <select
                 value={filters.sortBy}
-                onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+                onChange={(e) => handleFilterChange("sortBy", e.target.value)}
                 className="w-full p-2 border border-border rounded-md bg-background text-foreground"
               >
                 <option value="date">Date</option>
@@ -199,10 +216,14 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
             {/* Sort Order */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Order</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Order
+              </label>
               <select
                 value={filters.sortOrder}
-                onChange={(e) => handleFilterChange('sortOrder', e.target.value)}
+                onChange={(e) =>
+                  handleFilterChange("sortOrder", e.target.value)
+                }
                 className="w-full p-2 border border-border rounded-md bg-background text-foreground"
               >
                 <option value="desc">Newest First</option>
@@ -212,48 +233,58 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
             {/* Tags Filter */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Tags</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Tags
+              </label>
               <select
                 value={filters.tags}
-                onChange={(e) => handleFilterChange('tags', e.target.value)}
+                onChange={(e) => handleFilterChange("tags", e.target.value)}
                 className="w-full p-2 border border-border rounded-md bg-background text-foreground"
               >
                 <option value="">All Tags</option>
-                {getAllTags().map(tag => (
-                  <option key={tag} value={tag}>{tag}</option>
+                {getAllTags().map((tag) => (
+                  <option key={tag} value={tag}>
+                    {tag}
+                  </option>
                 ))}
               </select>
             </div>
 
             {/* Author Filter */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Author</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Author
+              </label>
               <input
                 type="text"
                 placeholder="Filter by author..."
                 value={filters.author}
-                onChange={(e) => handleFilterChange('author', e.target.value)}
+                onChange={(e) => handleFilterChange("author", e.target.value)}
                 className="w-full p-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground"
               />
             </div>
 
             {/* Date Range */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">From Date</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                From Date
+              </label>
               <input
                 type="date"
                 value={filters.dateFrom}
-                onChange={(e) => handleFilterChange('dateFrom', e.target.value)}
+                onChange={(e) => handleFilterChange("dateFrom", e.target.value)}
                 className="w-full p-2 border border-border rounded-md bg-background text-foreground"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">To Date</label>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                To Date
+              </label>
               <input
                 type="date"
                 value={filters.dateTo}
-                onChange={(e) => handleFilterChange('dateTo', e.target.value)}
+                onChange={(e) => handleFilterChange("dateTo", e.target.value)}
                 className="w-full p-2 border border-border rounded-md bg-background text-foreground"
               />
             </div>
@@ -284,37 +315,52 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
       {/* Blogs Grid/List */}
       {!loading && (
-        <motion.div 
+        <motion.div
           variants={stagger}
-          className={viewMode === 'grid' 
-            ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" 
-            : "space-y-6"
+          className={
+            viewMode === "grid"
+              ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              : "space-y-6"
           }
         >
           {blogs.map((blog, index) => (
             <motion.div key={blog.id} variants={fadeIn} className="h-full">
               <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
-                <Link href={`/blogs/${blog.slug}?template=${selectedTemplate}`} className="h-full flex flex-col">
-                  {viewMode === 'grid' ? (
+                <Link
+                  href={`/blogs/${blog.slug}?template=${selectedTemplate}`}
+                  className="h-full flex flex-col"
+                >
+                  {viewMode === "grid" ? (
                     <>
                       {/* Grid View - Thumbnail on top */}
                       <div className="relative h-48 w-full overflow-hidden">
                         <Image
-                          src={blog.metadata.seo.schema_markup?.properties?.image ? blog.metadata.seo.schema_markup?.properties?.image : '/avatar.webp'}
+                          src={
+                            blog.metadata.seo.schema_markup?.properties?.image
+                              ? blog.metadata.seo.schema_markup?.properties
+                                  ?.image
+                              : "/avatar.webp"
+                          }
                           alt={blog.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                        
+
                         {/* Tags overlay */}
                         <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-                          {blog.metadata.tags.slice(0, 2).map((tag, tagIndex) => (
-                            <Badge key={tagIndex} variant="secondary" className="text-xs bg-background/80 backdrop-blur-sm">
-                              {tag}
-                            </Badge>
-                          ))}
+                          {blog.metadata.tags
+                            .slice(0, 2)
+                            .map((tag, tagIndex) => (
+                              <Badge
+                                key={tagIndex}
+                                variant="secondary"
+                                className="text-xs bg-background/80 backdrop-blur-sm"
+                              >
+                                {tag}
+                              </Badge>
+                            ))}
                         </div>
                       </div>
 
@@ -322,7 +368,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
                         <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
                           {blog.title}
                         </h3>
-                        
+
                         <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
                           {blog.description}
                         </p>
@@ -335,21 +381,31 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
                             </div>
                             <div className="flex items-center gap-1">
                               <Calendar className="h-4 w-4" />
-                              <span>{new Date(blog.metadata.publish_date).toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: '2-digit', 
-                                day: '2-digit' 
-                              })}</span>
+                              <span>
+                                {new Date(
+                                  blog.metadata.publish_date
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                })}
+                              </span>
                             </div>
                           </div>
                           <div className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
-                            <span>{Math.ceil(blog.metadata.word_count / 200)} min</span>
+                            <span>
+                              {Math.ceil(blog.metadata.word_count / 200)} min
+                            </span>
                           </div>
                         </div>
 
                         <div className="flex items-center justify-between mt-auto">
-                          <Button variant="ghost" size="sm" className="group-hover:bg-primary/10">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="group-hover:bg-primary/10"
+                          >
                             Read More
                             <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                           </Button>
@@ -369,14 +425,20 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
                             sizes="(max-width: 768px) 100vw, 200px"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                          
+
                           {/* Tags overlay */}
                           <div className="absolute top-3 left-3 flex flex-wrap gap-1">
-                            {blog.metadata.tags.slice(0, 2).map((tag, tagIndex) => (
-                              <Badge key={tagIndex} variant="secondary" className="text-xs bg-background/80 backdrop-blur-sm">
-                                {tag}
-                              </Badge>
-                            ))}
+                            {blog.metadata.tags
+                              .slice(0, 2)
+                              .map((tag, tagIndex) => (
+                                <Badge
+                                  key={tagIndex}
+                                  variant="secondary"
+                                  className="text-xs bg-background/80 backdrop-blur-sm"
+                                >
+                                  {tag}
+                                </Badge>
+                              ))}
                           </div>
                         </div>
 
@@ -384,7 +446,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
                           <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                             {blog.title}
                           </h3>
-                          
+
                           <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
                             {blog.description}
                           </p>
@@ -397,21 +459,31 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
                               </div>
                               <div className="flex items-center gap-1">
                                 <Calendar className="h-4 w-4" />
-                                <span>{new Date(blog.metadata.publish_date).toLocaleDateString('en-US', { 
-                                  year: 'numeric', 
-                                  month: '2-digit', 
-                                  day: '2-digit' 
-                                })}</span>
+                                <span>
+                                  {new Date(
+                                    blog.metadata.publish_date
+                                  ).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "2-digit",
+                                    day: "2-digit",
+                                  })}
+                                </span>
                               </div>
                             </div>
                             <div className="flex items-center gap-1">
                               <Clock className="h-4 w-4" />
-                              <span>{Math.ceil(blog.metadata.word_count / 200)} min</span>
+                              <span>
+                                {Math.ceil(blog.metadata.word_count / 200)} min
+                              </span>
                             </div>
                           </div>
 
                           <div className="flex items-center justify-between mt-auto">
-                            <Button variant="ghost" size="sm" className="group-hover:bg-primary/10">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="group-hover:bg-primary/10"
+                            >
                               Read More
                               <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                             </Button>
@@ -429,11 +501,10 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
       {/* Empty State */}
       {!loading && blogs.length === 0 && (
-        <motion.div 
-          variants={fadeIn}
-          className="text-center py-12"
-        >
-          <p className="text-muted-foreground text-lg">No blogs found matching your criteria.</p>
+        <motion.div variants={fadeIn} className="text-center py-12">
+          <p className="text-muted-foreground text-lg">
+            No blogs found matching your criteria.
+          </p>
           <Button variant="outline" onClick={clearFilters} className="mt-4">
             Clear Filters
           </Button>
@@ -442,7 +513,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
 
       {/* Pagination */}
       {!loading && pagination.totalPages > 1 && (
-        <motion.div 
+        <motion.div
           variants={fadeIn}
           className="flex justify-center items-center gap-2 mt-8"
         >
@@ -455,26 +526,31 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
             <ChevronLeft className="h-4 w-4" />
             Previous
           </Button>
-          
+
           <div className="flex items-center gap-1">
-            {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
-              const pageNum = Math.max(1, pagination.currentPage - 2) + i;
-              if (pageNum > pagination.totalPages) return null;
-              
-              return (
-                <Button
-                  key={pageNum}
-                  variant={pageNum === pagination.currentPage ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => handlePageChange(pageNum)}
-                  className="w-10"
-                >
-                  {pageNum}
-                </Button>
-              );
-            })}
+            {Array.from(
+              { length: Math.min(5, pagination.totalPages) },
+              (_, i) => {
+                const pageNum = Math.max(1, pagination.currentPage - 2) + i;
+                if (pageNum > pagination.totalPages) return null;
+
+                return (
+                  <Button
+                    key={pageNum}
+                    variant={
+                      pageNum === pagination.currentPage ? "default" : "outline"
+                    }
+                    size="sm"
+                    onClick={() => handlePageChange(pageNum)}
+                    className="w-10"
+                  >
+                    {pageNum}
+                  </Button>
+                );
+              }
+            )}
           </div>
-          
+
           <Button
             variant="outline"
             size="sm"

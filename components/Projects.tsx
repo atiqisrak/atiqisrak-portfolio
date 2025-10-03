@@ -246,6 +246,7 @@ export default function Projects() {
                       href={project.link}
                       className="inline-flex items-center text-primary hover:underline cursor-pointer"
                       onClick={(e) => e.stopPropagation()}
+                      aria-label={`View ${project.title} project`}
                     >
                       View Project <MoveUpRight className="ml-1 h-4 w-4" />
                     </Link>
@@ -253,6 +254,7 @@ export default function Projects() {
                       href={`/projects/${project.slug}`}
                       className="inline-flex items-center text-primary hover:underline cursor-pointer"
                       onClick={(e) => e.stopPropagation()}
+                      aria-label={`Read case study for ${project.title}`}
                     >
                       Case Study <MoveUpRight className="ml-1 h-4 w-4" />
                     </Link>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Blog, BlogTemplate } from "@/types/blog";
 import BlogsClient from "./BlogsClient";
 import { getBlogsData } from "@/lib/blogs";
+import Footer from "@/components/Footer";
 
 async function getBlogs(): Promise<Blog[]> {
   try {
@@ -53,6 +54,9 @@ export default async function BlogsPage() {
         </header>
 
         <BlogsClient initialBlogs={blogs} />
+      </div>
+      <div className="mt-12 container">
+        <Footer />
       </div>
     </div>
   );

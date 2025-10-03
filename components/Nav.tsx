@@ -57,7 +57,7 @@ export default function Nav() {
       textClass: `nav-text text-xs font-bold uppercase tracking-widest ${
         isActive
           ? "text-foreground"
-          : "text-slate-500 group-hover:text-foreground"
+          : "text-slate-600 group-hover:text-foreground"
       }`,
     };
   };
@@ -126,16 +126,18 @@ export default function Nav() {
           })}
         </ul>
       </nav>
-      <ul className="flex flex-row gap-4 lg:gap-6 mt-6 lg:mt-0 px-4 lg:px-0">
+      <div className="flex flex-row gap-4 lg:gap-6 mt-6 lg:mt-0 px-4 lg:px-0">
         <Button
           variant="outline"
           size="icon"
           className="w-10 h-10 lg:w-11 lg:h-11"
+          asChild
         >
           <a
             href="https://github.com/atiqisrak"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Atiq's GitHub profile"
           >
             <Github className="h-[1.2rem] w-[1.2rem]" />
           </a>
@@ -144,17 +146,19 @@ export default function Nav() {
           variant="outline"
           size="icon"
           className="w-10 h-10 lg:w-11 lg:h-11"
+          asChild
         >
           <a
             href="https://linkedin.com/in/atiqisrak?ref=atiqisrak.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Atiq's LinkedIn profile"
           >
             <Linkedin className="h-[1.2rem] w-[1.2rem]" />
           </a>
         </Button>
         <ModeToggle />
-      </ul>
+      </div>
     </header>
   );
 }

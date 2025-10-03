@@ -10,7 +10,7 @@ export default function Footer() {
           <h2 className="text-2xl font-bold mb-2">
             🚀 Let&apos;s Build Something Amazing Together!
           </h2>
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             Whether it&apos;s a groundbreaking product strategy, a tech
             innovation, or just a friendly chat about the future of product
             management and software engineering, I&apos;m all ears. Let&apos;s
@@ -65,7 +65,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="text-center text-gray-400 text-sm mt-4">
+        <div className="text-center text-gray-300 text-sm mt-4">
           <p>
             © {new Date().getFullYear()} <strong>Atiq Israk</strong>. All rights
             reserved.
