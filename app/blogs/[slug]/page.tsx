@@ -6,6 +6,7 @@ import {
   generateBreadcrumbSchema,
 } from "@/lib/structured-data";
 import dynamic from "next/dynamic";
+import Footer from "@/components/Footer";
 
 // Dynamic imports for blog templates
 const Template1 = dynamic(() => import("@/components/Blog/Template1"), {
@@ -129,6 +130,7 @@ export default async function BlogPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <TemplateComponent blog={blog} />
+      <Footer />
     </>
   );
 }

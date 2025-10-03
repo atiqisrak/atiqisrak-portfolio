@@ -44,7 +44,7 @@ export default function Footer() {
             Portfolio
           </Link>
           <Link
-            href="https://www.linkedin.com/in/atiq-israk/recent-activity/all/"
+            href="/blogs"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition-colors text-sm md:text-base text-center"

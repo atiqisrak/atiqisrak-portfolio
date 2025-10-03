@@ -325,7 +325,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
         >
           {blogs.map((blog, index) => (
             <motion.div key={blog.id} variants={fadeIn} className="h-full">
-              <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
+              <Card className="group hover:shadow-lg cursor-pointer transition-all duration-300 overflow-hidden h-full flex flex-col">
                 <Link
                   href={`/blogs/${blog.slug}?template=${selectedTemplate}`}
                   className="h-full flex flex-col"
@@ -365,7 +365,7 @@ export default function BlogsClient({ initialBlogs }: BlogsClientProps) {
                       </div>
 
                       <div className="p-6 flex flex-col h-full">
-                        <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
+                        <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem] cursor-pointer">
                           {blog.title}
                         </h3>
 
