@@ -121,12 +121,12 @@ export default function Home() {
       />
       <div className="relative min-h-screen bg-background">
         <HomeClient />
-        <div className="mx-auto max-w-screen-xl px-4 py-4 md:px-8 md:py-12 lg:px-12 lg:py-16 xl:px-24 lg:pt-0 xl:pt-0">
-          <div className="lg:flex lg:justify-between lg:gap-8 xl:gap-12">
-            <div className="lg:w-1/2 lg:fixed lg:top-0 lg:h-auto lg:pr-4 xl:pr-8 lg:pt-0">
+        <div className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-12 xl:px-12 lg:pt-0 xl:pt-0">
+          <div className="lg:flex lg:justify-between lg:gap-4 xl:gap-6">
+            <div className="lg:w-1/2 lg:fixed lg:top-0 lg:h-auto lg:pr-2 xl:pr-4 lg:pt-0">
               <Nav />
             </div>
-            <main className="lg:w-1/2 lg:ml-[50%] flex flex-col pt-2 lg:pt-24 gap-6 lg:gap-8">
+            <main className="lg:w-1/2 lg:ml-[50%] flex flex-col pt-2 lg:pt-16 gap-4 lg:gap-6">
               <About />
               <ExpCard />
               <Projects />
