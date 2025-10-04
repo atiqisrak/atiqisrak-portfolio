@@ -31,7 +31,7 @@ export default function OfflinePage() {
           </button>
         </div>
 
-        <p className="text-sm text-gray-400 mt-8">
+        <p className="text-sm text-gray-300 mt-8">
           Some features may not be available offline
         </p>
       </div>

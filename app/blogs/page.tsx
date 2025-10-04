@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Blog, BlogTemplate } from "@/types/blog";
 import BlogsClient from "./BlogsClient";
 import { getBlogsData } from "@/lib/blogs";
+import Footer from "@/components/Footer";
+import BlogNav from "@/components/BlogNav";
 
 async function getBlogs(): Promise<Blog[]> {
   try {
@@ -18,28 +20,19 @@ export default async function BlogsPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <BlogNav />
       <div className="max-w-7xl mx-auto py-6 lg:py-12 px-4">
-        {/* Navigation */}
-        <nav className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link
-              href="/"
-              className="inline-flex items-center hover:text-primary transition-colors"
-            >
-              <Home className="h-4 w-4 mr-1" />
-              <span>Home</span>
-            </Link>
-            <span>/</span>
-            <span className="text-foreground">Blogs</span>
-          </div>
-
+        {/* Breadcrumb Navigation */}
+        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link
             href="/"
-            className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors text-sm"
+            className="inline-flex items-center hover:text-primary transition-colors"
           >
-            <Home className="h-4 w-4 mr-2" />
-            <span>Go to Homepage</span>
+            <Home className="h-4 w-4 mr-1" />
+            <span>Home</span>
           </Link>
+          <span>/</span>
+          <span className="text-foreground">Blogs</span>
         </nav>
 
         <header className="text-center mb-12">
@@ -53,6 +46,9 @@ export default async function BlogsPage() {
         </header>
 
         <BlogsClient initialBlogs={blogs} />
+      </div>
+      <div className="mt-12 container">
+        <Footer />
       </div>
     </div>
   );

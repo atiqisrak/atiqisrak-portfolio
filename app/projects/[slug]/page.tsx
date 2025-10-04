@@ -6,6 +6,8 @@ import {
   generateBreadcrumbSchema,
 } from "@/lib/structured-data";
 import dynamic from "next/dynamic";
+import BlogNav from "@/components/BlogNav";
+import Footer from "@/components/Footer";
 
 // Dynamic import for ProjectContent
 const ProjectContent = dynamic(() => import("./ProjectContent"), {
@@ -53,7 +55,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <BlogNav />
       <ProjectContent project={project} />
+      <Footer />
     </>
   );
 }
