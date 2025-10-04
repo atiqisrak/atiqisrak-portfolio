@@ -6,7 +6,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://atiqisrak.vercel.app';
   
   // Get blog data for dynamic blog pages
-  const blogs = await getBlogsData();
+  const result = await getBlogsData();
+  
+  // Handle new format with pagination or old format
+  let blogs;
+  if (result && typeof result === 'object' && 'data' in result) {
+    blogs = (result as { data: any[]; pagination: any }).data;
+  } else {
+    blogs = result as any[];
+  }
   
   // Static pages
   const staticPages = [
@@ -45,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic blog pages
   const blogPages = blogs.map((blog) => ({
     url: `${baseUrl}/blogs/${blog.slug}`,
-    lastModified: new Date(blog.metadata.publish_date),
+    lastModified: new Date(blog.post_date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Blog } from "@/types/blog";
+import { ArchivePost } from "@/types/blog";
 import { getBlogBySlug, getBlogsData } from "@/lib/blogs";
 import {
   generateArticleSchema,
@@ -9,23 +9,16 @@ import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
 import BlogNav from "@/components/BlogNav";
 
-// Dynamic imports for blog templates
-const Template1 = dynamic(() => import("@/components/Blog/Template1"), {
-  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
-});
-const Template2 = dynamic(() => import("@/components/Blog/Template2"), {
-  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
-});
+// Dynamic import for blog template
 const Template3 = dynamic(() => import("@/components/Blog/Template3"), {
   loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
 });
 
 interface BlogPageProps {
   params: { slug: string };
-  searchParams: { template?: string };
 }
 
-async function getBlog(slug: string): Promise<Blog | null> {
+async function getBlog(slug: string): Promise<ArchivePost | null> {
   try {
     return await getBlogBySlug(slug);
   } catch (error) {
@@ -36,8 +29,19 @@ async function getBlog(slug: string): Promise<Blog | null> {
 
 export async function generateStaticParams() {
   try {
-    const blogs = await getBlogsData();
-    return blogs.map((blog: Blog) => ({
+    const result = await getBlogsData();
+
+    // Handle new format with pagination
+    if (result && typeof result === "object" && "data" in result) {
+      const blogs = (result as { data: ArchivePost[]; pagination: any }).data;
+      return blogs.map((blog: ArchivePost) => ({
+        slug: blog.slug,
+      }));
+    }
+
+    // Handle old format
+    const blogs = result as ArchivePost[];
+    return blogs.map((blog: ArchivePost) => ({
       slug: blog.slug,
     }));
   } catch (error) {
@@ -60,58 +64,43 @@ export async function generateMetadata({
   }
 
   return {
-    title: blog.metadata.seo.meta_title,
-    description: blog.metadata.seo.meta_description,
-    keywords: blog.keywords.join(", "),
-    authors: [{ name: blog.author.name }],
+    title: blog.title,
+    description: blog.search_engine_description || blog.description,
+    keywords: blog.postTags.map((tag) => tag.name).join(", "),
+    authors: [{ name: blog.publishedBylines[0]?.name }],
     openGraph: {
-      title: blog.metadata.seo.meta_title,
-      description: blog.metadata.seo.meta_description,
+      title: blog.title,
+      description: blog.search_engine_description || blog.description,
       type: "article",
-      publishedTime: blog.metadata.publish_date,
-      authors: [blog.author.name],
-      images: blog.content.sections
-        .flatMap((section) => section.images)
-        .map((image) => image.url),
+      publishedTime: blog.post_date,
+      authors: [blog.publishedBylines[0]?.name],
+      images: [blog.cover_image],
     },
     twitter: {
       card: "summary_large_image",
-      title: blog.metadata.seo.meta_title,
-      description: blog.metadata.seo.meta_description,
-      images: blog.content.sections
-        .flatMap((section) => section.images)
-        .map((image) => image.url),
+      title: blog.title,
+      description: blog.search_engine_description || blog.description,
+      images: [blog.cover_image],
     },
   };
 }
 
-export default async function BlogPage({
-  params,
-  searchParams,
-}: BlogPageProps) {
+export default async function BlogPage({ params }: BlogPageProps) {
   const blog = await getBlog(params.slug);
-  const template =
-    (searchParams.template as "blog_1" | "blog_2" | "blog_3") || "blog_1";
 
   if (!blog) {
     notFound();
   }
 
-  const TemplateComponent = {
-    blog_1: Template1,
-    blog_2: Template2,
-    blog_3: Template3,
-  }[template];
-
   // Generate structured data
   const articleSchema = generateArticleSchema({
     title: blog.title,
-    description: blog.metadata.seo.meta_description,
-    publishedAt: blog.metadata.publish_date,
-    updatedAt: blog.metadata.publish_date,
-    image: blog.metadata.seo.schema_markup?.properties?.image || "/avatar.webp",
+    description: blog.search_engine_description || blog.description,
+    publishedAt: blog.post_date,
+    updatedAt: blog.post_date,
+    image: blog.cover_image || "/avatar.webp",
     slug: blog.slug,
-    tags: blog.metadata.tags,
+    tags: blog.postTags.map((tag) => tag.name),
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -131,7 +120,7 @@ export default async function BlogPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <BlogNav />
-      <TemplateComponent blog={blog} />
+      <Template3 blog={blog} />
       <Footer />
     </>
   );

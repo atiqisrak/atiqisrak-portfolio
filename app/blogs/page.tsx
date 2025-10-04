@@ -1,22 +1,68 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
-import { Blog, BlogTemplate } from "@/types/blog";
+import { ArchivePost } from "@/types/blog";
 import BlogsClient from "./BlogsClient";
-import { getBlogsData } from "@/lib/blogs";
 import Footer from "@/components/Footer";
 import BlogNav from "@/components/BlogNav";
 
-async function getBlogs(): Promise<Blog[]> {
+interface BlogsPageProps {
+  searchParams: {
+    search?: string;
+    tags?: string;
+    author?: string;
+    dateFrom?: string;
+    dateTo?: string;
+    sortBy?: string;
+    sortOrder?: string;
+    page?: string;
+    limit?: string;
+  };
+}
+
+interface HomepageData {
+  newPosts: ArchivePost[];
+  pinnedPosts: ArchivePost[];
+  topPosts: ArchivePost[];
+  contentBlockData: {
+    postsBySectionId: Record<string, ArchivePost[]>;
+    postsByTagId: Record<string, ArchivePost[]>;
+  };
+  recommendations: any[];
+}
+
+async function getHomepageData(): Promise<HomepageData> {
   try {
-    return await getBlogsData();
+    const response = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+      }/api/homepage`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch homepage data");
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching blogs:", error);
-    return [];
+    console.error("Error fetching homepage data:", error);
+    return {
+      newPosts: [],
+      pinnedPosts: [],
+      topPosts: [],
+      contentBlockData: {
+        postsBySectionId: {},
+        postsByTagId: {},
+      },
+      recommendations: [],
+    };
   }
 }
 
-export default async function BlogsPage() {
-  const blogs = await getBlogs();
+export default async function BlogsPage({ searchParams }: BlogsPageProps) {
+  const homepageData = await getHomepageData();
 
   return (
     <div className="min-h-screen bg-background">
@@ -45,7 +91,7 @@ export default async function BlogsPage() {
           </p>
         </header>
 
-        <BlogsClient initialBlogs={blogs} />
+        <BlogsClient homepageData={homepageData} searchParams={searchParams} />
       </div>
       <div className="mt-12 container">
         <Footer />
