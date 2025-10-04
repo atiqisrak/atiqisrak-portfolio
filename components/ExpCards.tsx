@@ -20,7 +20,16 @@ const jobPositions = [
     place: "Ether Technologies",
     previousPositions: [""],
     description:
-      "Leading product vision and strategy, focusing on user journey optimization and go-to-market execution. Achieved 20% increase in new user acquisition and 30% improvement in team productivity through Lean Product Development and Agile methods. Launched and managed enterprise SaaS products while maintaining high engineering quality.",
+      "Leading product vision and strategy, focusing on user journey optimization and go-to-market execution. Launched and managed enterprise SaaS products while maintaining high engineering quality.",
+    achievements: [
+      { metric: "20%", label: "New User Acquisition" },
+      { metric: "30%", label: "Team Productivity" },
+      { metric: "30%", label: "Deployment Cycles" },
+      { metric: "40%", label: "Course Completion" },
+      { metric: "25%", label: "Dropout Reduction" },
+      { metric: "35%", label: "Site Load Time" },
+      { metric: "20%", label: "Conversion Rate" },
+    ],
     skills: [
       "Product Strategy",
       "Go-to-Market Planning",
@@ -60,7 +69,12 @@ const jobPositions = [
     place: "Navana Group",
     previousPositions: [""],
     description:
-      "Oversaw AI-driven chatbot projects and digital transformation initiatives, unifying cross-departmental collaboration. Delivered $20K+ in annual cost savings through optimized containerized deployments and AWS best practices. Strengthened product vision by working with senior management on business strategies.",
+      "Oversaw AI-driven chatbot projects and digital transformation initiatives, unifying cross-departmental collaboration. Strengthened product vision by working with senior management on business strategies.",
+    achievements: [
+      { metric: "$20K+", label: "Annual Cost Savings" },
+      { metric: "27%", label: "Sales Boost" },
+      { metric: "170%", label: "Client Onboarding" },
+    ],
     skills: [
       "Product Management",
       "Technical Project Management",
@@ -97,7 +111,14 @@ const jobPositions = [
     place: "TechCare Inc.",
     previousPositions: [""],
     description:
-      "Developed and productized 120+ web templates using React/NextJS, amassing 863,000+ global downloads and over 430,000 purchases. Leveraged Lottiefiles & GSAP to create interactive experiences, increasing template conversion rates by 27% and scaling user base by 170%.",
+      "Developed and productized web templates using React/NextJS, creating interactive experiences with Lottiefiles & GSAP.",
+    achievements: [
+      { metric: "120+", label: "Web Templates" },
+      { metric: "863K+", label: "Global Downloads" },
+      { metric: "430K+", label: "Purchases" },
+      { metric: "27%", label: "Conversion Rate" },
+      { metric: "170%", label: "User Base Growth" },
+    ],
     skills: [
       "Frontend Development",
       "React/NextJS",
@@ -154,28 +175,31 @@ const ExpCards = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-card rounded-lg p-6 hover:shadow-lg transition-all border border-muted hover:border-primary"
+              className="bg-card rounded-xl p-6 hover:shadow-xl transition-all duration-300 border border-muted hover:border-primary/50 hover:shadow-primary/5"
               role="listitem"
               aria-labelledby={`job-title-${index}`}
               itemScope
               itemType="https://schema.org/JobPosting"
             >
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
                 <header className="flex justify-between items-start">
-                  <div>
+                  <div className="space-y-1">
                     <h3
                       id={`job-title-${index}`}
-                      className="text-xl font-bold"
+                      className="text-2xl font-bold text-foreground"
                       itemProp="title"
                     >
                       {job.currentPosition}
                     </h3>
-                    <p className="text-primary" itemProp="hiringOrganization">
+                    <p
+                      className="text-lg text-primary font-medium"
+                      itemProp="hiringOrganization"
+                    >
                       <span itemProp="name">{job.place}</span>
                     </p>
                   </div>
                   <time
-                    className="text-sm text-muted-foreground"
+                    className="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full"
                     dateTime={job.timeline}
                     itemProp="datePosted"
                     aria-label={`Employment period: ${job.timeline}`}
@@ -184,7 +208,34 @@ const ExpCards = () => {
                   </time>
                 </header>
 
-                <p className="text-muted-foreground" itemProp="description">
+                {/* Key Achievements Section */}
+                {job.achievements && job.achievements.length > 0 && (
+                  <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4 border border-primary/20">
+                    <h4 className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+                      Key Achievements
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {job.achievements.map((achievement, idx) => (
+                        <div
+                          key={idx}
+                          className="text-center bg-background/50 rounded-lg p-3 border border-muted/50"
+                        >
+                          <div className="text-2xl font-bold text-primary">
+                            {achievement.metric}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1 leading-tight">
+                            {achievement.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <p
+                  className="text-muted-foreground leading-relaxed"
+                  itemProp="description"
+                >
                   {job.description}
                 </p>
 
@@ -211,6 +262,7 @@ const ExpCards = () => {
                       variant="secondary"
                       role="listitem"
                       aria-label={`Skill: ${skill}`}
+                      className="text-xs font-medium"
                     >
                       {skill}
                     </Badge>
