@@ -31,13 +31,17 @@ export default function ProjectContent({ project }: { project: Project }) {
     >
       {/* Back button */}
       <motion.div variants={fadeIn} className="mb-6">
-        <Link
-          href="/#projects"
+        <button
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              window.history.back();
+            }
+          }}
           className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           <span className="text-sm font-medium">Back to Projects</span>
-        </Link>
+        </button>
       </motion.div>
 
       <motion.div
