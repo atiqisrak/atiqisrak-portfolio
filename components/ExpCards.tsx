@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 const jobPositions = [
   {
@@ -55,12 +56,13 @@ const jobPositions = [
   },
   {
     timeline: "Aug 2020 — Mar 2023",
-    currentPosition: "Technical Project Manager, Product & Engineering",
+    currentPosition: "Jr. Product Manager, Product & Engineering",
     place: "Navana Group",
     previousPositions: [""],
     description:
       "Oversaw AI-driven chatbot projects and digital transformation initiatives, unifying cross-departmental collaboration. Delivered $20K+ in annual cost savings through optimized containerized deployments and AWS best practices. Strengthened product vision by working with senior management on business strategies.",
     skills: [
+      "Product Management",
       "Technical Project Management",
       "AI Implementation",
       "Digital Transformation",
@@ -109,83 +111,134 @@ const jobPositions = [
 ];
 
 const ExpCards = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const resumeLink =
+    process.env.NEXT_PUBLIC_RESUME_LINK || "/AtiqIsrak_Resume.pdf";
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <section id="experience" className="scroll-mt-16 lg:mt-16">
+    <section
+      id="experience"
+      className="scroll-mt-16 lg:mt-16"
+      aria-labelledby="experience-heading"
+      role="region"
+    >
       <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest lg:sr-only">
+        <h2
+          id="experience-heading"
+          className="text-sm font-bold uppercase tracking-widest lg:sr-only"
+        >
           Experience
         </h2>
       </div>
-      <div className="space-y-6">
-        {jobPositions.map((job, index) => (
-          <motion.div
-            key={index}
-            ref={ref}
-            variants={cardVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="bg-card rounded-lg p-6 hover:shadow-lg transition-all border border-muted hover:border-primary"
-          >
-            <div className="flex flex-col gap-4">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-xl font-bold">{job.currentPosition}</h3>
-                  <p className="text-primary">{job.place}</p>
-                </div>
-                <span className="text-sm text-muted-foreground">
-                  {job.timeline}
-                </span>
-              </div>
+      <div
+        className="space-y-4"
+        role="list"
+        aria-label="Work experience timeline"
+      >
+        {jobPositions.map((job, index) => {
+          const [ref, inView] = useInView({
+            triggerOnce: true,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          });
 
-              <p className="text-muted-foreground">{job.description}</p>
-
-              {job.previousPositions && job.previousPositions.length > 0 && (
-                <div className="space-y-2">
-                  <p className="font-medium">Previous Roles:</p>
-                  {job.previousPositions.map((position, idx) => (
-                    <p key={idx} className="text-sm text-muted-foreground">
-                      {position}
+          return (
+            <motion.article
+              key={index}
+              ref={ref}
+              variants={cardVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="bg-card rounded-lg p-6 hover:shadow-lg transition-all border border-muted hover:border-primary"
+              role="listitem"
+              aria-labelledby={`job-title-${index}`}
+              itemScope
+              itemType="https://schema.org/JobPosting"
+            >
+              <div className="flex flex-col gap-4">
+                <header className="flex justify-between items-start">
+                  <div>
+                    <h3
+                      id={`job-title-${index}`}
+                      className="text-xl font-bold"
+                      itemProp="title"
+                    >
+                      {job.currentPosition}
+                    </h3>
+                    <p className="text-primary" itemProp="hiringOrganization">
+                      <span itemProp="name">{job.place}</span>
                     </p>
+                  </div>
+                  <time
+                    className="text-sm text-muted-foreground"
+                    dateTime={job.timeline}
+                    itemProp="datePosted"
+                    aria-label={`Employment period: ${job.timeline}`}
+                  >
+                    {job.timeline}
+                  </time>
+                </header>
+
+                <p className="text-muted-foreground" itemProp="description">
+                  {job.description}
+                </p>
+
+                {job.previousPositions && job.previousPositions.length > 0 && (
+                  <div className="space-y-2">
+                    <ul role="list" aria-label="Previous positions">
+                      {job.previousPositions.map((position, idx) => (
+                        <li key={idx} className="text-sm text-muted-foreground">
+                          {position}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div
+                  className="flex flex-wrap gap-2"
+                  role="list"
+                  aria-label="Skills and technologies"
+                >
+                  {job.skills.map((skill, idx) => (
+                    <Badge
+                      key={idx}
+                      variant="secondary"
+                      role="listitem"
+                      aria-label={`Skill: ${skill}`}
+                    >
+                      {skill}
+                    </Badge>
                   ))}
                 </div>
-              )}
-
-              <div className="flex flex-wrap gap-2">
-                {job.skills.map((skill, idx) => (
-                  <Badge key={idx} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.article>
+          );
+        })}
       </div>
 
-      <div className="mt-12">
-        <a
-          className="inline-flex items-center font-medium leading-tight text-foreground group"
-          href="https://drive.google.com/file/d/1k9u8kSZBKRf637oK06XbSLjdqR8oc4bJ/view?usp=sharing"
+      <footer className="mt-12">
+        <Link
+          href={resumeLink}
           target="_blank"
           rel="noopener noreferrer"
+          className="inline-flex items-center font-medium leading-tight text-foreground group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm"
+          aria-label="View full resume (opens in new tab)"
         >
           <span className="border-b border-transparent pb-px transition hover:border-primary motion-reduce:transition-none">
             View Full Resume
           </span>
-          <MoveRight className="ml-1 inline-block h-5 w-5 shrink-0 -translate-y-px transition-transform group-hover:translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none" />
-        </a>
-      </div>
+          <MoveRight
+            className="ml-1 inline-block h-5 w-5 shrink-0 -translate-y-px transition-transform group-hover:translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none"
+            aria-hidden="true"
+          />
+        </Link>
+      </footer>
     </section>
   );
 };

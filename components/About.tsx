@@ -83,6 +83,9 @@ const aboutSchema = {
 };
 
 export default function About() {
+  const resumeLink =
+    process.env.NEXT_PUBLIC_RESUME_LINK || "/AtiqIsrak_Resume.pdf";
+
   const skillsData = {
     labels: [
       "Frontend Development",
@@ -352,7 +355,7 @@ export default function About() {
               Download My Resume
             </h3>
             <Link
-              href="/Atiq_Israk_Niloy_Resume.pdf"
+              href={resumeLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold"

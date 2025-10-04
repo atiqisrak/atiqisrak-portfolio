@@ -126,7 +126,7 @@ export default function Home() {
             <div className="lg:w-1/2 lg:fixed lg:top-0 lg:h-auto lg:pr-2 xl:pr-4 lg:pt-0">
               <Nav />
             </div>
-            <main className="lg:w-1/2 lg:ml-[50%] flex flex-col pt-2 lg:pt-16 gap-4 lg:gap-6">
+            <main className="lg:w-1/2 lg:ml-[50%] flex flex-col pt-2 lg:pt-16 gap-2 lg:gap-4">
               <About />
               <ExpCard />
               <Projects />
