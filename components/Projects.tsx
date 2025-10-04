@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { MoveUpRight } from "lucide-react";
+import { MoveUpRight, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useInView } from "react-intersection-observer";
 
 const jobProjects = [
   {
@@ -152,7 +153,7 @@ const jobProjects = [
   },
 ];
 
-// First, update the interface to match your actual project data
+// Enhanced interface with additional metadata for SEO and accessibility
 interface Project {
   imagePath?: string;
   title: string;
@@ -160,6 +161,9 @@ interface Project {
   description: string;
   skills: string[];
   link: string;
+  category?: string;
+  status?: "completed" | "in-progress" | "archived";
+  featured?: boolean;
 }
 
 export default function Projects() {
@@ -183,86 +187,194 @@ export default function Projects() {
   }, [selectedFilter]);
 
   return (
-    <section id="projects" className="scroll-mt-16 lg:mt-16 z-50">
+    <section
+      id="projects"
+      className="scroll-mt-16 lg:mt-16 z-50"
+      aria-labelledby="projects-heading"
+      role="region"
+    >
       <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest lg:sr-only">
-          Projects
+        <h2
+          id="projects-heading"
+          className="text-sm font-bold uppercase tracking-widest lg:sr-only"
+        >
+          Featured Projects
         </h2>
       </div>
 
       {/* Projects grid */}
-      <div className="space-y-4">
+      <div className="space-y-6" role="list" aria-label="Portfolio projects">
         <AnimatePresence mode="wait">
-          {filteredProjects.map((project) => (
-            <motion.div
-              key={project.title}
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="bg-card rounded-lg overflow-hidden border border-muted hover:border-primary transition-colors cursor-pointer"
-            >
-              <div className="flex flex-col">
+          {filteredProjects.map((project, index) => {
+            const [ref, inView] = useInView({
+              triggerOnce: true,
+              threshold: 0.1,
+              rootMargin: "0px 0px -50px 0px",
+            });
+
+            return (
+              <motion.article
+                key={project.slug}
+                ref={ref}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative bg-card rounded-2xl overflow-hidden border border-muted hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group cursor-pointer"
+                role="listitem"
+                aria-labelledby={`project-title-${project.slug}`}
+                itemScope
+                itemType="https://schema.org/CreativeWork"
+              >
+                {/* Full-width Hero Image */}
                 {project.imagePath && (
-                  <div className="relative w-full h-[240px]">
+                  <div className="relative w-full h-[200px] overflow-hidden">
                     <Image
                       src={project.imagePath}
-                      alt={project.title}
+                      alt={`${project.title} - Project screenshot`}
                       fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 800px"
+                      className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
+                      priority={index < 3}
+                      itemProp="image"
                     />
+
+                    {/* Dynamic Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Floating Action Buttons */}
+                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-background/90 backdrop-blur-sm rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                        aria-label={`Visit ${project.title} live project`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </Link>
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="p-2 bg-background/90 backdrop-blur-sm rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                        aria-label={`Read case study for ${project.title}`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <MoveUpRight className="h-4 w-4" />
+                      </Link>
+                    </div>
                   </div>
                 )}
 
-                <div className="p-6 flex flex-col flex-1 cursor-pointer">
-                  <h3
-                    className="text-xl font-bold mb-2 cursor-pointer"
-                    onClick={(e) => {
-                      window.open(project.link, "_blank");
-                      e.stopPropagation();
-                    }}
-                  >
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-3 cursor-pointer">
-                    {project.description}
-                  </p>
+                {/* Content Section */}
+                <div className="p-6">
+                  <header className="mb-4">
+                    <h3
+                      id={`project-title-${project.slug}`}
+                      className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300"
+                      itemProp="name"
+                    >
+                      {project.title}
+                    </h3>
+                    <p
+                      className="text-muted-foreground leading-relaxed text-sm line-clamp-3"
+                      itemProp="description"
+                    >
+                      {project.description}
+                    </p>
+                  </header>
 
-                  <div className="flex flex-wrap gap-2 mb-4 cursor-pointer">
-                    {project.skills.map((skill, index) => (
-                      <Badge
-                        key={index}
-                        variant="secondary"
-                        className="text-xs"
+                  {/* Skills with Creative Layout */}
+                  <div className="mb-6">
+                    <h4 className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                      Technologies & Skills
+                    </h4>
+                    <div
+                      className="flex flex-wrap gap-2"
+                      role="list"
+                      aria-label="Technologies and skills used"
+                    >
+                      {project.skills.map((skill, skillIndex) => (
+                        <Badge
+                          key={skillIndex}
+                          variant="secondary"
+                          className="text-xs font-medium px-2 py-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                          role="listitem"
+                          aria-label={`Technology: ${skill}`}
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <footer>
+                    <div
+                      className="flex flex-col sm:flex-row gap-4"
+                      role="group"
+                      aria-label="Project actions"
+                    >
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                        aria-label={`Visit ${project.title} live project (opens in new tab)`}
+                        itemProp="url"
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-4 cursor-pointer">
-                    <Link
-                      href={project.link}
-                      className="inline-flex items-center text-primary hover:underline cursor-pointer"
-                      onClick={(e) => e.stopPropagation()}
-                      aria-label={`View ${project.title} project`}
-                    >
-                      View Project <MoveUpRight className="ml-1 h-4 w-4" />
-                    </Link>
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="inline-flex items-center text-primary hover:underline cursor-pointer"
-                      onClick={(e) => e.stopPropagation()}
-                      aria-label={`Read case study for ${project.title}`}
-                    >
-                      Case Study <MoveUpRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </div>
+                        <span>View Live Project</span>
+                        <ExternalLink className="h-3 w-3" />
+                      </Link>
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="inline-flex items-center justify-center gap-2 border border-primary text-primary px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                        aria-label={`Read detailed case study for ${project.title}`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <span>Case Study</span>
+                        <MoveUpRight className="h-3 w-3" />
+                      </Link>
+                    </div>
+                  </footer>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Decorative Elements */}
+                <div className="absolute -bottom-2 -right-2 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -top-2 -left-2 w-16 h-16 bg-gradient-to-br from-primary/5 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                {/* Structured Data for SEO */}
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      "@context": "https://schema.org",
+                      "@type": "CreativeWork",
+                      name: project.title,
+                      description: project.description,
+                      url: project.link,
+                      image: project.imagePath
+                        ? `${
+                            typeof window !== "undefined"
+                              ? window.location.origin
+                              : "https://atiqisrak.vercel.app"
+                          }${project.imagePath}`
+                        : undefined,
+                      author: {
+                        "@type": "Person",
+                        name: "Atiq Israk",
+                      },
+                      keywords: project.skills.join(", "),
+                      dateCreated: "2020",
+                      inLanguage: "en",
+                    }),
+                  }}
+                />
+              </motion.article>
+            );
+          })}
         </AnimatePresence>
       </div>
     </section>

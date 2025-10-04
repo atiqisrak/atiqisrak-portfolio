@@ -175,31 +175,31 @@ const ExpCards = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-card rounded-xl p-6 hover:shadow-xl transition-all duration-300 border border-muted hover:border-primary/50 hover:shadow-primary/5"
+              className="bg-card rounded-xl p-4 hover:shadow-xl transition-all duration-300 border border-muted hover:border-primary/50 hover:shadow-primary/5"
               role="listitem"
               aria-labelledby={`job-title-${index}`}
               itemScope
               itemType="https://schema.org/JobPosting"
             >
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4">
                 <header className="flex justify-between items-start">
                   <div className="space-y-1">
                     <h3
                       id={`job-title-${index}`}
-                      className="text-2xl font-bold text-foreground"
+                      className="text-xl font-bold text-foreground"
                       itemProp="title"
                     >
                       {job.currentPosition}
                     </h3>
                     <p
-                      className="text-lg text-primary font-medium"
+                      className="text-base text-primary font-medium"
                       itemProp="hiringOrganization"
                     >
                       <span itemProp="name">{job.place}</span>
                     </p>
                   </div>
                   <time
-                    className="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full"
+                    className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-full"
                     dateTime={job.timeline}
                     itemProp="datePosted"
                     aria-label={`Employment period: ${job.timeline}`}
@@ -210,17 +210,17 @@ const ExpCards = () => {
 
                 {/* Key Achievements Section */}
                 {job.achievements && job.achievements.length > 0 && (
-                  <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4 border border-primary/20">
-                    <h4 className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+                  <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-3 border border-primary/20">
+                    <h4 className="text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
                       Key Achievements
                     </h4>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                       {job.achievements.map((achievement, idx) => (
                         <div
                           key={idx}
-                          className="text-center bg-background/50 rounded-lg p-3 border border-muted/50"
+                          className="text-center bg-background/50 rounded-lg p-2 border border-muted/50"
                         >
-                          <div className="text-2xl font-bold text-primary">
+                          <div className="text-lg font-bold text-primary">
                             {achievement.metric}
                           </div>
                           <div className="text-xs text-muted-foreground mt-1 leading-tight">
@@ -233,7 +233,7 @@ const ExpCards = () => {
                 )}
 
                 <p
-                  className="text-muted-foreground leading-relaxed"
+                  className="text-sm text-muted-foreground leading-relaxed"
                   itemProp="description"
                 >
                   {job.description}
@@ -262,7 +262,7 @@ const ExpCards = () => {
                       variant="secondary"
                       role="listitem"
                       aria-label={`Skill: ${skill}`}
-                      className="text-xs font-medium"
+                      className="text-xs font-medium px-2 py-1"
                     >
                       {skill}
                     </Badge>
