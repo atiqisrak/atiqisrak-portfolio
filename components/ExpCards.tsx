@@ -161,115 +161,13 @@ const ExpCards = () => {
         aria-label="Work experience timeline"
       >
         {jobPositions.map((job, index) => {
-          const [ref, inView] = useInView({
-            triggerOnce: true,
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px",
-          });
-
           return (
-            <motion.article
+            <ExpCard
               key={index}
-              ref={ref}
-              variants={cardVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-card rounded-xl p-4 hover:shadow-xl transition-all duration-300 border border-muted hover:border-primary/50 hover:shadow-primary/5"
-              role="listitem"
-              aria-labelledby={`job-title-${index}`}
-              itemScope
-              itemType="https://schema.org/JobPosting"
-            >
-              <div className="flex flex-col gap-4">
-                <header className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <h3
-                      id={`job-title-${index}`}
-                      className="text-xl font-bold text-foreground"
-                      itemProp="title"
-                    >
-                      {job.currentPosition}
-                    </h3>
-                    <p
-                      className="text-base text-primary font-medium"
-                      itemProp="hiringOrganization"
-                    >
-                      <span itemProp="name">{job.place}</span>
-                    </p>
-                  </div>
-                  <time
-                    className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-full"
-                    dateTime={job.timeline}
-                    itemProp="datePosted"
-                    aria-label={`Employment period: ${job.timeline}`}
-                  >
-                    {job.timeline}
-                  </time>
-                </header>
-
-                {/* Key Achievements Section */}
-                {job.achievements && job.achievements.length > 0 && (
-                  <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-3 border border-primary/20">
-                    <h4 className="text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
-                      Key Achievements
-                    </h4>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                      {job.achievements.map((achievement, idx) => (
-                        <div
-                          key={idx}
-                          className="text-center bg-background/50 rounded-lg p-2 border border-muted/50"
-                        >
-                          <div className="text-lg font-bold text-primary">
-                            {achievement.metric}
-                          </div>
-                          <div className="text-xs text-muted-foreground mt-1 leading-tight">
-                            {achievement.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <p
-                  className="text-sm text-muted-foreground leading-relaxed"
-                  itemProp="description"
-                >
-                  {job.description}
-                </p>
-
-                {job.previousPositions && job.previousPositions.length > 0 && (
-                  <div className="space-y-2">
-                    <ul role="list" aria-label="Previous positions">
-                      {job.previousPositions.map((position, idx) => (
-                        <li key={idx} className="text-sm text-muted-foreground">
-                          {position}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                <div
-                  className="flex flex-wrap gap-2"
-                  role="list"
-                  aria-label="Skills and technologies"
-                >
-                  {job.skills.map((skill, idx) => (
-                    <Badge
-                      key={idx}
-                      variant="secondary"
-                      role="listitem"
-                      aria-label={`Skill: ${skill}`}
-                      className="text-xs font-medium px-2 py-1"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
+              job={job}
+              index={index}
+              cardVariants={cardVariants}
+            />
           );
         })}
       </div>
@@ -292,6 +190,147 @@ const ExpCards = () => {
         </Link>
       </footer>
     </section>
+  );
+};
+
+interface JobPosition {
+  timeline: string;
+  currentPosition: string;
+  place: string;
+  previousPositions: string[];
+  description: string;
+  achievements: Array<{ metric: string; label: string }>;
+  skills: string[];
+  recentProjects?: Array<{
+    title: string;
+    description: string;
+    technologies: string[];
+  }>;
+}
+
+interface CardVariants {
+  hidden: { opacity: number; y: number };
+  visible: { opacity: number; y: number };
+  [key: string]: { opacity: number; y: number };
+}
+
+const ExpCard = ({
+  job,
+  index,
+  cardVariants,
+}: {
+  job: JobPosition;
+  index: number;
+  cardVariants: CardVariants;
+}) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
+  return (
+    <motion.article
+      ref={ref}
+      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="bg-card rounded-xl p-4 hover:shadow-xl transition-all duration-300 border border-muted hover:border-primary/50 hover:shadow-primary/5"
+      role="listitem"
+      aria-labelledby={`job-title-${index}`}
+      itemScope
+      itemType="https://schema.org/JobPosting"
+    >
+      <div className="flex flex-col gap-4">
+        <header className="flex justify-between items-start">
+          <div className="space-y-1">
+            <h3
+              id={`job-title-${index}`}
+              className="text-xl font-bold text-foreground"
+              itemProp="title"
+            >
+              {job.currentPosition}
+            </h3>
+            <p
+              className="text-base text-primary font-medium"
+              itemProp="hiringOrganization"
+            >
+              <span itemProp="name">{job.place}</span>
+            </p>
+          </div>
+          <time
+            className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded-full"
+            dateTime={job.timeline}
+            itemProp="datePosted"
+            aria-label={`Employment period: ${job.timeline}`}
+          >
+            {job.timeline}
+          </time>
+        </header>
+
+        {/* Key Achievements Section */}
+        {job.achievements && job.achievements.length > 0 && (
+          <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-3 border border-primary/20">
+            <h4 className="text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+              Key Achievements
+            </h4>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+              {job.achievements.map((achievement, idx) => (
+                <div
+                  key={idx}
+                  className="text-center bg-background/50 rounded-lg p-2 border border-muted/50"
+                >
+                  <div className="text-lg font-bold text-primary">
+                    {achievement.metric}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1 leading-tight">
+                    {achievement.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <p
+          className="text-sm text-muted-foreground leading-relaxed"
+          itemProp="description"
+        >
+          {job.description}
+        </p>
+
+        {job.previousPositions && job.previousPositions.length > 0 && (
+          <div className="space-y-2">
+            <ul role="list" aria-label="Previous positions">
+              {job.previousPositions.map((position, idx) => (
+                <li key={idx} className="text-sm text-muted-foreground">
+                  {position}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div
+          className="flex flex-wrap gap-2"
+          role="list"
+          aria-label="Skills and technologies"
+        >
+          {job.skills.map((skill, idx) => (
+            <Badge
+              key={idx}
+              variant="secondary"
+              role="listitem"
+              aria-label={`Skill: ${skill}`}
+              className="text-xs font-medium px-2 py-1"
+            >
+              {skill}
+            </Badge>
+          ))}
+        </div>
+      </div>
+    </motion.article>
   );
 };
 
