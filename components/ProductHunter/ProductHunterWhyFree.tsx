@@ -104,9 +104,10 @@ export default function ProductHunterWhyFree() {
           className="text-center bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-2xl p-8 lg:p-12"
         >
           <blockquote className="text-xl lg:text-2xl font-medium text-foreground mb-6 leading-relaxed">
-            "Every great product deserves to be discovered. By offering these
-            services for free, I'm investing in the future of innovation and
-            helping build a more inclusive startup ecosystem."
+            &ldquo;Every great product deserves to be discovered. By offering
+            these services for free, I&apos;m investing in the future of
+            innovation and helping build a more inclusive startup
+            ecosystem.&rdquo;
           </blockquote>
           <cite className="text-muted-foreground">
             — Atiq Israk, Product Manager & Community Builder

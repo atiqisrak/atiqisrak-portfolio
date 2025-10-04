@@ -32,8 +32,8 @@ export default function ProductHunterCTA() {
             Ready to Launch?
           </h2>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Don't let your amazing product go unnoticed. Let's work together to
-            make your Product Hunt launch a success story.
+            Don&apos;t let your amazing product go unnoticed. Let&apos;s work
+            together to make your Product Hunt launch a success story.
           </p>
         </motion.div>
 
