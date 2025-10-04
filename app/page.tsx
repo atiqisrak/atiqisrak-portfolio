@@ -1,15 +1,36 @@
 import Nav from "@/components/Nav";
-import ExpCard from "@/components/ExpCards";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import HomeClient from "@/components/HomeClient";
+import LazySection from "@/components/LazySection";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-// Dynamic import for Projects component
+// Dynamic imports for all components to reduce initial bundle size
+const ExpCard = dynamic(() => import("@/components/ExpCards"), {
+  loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+  ssr: false,
+});
+
+const About = dynamic(() => import("@/components/About"), {
+  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
+  ssr: false,
+});
+
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => <div className="animate-pulse bg-muted h-32 rounded-lg" />,
+  ssr: false,
+});
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div className="animate-pulse bg-muted h-16 rounded-lg" />,
+  ssr: false,
+});
+
+const HomeClient = dynamic(() => import("@/components/HomeClient"), {
+  ssr: false,
+});
+
 const Projects = dynamic(() => import("@/components/Projects"), {
   loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
+  ssr: false,
 });
 
 export const metadata: Metadata = {
@@ -127,11 +148,21 @@ export default function Home() {
               <Nav />
             </div>
             <main className="lg:w-1/2 lg:ml-[50%] flex flex-col pt-2 lg:pt-16 gap-2 lg:gap-4">
-              <About />
-              <ExpCard />
-              <Projects />
-              <Contact />
-              <Footer />
+              <LazySection>
+                <About />
+              </LazySection>
+              <LazySection>
+                <ExpCard />
+              </LazySection>
+              <LazySection>
+                <Projects />
+              </LazySection>
+              <LazySection>
+                <Contact />
+              </LazySection>
+              <LazySection>
+                <Footer />
+              </LazySection>
             </main>
           </div>
         </div>

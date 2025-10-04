@@ -1,27 +1,45 @@
 "use client";
 
-import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Radar } from "react-chartjs-2";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { generateOrganizationSchema } from "@/lib/structured-data";
+import dynamic from "next/dynamic";
+import React from "react";
 
-ChartJS.register(
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend
+// Lazy load Chart.js components to reduce initial bundle size
+const Radar = dynamic(
+  () => import("react-chartjs-2").then((mod) => mod.Radar),
+  {
+    loading: () => (
+      <div className="h-96 flex items-center justify-center text-muted-foreground">
+        Loading chart...
+      </div>
+    ),
+    ssr: false,
+  }
 );
+
+// Dynamically import Chart.js components
+const loadChartJS = async () => {
+  const {
+    Chart,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend,
+  } = await import("chart.js");
+  Chart.register(
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+  );
+  return Chart;
+};
 
 const currentExperience = () => {
   const startDate = new Date("2019-02-01");
@@ -85,6 +103,11 @@ const aboutSchema = {
 export default function About() {
   const resumeLink =
     process.env.NEXT_PUBLIC_RESUME_LINK || "/AtiqIsrak_Resume.pdf";
+
+  // Initialize Chart.js when component mounts
+  React.useEffect(() => {
+    loadChartJS();
+  }, []);
 
   const skillsData = {
     labels: [

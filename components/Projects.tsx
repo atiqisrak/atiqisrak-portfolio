@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import OptimizedImage from "@/components/OptimizedImage";
 import { Badge } from "@/components/ui/badge";
 import { MoveUpRight, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -196,13 +196,15 @@ const ProjectCard = ({
       {/* Full-width Hero Image */}
       {project.imagePath && (
         <div className="relative w-full h-[200px] overflow-hidden">
-          <Image
+          <OptimizedImage
             src={project.imagePath}
             alt={`${project.title} - Project screenshot`}
             fill
             className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
-            priority={index < 3}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+            priority={index < 2}
+            lazy={index >= 2}
+            placeholder="blur"
             itemProp="image"
           />
 
