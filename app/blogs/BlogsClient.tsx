@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Grid, List } from "lucide-react";
@@ -9,6 +9,7 @@ import BlogCard from "./components/BlogCard";
 import FeaturedPosts from "./components/FeaturedPosts";
 import TopPosts from "./components/TopPosts";
 import BlogFiltersComponent from "./components/BlogFilters";
+import ContentBlocks from "./components/ContentBlocks";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -28,7 +29,7 @@ interface InfiniteScrollMeta {
   totalCount: number;
   limit: number;
   hasMore: boolean;
-  offset: number;
+  currentPage: number;
 }
 
 interface HomepageData {
@@ -54,6 +55,7 @@ interface BlogsClientProps {
     sortOrder?: string;
     page?: string;
     limit?: string;
+    post_tag_id?: string;
   };
 }
 
@@ -64,9 +66,7 @@ export default function BlogsClient({
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedTemplate, setSelectedTemplate] =
     useState<BlogTemplate>("blog_3");
-  const [blogs, setBlogs] = useState<ArchivePost[]>(
-    homepageData.newPosts || []
-  );
+  const [blogs, setBlogs] = useState<ArchivePost[]>([]);
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<BlogFilters>({
@@ -78,29 +78,61 @@ export default function BlogsClient({
     sortBy: (searchParams.sortBy as "date" | "title" | "word_count") || "date",
     sortOrder: (searchParams.sortOrder as "asc" | "desc") || "desc",
     page: parseInt(searchParams.page || "1"),
-    limit: parseInt(searchParams.limit || "10"),
+    limit: parseInt(searchParams.limit || "21"),
   });
+
+  // Handle tag filtering from URL (for tag pages)
+  const tagParam = searchParams.post_tag_id;
+
+  // Effect to handle initial data loading
+  useEffect(() => {
+    if (tagParam) {
+      // If we're on a tag page, fetch filtered results
+      const customParams: { post_tag_id?: string } = {};
+      if (tagParam) customParams.post_tag_id = tagParam;
+      
+      fetchBlogs(filters, false, customParams);
+    } else {
+      // If we're on the main blogs page, show homepage data
+      setBlogs(homepageData.newPosts || []);
+      setMeta({
+        totalCount: homepageData.newPosts?.length || 0,
+        limit: filters.limit || 21,
+        hasMore: false,
+        currentPage: 1,
+      });
+    }
+  }, [tagParam, homepageData.newPosts]);
   const [meta, setMeta] = useState<InfiniteScrollMeta>({
     totalCount: homepageData.newPosts?.length || 0,
-    limit: 10,
+    limit: filters.limit || 21,
     hasMore: false,
-    offset: homepageData.newPosts?.length || 0,
+    currentPage: 1,
   });
 
   const fetchBlogs = useCallback(
-    async (newFilters: BlogFilters, isLoadMore = false) => {
+    async (newFilters: BlogFilters, isLoadMore = false, customParams?: { post_tag_id?: string }) => {
       setLoading(true);
       try {
         const params = new URLSearchParams();
+        
+        // Use current page for load more, or page 1 for initial load
+        const currentPage = isLoadMore ? meta.currentPage + 1 : 1;
+        
+        // Build params with current page
         Object.entries(newFilters).forEach(([key, value]) => {
           if (value !== undefined && value !== "") {
-            params.append(key, value.toString());
+            if (key === 'page') {
+              params.append(key, currentPage.toString());
+            } else {
+              params.append(key, value.toString());
+            }
           }
         });
 
-        // Add offset for infinite scroll
-        if (isLoadMore) {
-          params.append("offset", meta.offset.toString());
+        // Add custom parameters for tag filtering
+        if (customParams?.post_tag_id) {
+          params.append("post_tag_id", customParams.post_tag_id);
         }
 
         const response = await fetch(`/api/archive?${params.toString()}`);
@@ -108,16 +140,18 @@ export default function BlogsClient({
 
         // The archive API now returns an array directly
         const resultArray = Array.isArray(result) ? result : [];
+        const hasMore = resultArray.length === (newFilters.limit || 21);
+        
         if (isLoadMore) {
           setBlogs((prev) => [...prev, ...resultArray]);
         } else {
           setBlogs(resultArray);
         }
         setMeta({
-          totalCount: resultArray.length,
-          limit: 10,
-          hasMore: false,
-          offset: resultArray.length,
+          totalCount: isLoadMore ? meta.totalCount + resultArray.length : resultArray.length,
+          limit: newFilters.limit || 21,
+          hasMore,
+          currentPage,
         });
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -125,7 +159,7 @@ export default function BlogsClient({
         setLoading(false);
       }
     },
-    [meta.offset]
+    [meta.currentPage]
   );
 
   const handleSearch = (value: string) => {
@@ -156,7 +190,7 @@ export default function BlogsClient({
       sortBy: "date",
       sortOrder: "desc",
       page: 1,
-      limit: 10,
+      limit: 21,
     };
     setFilters(clearedFilters);
     fetchBlogs(clearedFilters);
@@ -173,11 +207,14 @@ export default function BlogsClient({
   return (
     <>
       <motion.div variants={fadeIn} className="space-y-8 mb-8">
-        {/* Featured Posts Section */}
-        <FeaturedPosts posts={homepageData.pinnedPosts || []} />
+        {/* Featured Posts Section - only show on main blogs page */}
+        {!tagParam && <FeaturedPosts posts={homepageData.topPosts || []} />}
 
-        {/* Top Posts Section */}
-        <TopPosts posts={homepageData.topPosts || []} />
+        {/* Top Posts Section - only show on main blogs page */}
+        {!tagParam && <TopPosts posts={homepageData.topPosts || []} />}
+
+        {/* Content Blocks Section - only show on main blogs page */}
+        {!tagParam && <ContentBlocks contentBlockData={homepageData.contentBlockData} />}
 
         {/* Search and Filters */}
         <div className="space-y-4">
@@ -192,7 +229,6 @@ export default function BlogsClient({
             totalCount={meta.totalCount}
           />
 
-          {/* View Mode Controls */}
           <div className="flex items-center justify-end gap-2">
             <Button
               variant={viewMode === "grid" ? "default" : "outline"}
@@ -238,6 +274,20 @@ export default function BlogsClient({
         </motion.div>
       )}
 
+      {/* Load More Button */}
+      {!loading && blogs.length > 0 && meta.hasMore && (
+        <motion.div variants={fadeIn} className="text-center py-8">
+          <Button
+            onClick={loadMore}
+            variant="outline"
+            size="lg"
+            className="px-8 py-3"
+          >
+            Load More Posts
+          </Button>
+        </motion.div>
+      )}
+
       {/* Empty State */}
       {!loading && blogs.length === 0 && (
         <motion.div variants={fadeIn} className="text-center py-12">
@@ -248,43 +298,6 @@ export default function BlogsClient({
             Clear Filters
           </Button>
         </motion.div>
-      )}
-
-      {/* Infinite Scroll Load More */}
-      {!loading && meta.hasMore && (
-        <motion.div variants={fadeIn} className="mt-8 text-center">
-          <Button
-            onClick={loadMore}
-            variant="outline"
-            size="lg"
-            className="px-8"
-          >
-            Load More Posts
-          </Button>
-        </motion.div>
-      )}
-
-      {/* Infinite Scroll Observer */}
-      {meta.hasMore && (
-        <div
-          ref={(node) => {
-            if (!node) return;
-
-            const observer = new IntersectionObserver(
-              (entries) => {
-                if (entries[0].isIntersecting && !loading) {
-                  loadMore();
-                }
-              },
-              { threshold: 0.1 }
-            );
-
-            observer.observe(node);
-
-            return () => observer.disconnect();
-          }}
-          className="h-10"
-        />
       )}
     </>
   );

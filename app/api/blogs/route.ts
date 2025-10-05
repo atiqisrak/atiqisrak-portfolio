@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
       sortBy: (searchParams.get('sortBy') as 'date' | 'title' | 'word_count') || 'date',
       sortOrder: (searchParams.get('sortOrder') as 'asc' | 'desc') || 'desc',
       page: parseInt(searchParams.get('page') || '1'),
-      limit: parseInt(searchParams.get('limit') || '10')
+      limit: parseInt(searchParams.get('limit') || '20')
     };
 
     const blogsDir = path.join(process.cwd(), 'app/api/data/blogs');

@@ -11,7 +11,7 @@ export async function getBlogsData(filters?: BlogFilters): Promise<ArchivePost[]
         }
       });
     } else {
-      params.append('limit', '10');
+      params.append('limit', '20');
     }
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/archive?${params.toString()}`, {

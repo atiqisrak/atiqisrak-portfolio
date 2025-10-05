@@ -33,7 +33,7 @@ export async function GET(
     // Transform the data to replace Aakash's info with Atiq's info
     const transformedPost = {
       ...post,
-      canonical_url: post.canonical_url?.replace('www.news.aakashg.com', 'atiqisrak.com'),
+      canonical_url: post.canonical_url?.replace('www.news.aakashg.com', 'atiqisrak.vercel.app'),
       publishedBylines: post.publishedBylines?.map((byline: any) => ({
         ...byline,
         name: byline.name === 'Aakash Gupta' ? 'Atiq Israk' : byline.name,
@@ -46,7 +46,7 @@ export async function GET(
             ...pubUser.publication,
             name: pubUser.publication.name === 'Product Growth' ? 'Atiq Israk Portfolio' : pubUser.publication.name,
             subdomain: pubUser.publication.subdomain === 'aakashgupta' ? 'atiqisrak' : pubUser.publication.subdomain,
-            custom_domain: pubUser.publication.custom_domain === 'www.news.aakashg.com' ? 'atiqisrak.com' : pubUser.publication.custom_domain,
+            custom_domain: pubUser.publication.custom_domain === 'www.news.aakashg.com' ? 'atiqisrak.vercel.app' : pubUser.publication.custom_domain,
             hero_text: pubUser.publication.hero_text?.replace('PM', 'Developer').replace('product leadership', 'full-stack development'),
             author_id: pubUser.publication.author_id,
             primary_user_id: pubUser.publication.primary_user_id,

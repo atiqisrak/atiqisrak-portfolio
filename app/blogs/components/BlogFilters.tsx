@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, X } from "lucide-react";
 import { BlogFilters as BlogFiltersType } from "@/types/blog";
+import Link from "next/link";
 
 interface BlogFiltersProps {
   filters: BlogFiltersType;
@@ -43,7 +44,7 @@ export default function BlogFilters({
       {/* Filter Toggle and Controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-xl font-semibold text-foreground">
             All Posts ({totalCount})
           </h2>
           <Button
@@ -55,6 +56,7 @@ export default function BlogFilters({
             Filters
           </Button>
         </div>
+        <Link className="text-sm text-muted-foreground hover:text-primary" href="/blogs/all-posts">View All</Link>
       </div>
 
       {/* Advanced Filters */}

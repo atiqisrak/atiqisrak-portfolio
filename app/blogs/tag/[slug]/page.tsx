@@ -1,11 +1,15 @@
-import { Home } from "lucide-react";
-import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArchivePost } from "@/types/blog";
-import BlogsClient from "./BlogsClient";
+import BlogsClient from "../../BlogsClient";
 import Footer from "@/components/Footer";
 import BlogNav from "@/components/BlogNav";
+import { Home } from "lucide-react";
+import Link from "next/link";
 
-interface BlogsPageProps {
+interface TagPageProps {
+  params: {
+    slug: string;
+  };
   searchParams: {
     search?: string;
     tags?: string;
@@ -16,7 +20,6 @@ interface BlogsPageProps {
     sortOrder?: string;
     page?: string;
     limit?: string;
-    post_tag_id?: string;
   };
 }
 
@@ -31,25 +34,36 @@ interface HomepageData {
   recommendations: any[];
 }
 
+// Tag slug to ID mapping for API calls
+const tagSlugToId: Record<string, string> = {
+  "product-management": "5c645129-c393-4ba0-a298-469c8c38cae2",
+  "getting-pm-job": "5e8b673e-d6c1-40eb-9108-e004b66dde9c",
+  "product-leadership": "fb85b3a9-b23f-478d-873a-fb0c399431bc",
+  "product-growth-podcast": "133669", // This is actually a section, but we'll handle it as a tag
+};
+
+// Tag display names
+const tagDisplayNames: Record<string, string> = {
+  "product-management": "Succeeding as a PM",
+  "getting-pm-job": "Getting a PM Job",
+  "product-leadership": "Product Leadership",
+  "product-growth-podcast": "Product Growth Podcast",
+};
+
 async function getHomepageData(): Promise<HomepageData> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const apiUrl = `${baseUrl}/api/homepage`;
-    console.log("Fetching from:", apiUrl);
     
     const response = await fetch(apiUrl, {
       cache: "no-store",
     });
-
-    console.log("Response status:", response.status);
-    console.log("Response ok:", response.ok);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch homepage data: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log("Raw API response:", data);
     return data;
   } catch (error) {
     console.error("Error fetching homepage data:", error);
@@ -66,11 +80,37 @@ async function getHomepageData(): Promise<HomepageData> {
   }
 }
 
+export async function generateMetadata({ params }: TagPageProps) {
+  const tagSlug = params.slug;
+  const tagName = tagDisplayNames[tagSlug] || tagSlug;
+  
+  return {
+    title: `${tagName} - Blog Posts | Atiq Israk`,
+    description: `Explore all blog posts about ${tagName} by Atiq Israk. Insights on product management, AI, and technology.`,
+    openGraph: {
+      title: `${tagName} - Blog Posts`,
+      description: `Explore all blog posts about ${tagName} by Atiq Israk.`,
+      type: "website",
+    },
+  };
+}
 
-export default async function BlogsPage({ searchParams }: BlogsPageProps) {
-  console.log("Starting to fetch homepage data...");
+export default async function TagPage({ params, searchParams }: TagPageProps) {
+  const tagSlug = params.slug;
+  const tagId = tagSlugToId[tagSlug];
+  
+  if (!tagId) {
+    notFound();
+  }
+
+  const tagName = tagDisplayNames[tagSlug] || tagSlug;
   const homepageData = await getHomepageData();
-  console.log("Final Homepage Data:", homepageData);
+
+  // Modify searchParams to include the tag filter
+  const modifiedSearchParams = {
+    ...searchParams,
+    post_tag_id: tagId,
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -86,20 +126,26 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
             <span>Home</span>
           </Link>
           <span>/</span>
-          <span className="text-foreground">Blogs</span>
+          <Link
+            href="/blogs"
+            className="hover:text-primary transition-colors"
+          >
+            Blogs
+          </Link>
+          <span>/</span>
+          <span className="text-foreground">{tagName}</span>
         </nav>
 
         <header className="text-center mb-12">
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
-            Blog & Insights
+            {tagName}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Explore my thoughts on product management, AI, and technology
-            through different perspectives and design approaches.
+            Explore my thoughts and insights on {tagName.toLowerCase()}
           </p>
         </header>
 
-        <BlogsClient homepageData={homepageData} searchParams={searchParams} />
+        <BlogsClient homepageData={homepageData} searchParams={modifiedSearchParams} />
       </div>
       <div className="mt-12 container">
         <Footer />
