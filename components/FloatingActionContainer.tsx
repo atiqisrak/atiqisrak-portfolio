@@ -5,15 +5,15 @@ import { Message } from "@/types/chat";
 import { generateIntelligentResponse } from "@/components/Assistant";
 import { fetchAIData } from "@/components/Assistant/AIDataFetcher";
 import { Button } from "@/components/ui/button";
-import { 
-  X, 
-  MessageCircle, 
-  Send, 
-  Minimize2, 
-  Sun, 
-  Moon, 
+import {
+  X,
+  MessageCircle,
+  Send,
+  Minimize2,
+  Sun,
+  Moon,
   Home,
-  ChevronUp
+  ChevronUp,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
@@ -216,10 +216,7 @@ const FloatingActionContainer: React.FC = () => {
           </AnimatePresence>
 
           {/* Main Toggle Button */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               size="icon"
               className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-primary to-primary/80 backdrop-blur-sm border border-primary/20 hover:from-primary/90 hover:to-primary/70"
@@ -240,9 +237,7 @@ const FloatingActionContainer: React.FC = () => {
       {isChatOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-96 h-[500px] bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col md:bottom-6 md:right-6 md:w-96 md:h-[500px] sm:bottom-4 sm:right-4 sm:w-[calc(100vw-2rem)] sm:h-[calc(100vh-8rem)] sm:max-w-sm floating-chatbot">
           {/* Header */}
-          <div
-            className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-lg bg-gradient-to-r from-primary to-primary/80 dark:from-primary dark:to-primary/80"
-          >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-lg bg-gradient-to-r from-primary to-primary/80 dark:from-primary dark:to-primary/80">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <MessageCircle className="w-4 h-4 text-white" />
@@ -257,14 +252,14 @@ const FloatingActionContainer: React.FC = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={toggleChat}
-                className="p-1 hover:bg-white/20 rounded transition-colors md:block hidden"
+                className="p-2 hover:bg-white/20 rounded transition-colors md:block hidden min-h-[44px] min-w-[44px]"
                 aria-label="Minimize chat"
               >
                 <Minimize2 className="w-4 h-4 text-white drop-shadow-sm" />
               </button>
               <button
                 onClick={() => setIsChatOpen(false)}
-                className="p-1 hover:bg-white/20 rounded transition-colors"
+                className="p-2 hover:bg-white/20 rounded transition-colors min-h-[44px] min-w-[44px]"
                 aria-label="Close chat"
               >
                 <X className="w-4 h-4 text-white drop-shadow-sm" />
@@ -307,13 +302,13 @@ const FloatingActionContainer: React.FC = () => {
               <div className="flex justify-start">
                 <div className="bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-2">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
                     <div
-                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                       style={{ animationDelay: "0.1s" }}
                     ></div>
                     <div
-                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                       style={{ animationDelay: "0.2s" }}
                     ></div>
                   </div>
@@ -341,7 +336,8 @@ const FloatingActionContainer: React.FC = () => {
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0 min-h-[44px] min-w-[44px]"
+                aria-label="Send message"
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -362,9 +358,7 @@ const FloatingActionContainer: React.FC = () => {
       {isChatOpen && (
         <div className="fixed inset-0 z-50 lg:hidden bg-white dark:bg-gray-800 flex flex-col floating-chatbot floating-chatbot-mobile">
           {/* Mobile Header */}
-          <div
-            className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-primary to-primary/80 dark:from-primary dark:to-primary/80"
-          >
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-primary to-primary/80 dark:from-primary dark:to-primary/80">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <MessageCircle className="w-4 h-4 text-white" />
@@ -378,7 +372,7 @@ const FloatingActionContainer: React.FC = () => {
             </div>
             <button
               onClick={() => setIsChatOpen(false)}
-              className="p-2 hover:bg-white/20 rounded-full transition-colors"
+              className="p-2 hover:bg-white/20 rounded-full transition-colors min-h-[44px] min-w-[44px]"
               aria-label="Close chat"
             >
               <X className="w-5 h-5 text-white drop-shadow-sm" />
@@ -420,13 +414,13 @@ const FloatingActionContainer: React.FC = () => {
               <div className="flex justify-start">
                 <div className="bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-2">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
                     <div
-                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                       style={{ animationDelay: "0.1s" }}
                     ></div>
                     <div
-                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"
                       style={{ animationDelay: "0.2s" }}
                     ></div>
                   </div>
@@ -454,7 +448,8 @@ const FloatingActionContainer: React.FC = () => {
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="px-4 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+                className="px-4 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0 min-h-[44px] min-w-[44px]"
+                aria-label="Send message"
               >
                 <Send className="w-5 h-5" />
               </button>

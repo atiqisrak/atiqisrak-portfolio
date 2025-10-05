@@ -57,35 +57,38 @@ export default function Nav() {
       textClass: `nav-text text-xs font-bold uppercase tracking-widest ${
         isActive
           ? "text-foreground"
-          : "text-slate-500 group-hover:text-foreground"
+          : "text-slate-600 group-hover:text-foreground"
       }`,
     };
   };
 
   return (
-    <header className="lg:flex lg:flex-col lg:pt-6 lg:pb-24 lg:pr-6 flex flex-col lg:gap-6 gap-4">
-      <div className="flex flex-col gap-4 lg:pr-8 xl:pr-12 mt-6 lg:mt-0 px-4 lg:px-0">
+    <header className="lg:flex lg:flex-col lg:pt-4 lg:pb-4 lg:pr-4 flex flex-col lg:gap-4 gap-4">
+      <div className="flex flex-col gap-3 lg:pr-4 xl:pr-6 mt-6 lg:mt-0 px-4 lg:px-0">
         <div className="w-full flex lg:items-center lg:justify-start">
-          <Avatar className="w-20 h-20 lg:w-28 lg:h-28 xl:w-36 xl:h-36 border-2 border-primary bg-secondary">
-            <AvatarImage src="./avatar.webp" />
-            <AvatarFallback className="w-20 h-20 lg:w-28 lg:h-28 xl:w-36 xl:h-36 rounded-full border-1 border-primary">
+          <Avatar className="w-20 h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 border-2 border-primary bg-secondary">
+            <AvatarImage
+              src="./avatar.webp"
+              alt="Atiq Israk - Product Manager and AI Specialist"
+            />
+            <AvatarFallback className="w-20 h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 rounded-full border-1 border-primary">
               AM
             </AvatarFallback>
           </Avatar>
         </div>
-        <h1 className="text-3xl lg:text-4xl xl:text-[42px] font-bold lg:text-start">
+        <h1 className="text-3xl lg:text-3xl xl:text-4xl font-bold lg:text-start">
           Hi, I&#39;m Atiq Israk 👋
         </h1>
-        <h2 className="text-lg lg:text-xl xl:text-xl lg:text-start text-primary font-semibold">
+        <h2 className="text-lg lg:text-lg xl:text-xl lg:text-start text-primary font-semibold">
           Product Manager, Ether Technologies 🚀
         </h2>
-        <div className="space-y-4 text-muted-foreground">
-          <p className="text-sm lg:text-base xl:text-lg leading-relaxed">
+        <div className="space-y-3 text-muted-foreground">
+          <p className="text-sm lg:text-sm xl:text-base leading-relaxed">
             Product leader with 6+ years of experience in tech, <br />{" "}
             specializing in building innovative digital solutions that <br />{" "}
             drive business growth.
           </p>
-          <ul className="space-y-2 text-xs lg:text-sm xl:text-base">
+          <ul className="space-y-1.5 text-xs lg:text-xs xl:text-sm">
             <li className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-primary rounded-full" />
               <span>Led development of MACH-based enterprise platforms</span>
@@ -104,7 +107,7 @@ export default function Nav() {
         </div>
       </div>
       <nav className="lg:flex hidden">
-        <ul className="flex flex-col w-max text-start gap-6 uppercase text-xs font-medium">
+        <ul className="flex flex-col w-max text-start gap-4 uppercase text-xs font-medium">
           {navItems.map((item: NavItem) => {
             const { linkClass, indicatorClass, textClass } =
               getNavItemClasses(item);
@@ -123,16 +126,18 @@ export default function Nav() {
           })}
         </ul>
       </nav>
-      <ul className="flex flex-row gap-4 lg:gap-6 mt-6 lg:mt-0 px-4 lg:px-0">
+      <div className="flex flex-row gap-3 lg:gap-4 mt-6 lg:mt-0 px-4 lg:px-0">
         <Button
           variant="outline"
           size="icon"
-          className="w-10 h-10 lg:w-11 lg:h-11"
+          className="w-10 h-10 lg:w-10 lg:h-10"
+          asChild
         >
           <a
             href="https://github.com/atiqisrak"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Atiq's GitHub profile"
           >
             <Github className="h-[1.2rem] w-[1.2rem]" />
           </a>
@@ -140,18 +145,20 @@ export default function Nav() {
         <Button
           variant="outline"
           size="icon"
-          className="w-10 h-10 lg:w-11 lg:h-11"
+          className="w-10 h-10 lg:w-10 lg:h-10"
+          asChild
         >
           <a
             href="https://linkedin.com/in/atiqisrak?ref=atiqisrak.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Atiq's LinkedIn profile"
           >
             <Linkedin className="h-[1.2rem] w-[1.2rem]" />
           </a>
         </Button>
         <ModeToggle />
-      </ul>
+      </div>
     </header>
   );
 }

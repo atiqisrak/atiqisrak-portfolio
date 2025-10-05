@@ -108,7 +108,7 @@
             "Continuous monitoring and optimization"
         ]
     },
-    "lms": {
+    "mave-lms": {
         "title": "MAVE LMS - AI-Driven Learning Platform",
         "banner": "/mave-lms.webp",
         "overview": "An innovative learning management system that leverages AI to personalize learning experiences and improve outcomes.",
