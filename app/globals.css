@@ -302,6 +302,23 @@ html {
   transition: all 0.2s ease-in-out;
 }
 
+/* Laptop screen optimizations */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .max-w-7xl {
+    max-width: 90rem; /* 1440px */
+  }
+
+  .lg\:px-8 {
+    padding-left: 1.5rem; /* 24px */
+    padding-right: 1.5rem; /* 24px */
+  }
+
+  .xl\:px-12 {
+    padding-left: 2rem; /* 32px */
+    padding-right: 2rem; /* 32px */
+  }
+}
+
 /* Mobile-specific chatbot styles */
 @media (max-width: 1024px) {
   .floating-chatbot-mobile {

@@ -1,0 +1,226 @@
+{
+    "blogs": [
+        {
+            "id": "string",
+            "slug": "string",
+            "title": "string",
+            "description": "string",
+            "excerpt": "string",
+            "keywords": [
+                "string"
+            ],
+            "author": {
+                "name": "string",
+                "bio": "string",
+                "profile_url": "string",
+                "avatar_url": "string",
+                "social_links": {
+                    "twitter": "string",
+                    "linkedin": "string",
+                    "github": "string"
+                }
+            },
+            "content": {
+                "introduction": "string",
+                "sections": [
+                    {
+                        "heading": "string",
+                        "body": "string",
+                        "lists": [
+                            {
+                                "type": "string",
+                                "items": [
+                                    "string"
+                                ]
+                            }
+                        ],
+                        "tables": [
+                            {
+                                "headers": [
+                                    "string"
+                                ],
+                                "rows": [
+                                    [
+                                        "string"
+                                    ]
+                                ]
+                            }
+                        ],
+                        "images": [
+                            {
+                                "url": "string",
+                                "alt_text": "string",
+                                "caption": "string",
+                                "width": "number",
+                                "height": "number"
+                            }
+                        ],
+                        "code_blocks": [
+                            {
+                                "language": "string",
+                                "code": "string",
+                                "filename": "string"
+                            }
+                        ],
+                        "quotes": [
+                            {
+                                "text": "string",
+                                "author": "string",
+                                "source": "string"
+                            }
+                        ]
+                    }
+                ],
+                "faqs": [
+                    {
+                        "question": "string",
+                        "answer": "string"
+                    }
+                ],
+                "cta": {
+                    "text": "string",
+                    "url": "string",
+                    "button_style": "string"
+                },
+                "related_topics": [
+                    "string"
+                ]
+            },
+            "metadata": {
+                "publish_date": "string",
+                "last_modified": "string",
+                "platform": "string",
+                "seo": {
+                    "meta_title": "string",
+                    "meta_description": "string",
+                    "canonical_url": "string",
+                    "thumbnail": {
+                        "url": "string",
+                        "alt_text": "string",
+                        "width": "number",
+                        "height": "number"
+                    },
+                    "og_image": {
+                        "url": "string",
+                        "alt_text": "string",
+                        "width": "number",
+                        "height": "number"
+                    },
+                    "twitter_card": {
+                        "type": "string",
+                        "image": "string"
+                    },
+                    "schema_markup": {
+                        "type": "string",
+                        "properties": {}
+                    },
+                    "focus_keyword": "string",
+                    "meta_robots": "string",
+                    "hreflang": [
+                        {
+                            "lang": "string",
+                            "url": "string"
+                        }
+                    ]
+                },
+                "word_count": "number",
+                "reading_time": "number",
+                "tags": [
+                    "string"
+                ],
+                "categories": [
+                    "string"
+                ],
+                "difficulty_level": "string",
+                "content_rating": "string"
+            },
+            "promotion": {
+                "featured": "boolean",
+                "promoted": "boolean",
+                "trending": "boolean",
+                "priority": "number",
+                "featured_until": "string",
+                "promotion_badges": [
+                    "string"
+                ],
+                "sponsor": {
+                    "name": "string",
+                    "logo": "string",
+                    "url": "string"
+                }
+            },
+            "analytics": {
+                "views": "number",
+                "likes": "number",
+                "shares": "number",
+                "comments": "number",
+                "engagement_score": "number",
+                "bounce_rate": "number",
+                "avg_read_time": "number"
+            },
+            "links": {
+                "internal": [
+                    {
+                        "text": "string",
+                        "url": "string",
+                        "type": "string"
+                    }
+                ],
+                "external": [
+                    {
+                        "text": "string",
+                        "url": "string",
+                        "type": "string",
+                        "nofollow": "boolean"
+                    }
+                ],
+                "related_posts": [
+                    {
+                        "id": "string",
+                        "title": "string",
+                        "url": "string"
+                    }
+                ]
+            },
+            "status": "string",
+            "published_at": "string",
+            "template": "string",
+            "version": "string",
+            "revision_history": [
+                {
+                    "version": "string",
+                    "date": "string",
+                    "changes": "string",
+                    "author": "string"
+                }
+            ],
+            "comments": {
+                "enabled": "boolean",
+                "moderation": "string",
+                "count": "number"
+            },
+            "social_sharing": {
+                "enabled": "boolean",
+                "platforms": [
+                    "string"
+                ],
+                "custom_message": "string"
+            },
+            "accessibility": {
+                "alt_text_complete": "boolean",
+                "heading_structure": "string",
+                "color_contrast": "string",
+                "screen_reader_optimized": "boolean"
+            },
+            "performance": {
+                "core_web_vitals": {
+                    "lcp": "number",
+                    "fid": "number",
+                    "cls": "number"
+                },
+                "page_speed_score": "number",
+                "optimization_status": "string"
+            }
+        }
+    ]
+}

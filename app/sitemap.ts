@@ -1,32 +1,70 @@
 import { MetadataRoute } from 'next';
+import { getBlogsData } from '@/lib/blogs';
+import projectsData from './projects/data.json';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://atiqisrak.vercel.app';
   
-  return [
+  // Get blog data for dynamic blog pages
+  const result = await getBlogsData();
+  
+  // Handle new format with pagination or old format
+  let blogs;
+  if (result && typeof result === 'object' && 'data' in result) {
+    blogs = (result as { data: any[]; pagination: any }).data;
+  } else {
+    blogs = result as any[];
+  }
+  
+  // Static pages
+  const staticPages = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
+      changeFrequency: 'weekly' as const,
+      priority: 1.0,
     },
     {
-      url: `${baseUrl}/projects`,
+      url: `${baseUrl}/blogs`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/ai`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
       url: `${baseUrl}/producthunter`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/offline`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'yearly' as const,
       priority: 0.1,
     },
   ];
+
+  // Dynamic blog pages
+  const blogPages = blogs.map((blog) => ({
+    url: `${baseUrl}/blogs/${blog.slug}`,
+    lastModified: new Date(blog.post_date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  // Dynamic project pages
+  const projectPages = Object.keys(projectsData).map((slug) => ({
+    url: `${baseUrl}/projects/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...blogPages, ...projectPages];
 }

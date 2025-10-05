@@ -1,0 +1,197 @@
+    {
+        "id": "blog_001_2025",
+        "slug": "the-rise-of-the-ai-product-manager-essential-skills-for-2025-and-beyond",
+        "title": "The Rise of the AI Product Manager: Essential Skills for 2025 and Beyond",
+        "description": "Discover the must-have skills for AI product managers in 2025, from prompt engineering to ethical AI. Learn how tools like Grok and Perplexity transform PM workflows, with insights from a Bangladesh PM's 160% revenue growth using AI chatbots.",
+        "keywords": [
+            "AI product manager",
+            "generative AI skills 2025",
+            "prompt engineering for PMs",
+            "AI in product management",
+            "Grok for product managers",
+            "Perplexity AI use cases",
+            "AI PM Bangladesh"
+        ],
+        "author": {
+            "name": "Atiq Israk",
+            "bio": "Generative AI Product Manager at Ether Technologies | Built NAVBOT & MAVE CMS AI integrations | Driving 160% revenue growth through AI in SaaS & FinTech | Dhaka, Bangladesh",
+            "profile_url": "https://bd.linkedin.com/in/atiq-israk"
+        },
+        "content": {
+            "introduction": "As generative AI reshapes industries, product managers (PMs) must evolve to lead AI-driven products. In 2025, skills like prompt engineering, ethical AI design, and leveraging tools like Grok, ChatGPT, and Perplexity are non-negotiable. Drawing from my experience building NAVBOT (a CRM chatbot boosting 27% sales) and MAVE CMS (AI-integrated platform), this guide covers the top skills AI PMs need to thrive, especially in emerging markets like Bangladesh.",
+            "sections": [
+                {
+                    "heading": "Why AI Skills Are Critical for PMs in 2025",
+                    "body": "Generative AI is no longer a buzzword—it's a game-changer. PMs must master AI to streamline roadmaps, enhance user experiences, and drive revenue. My NAVBOT project, for instance, cut response times by 35% using AI. Here's why skills matter...",
+                    "lists": [
+                        {
+                            "type": "ordered",
+                            "items": [
+                                "Prompt Engineering: Crafting precise inputs for tools like Gemini to generate PRDs.",
+                                "Ethical AI: Ensuring unbiased, transparent AI implementations.",
+                                "Data-Driven Decisions: Using Perplexity for market research in low-bandwidth regions."
+                            ]
+                        }
+                    ],
+                    "tables": [],
+                    "images": [
+                        {
+                            "url": "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                            "alt_text": "AI product manager skills infographic for 2025",
+                            "caption": "Modern AI tools transforming product management workflows",
+                            "width": 1260,
+                            "height": 750
+                        }
+                    ]
+                },
+                {
+                    "heading": "Top 5 Must-Have AI PM Skills",
+                    "body": "Based on my work scaling MAVE CMS and insights from global trends, here are the core skills for 2025...",
+                    "lists": [
+                        {
+                            "type": "unordered",
+                            "items": [
+                                "Prompt Engineering: Design prompts for Grok to brainstorm features, saving 50% ideation time.",
+                                "AI Tool Mastery: Use Perplexity for competitor analysis, ChatGPT for user stories.",
+                                "Stakeholder Communication: Translate AI capabilities for non-technical teams.",
+                                "Agile AI Integration: Embed AI in sprints, as I did for AssetIQ's RFID tracking.",
+                                "Ethical Frameworks: Address bias in AI outputs, critical for FinTech."
+                            ]
+                        }
+                    ],
+                    "tables": [
+                        {
+                            "headers": [
+                                "Skill",
+                                "Tool",
+                                "Use Case",
+                                "Impact"
+                            ],
+                            "rows": [
+                                [
+                                    "Prompt Engineering",
+                                    "Grok",
+                                    "Feature ideation",
+                                    "50% faster brainstorming"
+                                ],
+                                [
+                                    "Market Research",
+                                    "Perplexity",
+                                    "Competitor analysis",
+                                    "20% better insights"
+                                ],
+                                [
+                                    "PRD Drafting",
+                                    "ChatGPT",
+                                    "User story generation",
+                                    "30% faster drafting"
+                                ],
+                                [
+                                    "Ethical AI",
+                                    "Custom frameworks",
+                                    "Bias reduction",
+                                    "Improved trust"
+                                ]
+                            ]
+                        }
+                    ],
+                    "images": []
+                },
+                {
+                    "heading": "Case Study: AI in Action with NAVBOT",
+                    "body": "In 2022, I led NAVBOT, an AI CRM chatbot for restaurants. By integrating ChatGPT-like models, we achieved 27% sales growth and 35% faster response times. Here's how these skills applied...",
+                    "lists": [],
+                    "tables": [],
+                    "images": [
+                        {
+                            "url": "https://images.pexels.com/photos/8294568/pexels-photo-8294568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                            "alt_text": "NAVBOT AI chatbot case study for product managers",
+                            "caption": "AI chatbot implementation driving business growth",
+                            "width": 1260,
+                            "height": 750
+                        }
+                    ]
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "What is the most important AI skill for PMs in 2025?",
+                    "answer": "Prompt engineering is critical—it unlocks tools like Grok and Gemini for ideation, research, and automation, as seen in my MAVE CMS project."
+                },
+                {
+                    "question": "How can PMs in emerging markets use AI effectively?",
+                    "answer": "Leverage low-cost tools like Perplexity for research and open-source models for prototyping, as I did in Bangladesh for 160% revenue growth."
+                }
+            ],
+            "cta": {
+                "text": "Want tailored AI prompts for your PM workflow? DM me or visit my site!",
+                "url": "https://atiqisrak.vercel.app/prompt-library"
+            }
+        },
+        "metadata": {
+            "publish_date": "2025-10-07",
+            "platform": "Medium, LinkedIn, atiqisrak.vercel.app",
+            "seo": {
+                "meta_title": "Top AI Product Manager Skills for 2025: Guide by Atiq Israk",
+                "meta_description": "Master AI skills for product management in 2025 with insights from Atiq Israk, a Bangladesh PM who drove 160% revenue growth using Grok, Perplexity, and ChatGPT.",
+                "schema_markup": {
+                    "type": "Article",
+                    "properties": {
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": "The Rise of the AI Product Manager: Essential Skills for 2025 and Beyond",
+                        "author": {
+                            "@type": "Person",
+                            "name": "Atiq Israk",
+                            "url": "https://bd.linkedin.com/in/atiq-israk"
+                        },
+                        "datePublished": "2025-10-07",
+                        "image": "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Atiq Israk",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://atiqisrak.vercel.app/logo.png"
+                            }
+                        }
+                    }
+                }
+            },
+            "word_count": 1800,
+            "tags": [
+                "AI product management",
+                "generative AI",
+                "prompt engineering",
+                "Perplexity AI",
+                "Grok",
+                "ChatGPT",
+                "Bangladesh tech"
+            ]
+        },
+        "links": {
+            "internal": [
+                {
+                    "text": "MAVE CMS Project",
+                    "url": "https://atiqisrak.vercel.app/projects/mave-cms"
+                },
+                {
+                    "text": "NAVBOT Case Study",
+                    "url": "https://atiqisrak.vercel.app/projects/navbot"
+                }
+            ],
+            "external": [
+                {
+                    "text": "Perplexity AI",
+                    "url": "https://www.perplexity.ai"
+                },
+                {
+                    "text": "Grok by xAI",
+                    "url": "https://x.ai/grok"
+                }
+            ]
+        },
+        "status": "published",
+        "published_at": "2025-09-30",
+        "template": "blog_3"
+    }

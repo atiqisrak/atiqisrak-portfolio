@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3054",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "npx serve out",
     "lint": "next lint",
     "export": "next export",
     "serve": "npx serve out",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "kill": "lsof -ti:3000 | xargs kill -9"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
@@ -35,7 +36,8 @@
     "react-markdown": "^10.1.0",
     "react-syntax-highlighter": "^15.5.0",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "web-vitals": "^5.1.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.5.0",
