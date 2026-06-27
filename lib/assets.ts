@@ -5,6 +5,8 @@
 export const ASSETS = {
   avatar: "/avatar.svg",
   avatarProduction: "/avatar.webp",
+  heroCover: "/atiqisrak-cover.png",
+  heroSideCover: "/cover-center-right.png",
   ogImage: "/og-large-meik.webp",
   resume: "/AtiqIsrak_Resume.pdf",
   favicon: "/favicon.svg",

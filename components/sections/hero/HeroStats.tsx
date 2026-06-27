@@ -9,7 +9,10 @@ import {
 } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const heroStats = impactStats.slice(0, 4);
+const heroStats = [
+  impactStats.find((s) => s.label.includes("Years")) ?? impactStats[5],
+  impactStats.find((s) => s.label.includes("Products")) ?? impactStats[2],
+];
 
 type HeroStatsProps = {
   className?: string;
@@ -18,24 +21,24 @@ type HeroStatsProps = {
 export function HeroStats({ className }: HeroStatsProps) {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={staggerContainer}
-      className={cn(
-        "grid w-full max-w-sm grid-cols-2 gap-4 sm:max-w-md lg:max-w-xs",
-        className
-      )}
+      className={cn("flex flex-wrap gap-x-10 gap-y-4", className)}
     >
       {heroStats.map((stat) => (
         <motion.div
           key={stat.label}
           variants={fadeUp}
           transition={fadeUpTransition}
-          className="rounded-xl border border-ink-100 bg-ink-50 px-4 py-3"
         >
-          <p className="text-2xl font-semibold text-foreground">{stat.value}</p>
-          <p className="mt-1 text-xs leading-snug text-muted-foreground">
-            {stat.label}
+          <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            {stat.value}
+          </p>
+          <p className="mt-1 max-w-[9rem] text-sm leading-snug text-muted-foreground">
+            {stat.label.includes("Years")
+              ? "Years Of Experience"
+              : "Products Shipped"}
           </p>
         </motion.div>
       ))}

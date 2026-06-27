@@ -15,7 +15,7 @@ type HeroCTAsProps = {
 export function HeroCTAs({ className, fullWidth }: HeroCTAsProps) {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={fadeUp}
       transition={{ ...fadeUpTransition, delay: 0.2 }}

@@ -1,14 +1,23 @@
 "use client";
 
+import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import { hero } from "@/lib/content/portfolio";
-import { StatPill } from "@/components/shared/StatPill";
 import {
   fadeUp,
   fadeUpTransition,
   staggerContainer,
 } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+
+const pillStyles = [
+  { bg: "bg-[#FFD93D]", text: "text-black" },
+  { bg: "bg-[#FF6B35]", text: "text-white" },
+  { bg: "bg-[#635BFF]", text: "text-white" },
+  { bg: "bg-[#86EFAC]", text: "text-black" },
+  { bg: "bg-[#2A5D67]", text: "text-white" },
+  { bg: "bg-[#1E4D58]", text: "text-white" },
+];
 
 type HeroSkillPillsProps = {
   className?: string;
@@ -17,18 +26,42 @@ type HeroSkillPillsProps = {
 export function HeroSkillPills({ className }: HeroSkillPillsProps) {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={staggerContainer}
-      className={cn("flex flex-wrap gap-2", className)}
+      className={cn("flex flex-wrap items-center gap-2.5", className)}
       role="list"
       aria-label="Core skills"
     >
-      {hero.skillPills.map((skill) => (
-        <motion.span key={skill} variants={fadeUp} transition={fadeUpTransition}>
-          <StatPill>{skill}</StatPill>
-        </motion.span>
-      ))}
+      <motion.span variants={fadeUp} transition={fadeUpTransition}>
+        <span
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#635BFF] text-white shadow-sm"
+          aria-hidden
+        >
+          <Plus className="h-5 w-5" strokeWidth={2.5} />
+        </span>
+      </motion.span>
+      {hero.skillPills.map((skill, index) => {
+        const style = pillStyles[index % pillStyles.length];
+        return (
+          <motion.span
+            key={skill}
+            variants={fadeUp}
+            transition={fadeUpTransition}
+            role="listitem"
+          >
+            <span
+              className={cn(
+                "inline-flex min-h-[44px] items-center rounded-full px-5 py-2.5 text-sm font-medium",
+                style.bg,
+                style.text
+              )}
+            >
+              {skill}
+            </span>
+          </motion.span>
+        );
+      })}
     </motion.div>
   );
 }

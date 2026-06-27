@@ -18,6 +18,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-josefin)", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
+        playfair: ["var(--font-playfair)", "Georgia", "serif"],
       },
       colors: {
         ink: {

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Josefin_Sans } from "next/font/google";
+import { Josefin_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
@@ -19,6 +19,14 @@ const josefinSans = Josefin_Sans({
   fallback: ["system-ui", "sans-serif"],
   variable: "--font-josefin",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const viewport: Viewport = {
@@ -100,7 +108,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${josefinSans.variable}`}>
+    <html
+      lang="en"
+      className={`scroll-smooth ${josefinSans.variable} ${playfairDisplay.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Preload critical resources */}
         <link rel="preload" href="/og-large-meik.webp" as="image" />
@@ -141,7 +153,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <ActiveSectionProvider>
           <ThemeProvider
             attribute="class"

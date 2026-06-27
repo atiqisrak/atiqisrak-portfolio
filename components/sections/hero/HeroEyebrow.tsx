@@ -7,7 +7,7 @@ import { fadeUp, fadeUpTransition } from "@/lib/motion";
 export function HeroEyebrow() {
   return (
     <motion.p
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={fadeUp}
       transition={fadeUpTransition}

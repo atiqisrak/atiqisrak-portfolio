@@ -11,12 +11,11 @@ const headlineLines = hero.headline
 export function HeroHeadline() {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={staggerContainer}
-      className="space-y-2"
     >
-      <h1 className="text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+      <h1 className="font-playfair text-[2rem] font-bold leading-[1.08] tracking-tight text-foreground min-[375px]:text-[2.25rem] sm:text-[2.5rem] lg:text-[3.5rem] lg:leading-[1.05] xl:text-6xl">
         {headlineLines.map((line) => (
           <motion.span
             key={line}
@@ -28,13 +27,6 @@ export function HeroHeadline() {
           </motion.span>
         ))}
       </h1>
-      <motion.p
-        variants={fadeUp}
-        transition={{ ...fadeUpTransition, delay: 0.08 }}
-        className="max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-      >
-        {hero.subhead}
-      </motion.p>
     </motion.div>
   );
 }

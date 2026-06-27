@@ -12,7 +12,7 @@ type HeroProofLineProps = {
 export function HeroProofLine({ className }: HeroProofLineProps) {
   return (
     <motion.p
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={fadeUp}
       transition={{ ...fadeUpTransition, delay: 0.12 }}
