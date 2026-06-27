@@ -35,8 +35,6 @@ const nextConfig = {
     optimizePackageImports: [
       "framer-motion",
       "lucide-react",
-      "chart.js",
-      "react-chartjs-2",
     ],
     esmExternals: "loose",
   },

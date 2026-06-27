@@ -1,6 +1,5 @@
 import BlogNav from "@/components/BlogNav";
 import Footer from "@/components/Footer";
-import ProductHunterClient from "@/components/ProductHunterClient";
 import {
   ProductHunterHero,
   ProductHunterServices,
@@ -129,7 +128,6 @@ export default function ProductHunter() {
       />
       <BlogNav />
       <div className="min-h-screen bg-background">
-        <ProductHunterClient />
         <main className="relative">
           <ProductHunterHero />
           <ProductHunterServices />

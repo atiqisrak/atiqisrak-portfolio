@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
@@ -10,15 +10,26 @@ import WebVitalsTracker from "@/components/WebVitalsTracker";
 import { ActiveSectionProvider } from "@/contexts/ActiveSectionContext";
 import FloatingActionContainer from "@/components/FloatingActionContainer";
 import { generateOrganizationSchema } from "@/lib/structured-data";
+import { personSchema, seo } from "@/lib/content/portfolio";
 
-const inter = Inter({
+const josefinSans = Josefin_Sans({
   subsets: ["latin"],
   display: "swap",
   preload: true,
-  fallback: ["system-ui", "arial"],
-  variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
+  fallback: ["system-ui", "sans-serif"],
+  variable: "--font-josefin",
+  weight: ["300", "400", "500", "600", "700"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://atiqisrak.vercel.app"),
@@ -26,27 +37,18 @@ export const metadata: Metadata = {
     canonical: "https://atiqisrak.vercel.app",
   },
   title: {
-    default: "Atiq Israk - Product Manager & AI Specialist",
+    default: seo.title,
     template: "%s | Atiq Israk",
   },
-  description:
-    "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software. Leading innovative projects across healthcare, e-commerce, and SaaS platforms.",
+  description: seo.description,
   keywords: [
     "Atiq Israk",
     "Product Manager",
-    "AI Specialist",
+    "AI Builder",
+    "Product Leader",
     "Digital Transformation",
     "Enterprise Software",
-    "Healthcare Technology",
-    "E-commerce",
-    "SaaS",
-    "Machine Learning",
-    "Product Strategy",
-    "User Experience",
-    "Software Engineering",
-    "React",
-    "Next.js",
-    "TypeScript",
+    "Growth Operator",
   ],
   authors: [{ name: "Atiq Israk" }],
   creator: "Atiq Israk",
@@ -66,25 +68,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Atiq Israk Portfolio",
     type: "website",
-    title: "Atiq Israk - Product Manager & AI Specialist",
-    description:
-      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
+    title: seo.ogTitle,
+    description: seo.description,
     url: "https://atiqisrak.vercel.app",
     images: [
       {
         url: "/og-large-meik.webp",
         width: 1200,
         height: 630,
-        alt: "Atiq Israk - Product Manager & AI Specialist",
+        alt: seo.title,
         type: "image/webp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atiq Israk - Product Manager & AI Specialist",
-    description:
-      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
+    title: seo.ogTitle,
+    description: seo.description,
     creator: "@atiqisrak",
     site: "@atiqisrak",
     images: ["/og-large-meik.webp"],
@@ -100,19 +100,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`scroll-smooth ${josefinSans.variable}`}>
       <head>
         {/* Preload critical resources */}
         <link rel="preload" href="/og-large-meik.webp" as="image" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
 
         {/* favicon */}
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -136,34 +131,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Atiq Israk",
-              jobTitle: "Product Manager & AI Specialist",
-              description:
-                "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
-              url: "https://atiqisrak.vercel.app",
-              image: "https://atiqisrak.vercel.app/avatar.webp",
-              sameAs: [
-                "https://github.com/atiqisrak",
-                "https://linkedin.com/in/atiq-israk",
-                "https://twitter.com/atiqisrak",
-              ],
-              knowsAbout: [
-                "Product Management",
-                "Artificial Intelligence",
-                "Digital Transformation",
-                "Enterprise Software",
-                "Healthcare Technology",
-                "E-commerce",
-                "SaaS",
-                "Machine Learning",
-                "Product Strategy",
-                "User Experience",
-                "Software Engineering",
-              ],
-            }),
+            __html: JSON.stringify(personSchema),
           }}
         />
         <script
@@ -173,11 +141,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} ${inter.variable}`}>
+      <body className="font-sans antialiased">
         <ActiveSectionProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >

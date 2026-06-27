@@ -145,7 +145,8 @@ export function generateOrganizationSchema(): OrganizationSchema {
     name: "Atiq Israk Portfolio",
     url: "https://atiqisrak.vercel.app",
     logo: "https://atiqisrak.vercel.app/avatar.webp",
-    description: "Professional portfolio showcasing AI-driven product management expertise and innovative software solutions.",
+    description:
+      "Product leader who turns AI and operational rigor into business growth. 15+ products shipped across B2B and B2C.",
     founder: {
       "@type": "Person",
       name: "Atiq Israk",
@@ -154,11 +155,12 @@ export function generateOrganizationSchema(): OrganizationSchema {
       "https://github.com/atiqisrak",
       "https://linkedin.com/in/atiq-israk",
       "https://twitter.com/atiqisrak",
+      "https://producthunt.com/@atiqisrak",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Professional Inquiry",
-      email: "contact@atiqisrak.com",
+      email: "atiqisrak@gmail.com",
     },
   };
 }

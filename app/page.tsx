@@ -1,53 +1,75 @@
-import Nav from "@/components/Nav";
+import { Header } from "@/components/layout/Header";
 import LazySection from "@/components/LazySection";
+import { Hero } from "@/components/sections/hero";
+import { personSchema, seo } from "@/lib/content/portfolio";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-// Dynamic imports for all components to reduce initial bundle size
-const ExpCard = dynamic(() => import("@/components/ExpCards"), {
-  loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
-  ssr: false,
-});
+const Approach = dynamic(
+  () => import("@/components/sections/approach").then((m) => m.Approach),
+  { loading: () => <SectionSkeleton /> }
+);
 
-const About = dynamic(() => import("@/components/About"), {
-  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
-  ssr: false,
-});
+const ImpactStats = dynamic(
+  () => import("@/components/sections/impact").then((m) => m.ImpactStats),
+  { loading: () => <SectionSkeleton /> }
+);
 
-const Contact = dynamic(() => import("@/components/Contact"), {
-  loading: () => <div className="animate-pulse bg-muted h-32 rounded-lg" />,
-  ssr: false,
-});
+const Experience = dynamic(
+  () => import("@/components/sections/experience").then((m) => m.Experience),
+  { loading: () => <SectionSkeleton height="h-64" /> }
+);
+
+const Projects = dynamic(
+  () => import("@/components/sections/projects").then((m) => m.Projects),
+  { loading: () => <SectionSkeleton height="h-96" /> }
+);
+
+const CaseStudies = dynamic(
+  () => import("@/components/sections/case-studies").then((m) => m.CaseStudies),
+  { loading: () => <SectionSkeleton /> }
+);
+
+const Funding = dynamic(
+  () => import("@/components/sections/funding").then((m) => m.Funding),
+  { loading: () => <SectionSkeleton /> }
+);
+
+const Testimonials = dynamic(
+  () => import("@/components/sections/testimonials").then((m) => m.Testimonials),
+  { loading: () => <SectionSkeleton height="h-64" /> }
+);
+
+const FAQ = dynamic(
+  () => import("@/components/sections/faq").then((m) => m.FAQ),
+  { loading: () => <SectionSkeleton /> }
+);
+
+const Contact = dynamic(
+  () => import("@/components/sections/contact").then((m) => m.Contact),
+  { loading: () => <SectionSkeleton /> }
+);
 
 const Footer = dynamic(() => import("@/components/Footer"), {
   loading: () => <div className="animate-pulse bg-muted h-16 rounded-lg" />,
   ssr: false,
 });
 
-const HomeClient = dynamic(() => import("@/components/HomeClient"), {
-  ssr: false,
-});
-
-const Projects = dynamic(() => import("@/components/Projects"), {
-  loading: () => <div className="animate-pulse bg-muted h-96 rounded-lg" />,
-  ssr: false,
-});
+function SectionSkeleton({ height = "h-48" }: { height?: string }) {
+  return <div className={`animate-pulse rounded-lg bg-muted ${height}`} />;
+}
 
 export const metadata: Metadata = {
-  title: "Atiq Israk - Product Manager & AI Specialist",
-  description:
-    "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software. Leading innovative projects across healthcare, e-commerce, and SaaS platforms.",
+  title: seo.title,
+  description: seo.description,
   keywords: [
+    "Atiq Israk",
     "Product Manager",
-    "AI Specialist",
+    "AI Builder",
+    "Product Leader",
     "Digital Transformation",
     "Enterprise Software",
-    "Healthcare Technology",
-    "E-commerce",
-    "SaaS",
-    "Machine Learning",
-    "Product Strategy",
-    "User Experience",
+    "Growth Operator",
   ],
   authors: [{ name: "Atiq Israk" }],
   creator: "Atiq Israk",
@@ -68,105 +90,74 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://atiqisrak.vercel.app",
     siteName: "Atiq Israk Portfolio",
-    title: "Atiq Israk - Product Manager & AI Specialist",
-    description:
-      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
+    title: seo.ogTitle,
+    description: seo.description,
     images: [
       {
         url: "https://atiqisrak.vercel.app/og-large-meik.webp",
         width: 1200,
         height: 630,
-        alt: "Atiq Israk - Product Manager & AI Specialist",
+        alt: seo.title,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atiq Israk - Product Manager & AI Specialist",
-    description:
-      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
+    title: seo.ogTitle,
+    description: seo.description,
     images: ["https://atiqisrak.vercel.app/og-large-meik.webp"],
     creator: "@atiqisrak",
   },
   alternates: {
     canonical: "https://atiqisrak.vercel.app",
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
 };
 
 export default function Home() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Atiq Israk",
-    jobTitle: "Product Manager & AI Specialist",
-    description:
-      "Experienced Product Manager specializing in AI-driven solutions, digital transformation, and enterprise software.",
-    url: "https://atiqisrak.vercel.app",
-    image: "https://atiqisrak.vercel.app/og-large-meik.webp",
-    sameAs: [
-      "https://linkedin.com/in/atiq-israk",
-      "https://github.com/atiqisrak",
-    ],
-    knowsAbout: [
-      "Product Management",
-      "Artificial Intelligence",
-      "Digital Transformation",
-      "Enterprise Software",
-      "Healthcare Technology",
-      "E-commerce",
-      "SaaS",
-      "Machine Learning",
-      "Product Strategy",
-      "User Experience",
-    ],
-    hasOccupation: {
-      "@type": "Occupation",
-      name: "Product Manager",
-      description:
-        "Leading innovative projects across healthcare, e-commerce, and SaaS platforms",
-    },
-    alumniOf: {
-      "@type": "Organization",
-      name: "Various Technology Companies",
-    },
-  };
-
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <div className="relative min-h-screen bg-background">
-        <HomeClient />
-        <div className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-12 xl:px-12 lg:pt-0 xl:pt-0">
-          <div className="lg:flex lg:justify-between lg:gap-4 xl:gap-6">
-            <div className="lg:w-1/2 lg:fixed lg:top-0 lg:h-auto lg:pr-2 xl:pr-4 lg:pt-0">
-              <Nav />
-            </div>
-            <main className="lg:w-1/2 lg:ml-[50%] flex flex-col pt-2 lg:pt-16 gap-2 lg:gap-4">
-              <LazySection>
-                <About />
-              </LazySection>
-              <LazySection>
-                <ExpCard />
-              </LazySection>
-              <LazySection>
-                <Projects />
-              </LazySection>
-              <LazySection>
-                <Contact />
-              </LazySection>
-              <LazySection>
-                <Footer />
-              </LazySection>
-            </main>
+      <Header />
+      <main>
+        <Hero />
+        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 lg:py-16">
+          <div className="flex flex-col gap-16 lg:gap-24">
+            <LazySection>
+              <Approach />
+            </LazySection>
+            <LazySection>
+              <ImpactStats />
+            </LazySection>
+            <LazySection>
+              <Experience />
+            </LazySection>
+            <LazySection>
+              <Projects />
+            </LazySection>
+            <LazySection>
+              <CaseStudies />
+            </LazySection>
+            <LazySection>
+              <Funding />
+            </LazySection>
+            <LazySection>
+              <Testimonials />
+            </LazySection>
+            <LazySection>
+              <FAQ />
+            </LazySection>
+            <LazySection>
+              <Contact />
+            </LazySection>
           </div>
         </div>
-      </div>
+      </main>
+      <LazySection>
+        <Footer />
+      </LazySection>
     </>
   );
 }

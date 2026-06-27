@@ -4,8 +4,8 @@
     "description": "Product Manager and Software Engineer, founder, and Quality nerd specializing in Web3, decentralized applications, and modern web development.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#3b82f6",
+    "background_color": "#ffffff",
+    "theme_color": "#0a0a0a",
     "orientation": "portrait-primary",
     "icons": [
         {

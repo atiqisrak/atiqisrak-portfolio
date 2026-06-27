@@ -3,27 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  /* .mouse-aura {
-    @apply fixed inset-0 pointer-events-none z-[1];
-    background-image: radial-gradient(
-      circle at var(--mouse-x) var(--mouse-y),
-      rgba(252, 109, 38, 0.4) 0%,
-      rgba(252, 109, 38, 0.2) 25%,
-      rgba(252, 109, 38, 0.1) 40%,
-      rgba(252, 109, 38, 0) 60%
-    );
-    transition: background-image 0.1s ease-out;
-
-    @media (hover: none) and (pointer: coarse) {
-      background-image: radial-gradient(
-        circle at top left,
-        rgba(252, 109, 38, 0.3) 0%,
-        rgba(252, 109, 38, 0.15) 30%,
-        rgba(252, 109, 38, 0) 50%
-      );
-    } 
-  } */
-
   .prose {
     @apply text-gray-900 dark:text-gray-100;
   }
@@ -74,47 +53,47 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 50% 10%;
+    --foreground: 0 0% 5%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 50% 10%;
+    --card-foreground: 0 0% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 50% 10%;
-    --primary: 18.2 94.5% 57.3%; /* #FC6D26 */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 252.5 85.7% 48.8%; /* #5017F2 */
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 18.2 94.5% 57.3%; /* #FC6D26 */
+    --popover-foreground: 0 0% 5%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 0% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 20%;
     --radius: 1rem;
   }
 
   .dark {
-    --background: 222.2 50% 10%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 50% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 50% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 18.2 94.5% 57.3%; /* #FC6D26 */
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 252.5 85.7% 48.8%; /* #5017F2 */
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 18.2 94.5% 57.3%; /* #FC6D26 */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 0% 70%;
+    --destructive-foreground: 0 0% 5%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 80%;
   }
 }
 
@@ -124,7 +103,31 @@
   }
   body {
     @apply bg-background text-foreground;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.site-header {
+  padding-top: env(safe-area-inset-top);
 }
 h1,
 h2,
@@ -141,7 +144,7 @@ p:hover {
   margin-right: 1rem;
   height: 1px;
   width: 2rem;
-  background-color: #64748b;
+  background-color: #a3a3a3;
   transition: all 0.15s ease-in-out;
 }
 
@@ -149,24 +152,24 @@ p:hover {
 .group:focus-within .nav-indicator {
   width: 4rem;
   height: 2px;
-  background-color: #0d1426;
+  background-color: #0a0a0a;
 }
 
 .nav-indicator.active,
 .group .nav-indicator.active {
   width: 4rem;
   height: 2px;
-  background-color: #0d1426;
+  background-color: #0a0a0a;
 }
 
 .dark .group:hover .nav-indicator,
 .dark .group:focus-within .nav-indicator {
-  background-color: #e2e8f0;
+  background-color: #fafafa;
 }
 
 .dark .nav-indicator.active,
 .dark .group .nav-indicator.active {
-  background-color: #e2e8f0;
+  background-color: #fafafa;
 }
 
 /* Ensure proper sticky behavior */
@@ -217,45 +220,47 @@ html {
   min-height: 100vh;
 }
 
-/* Ensure mouse aura works across all content */
-/* .mouse-aura {
-  will-change: background-image;
-  z-index: 1;
-} */
-
 /* Global scrollbar styling */
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #fafafa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #fc6d26;
+  background-color: #e5e5e5;
   border-radius: 6px;
-  border: 2px solid transparent;
+  border: 2px solid #fafafa;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #e55a1a;
+  background-color: #d4d4d4;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  border-color: #0a0a0a;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #525252;
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #fc6d26 transparent;
+  scrollbar-color: #e5e5e5 #fafafa;
 }
 
-/* Badge styling for light theme */
-.bg-secondary {
-  color: white !important;
-}
-
-.bg-secondary:hover {
-  color: white !important;
+.dark * {
+  scrollbar-color: #404040 #0a0a0a;
 }
 
 /* Floating Chatbot Styles */
