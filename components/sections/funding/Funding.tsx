@@ -1,19 +1,54 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { fundingNarrative } from "@/lib/content/portfolio";
-import { SectionShell } from "@/components/shared/SectionShell";
+import { HighlightedText } from "@/components/shared/HighlightedText";
+import { MotionReveal } from "@/components/shared/MotionReveal";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionMotion } from "@/components/shared/SectionMotion";
+import { SectionShell } from "@/components/shared/SectionShell";
+import { BrushStroke } from "@/components/shared/decorations";
+import { pulseOnce } from "@/lib/motion";
 
 export function Funding() {
   return (
     <SectionShell ariaLabel="Funding and traction">
       <SectionMotion>
-        <div className="rounded-2xl border border-ink-100 bg-ink-50 px-6 py-8 lg:px-10 lg:py-10">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            Funding & traction
-          </p>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground lg:text-lg">
-            {fundingNarrative}
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Funding & traction"
+          title={
+            <>
+              Capital behind the{" "}
+              <HighlightedText accentKey="ikigaiCerulean" strong>
+                products
+              </HighlightedText>
+            </>
+          }
+          showWavyLine
+          align="offset"
+        />
+        <MotionReveal className="relative mt-16 max-w-2xl lg:mt-20">
+          <BrushStroke accent="ikigaiHorizon" className="mb-4" />
+          <motion.p
+            className="font-playfair text-lg leading-relaxed text-foreground lg:text-xl"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={pulseOnce}
+          >
+            Products I&apos;ve led have collectively raised external{" "}
+            <HighlightedText accentKey="sun" strong>
+              funding
+            </HighlightedText>{" "}
+            across pre-seed and seed rounds — and I&apos;ve owned the{" "}
+            <HighlightedText accentKey="matcha" strong>
+              metrics
+            </HighlightedText>
+            ,{" "}
+            <HighlightedText accentKey="sakura">narrative</HighlightedText>,
+            and demos that investors saw.
+          </motion.p>
+        </MotionReveal>
       </SectionMotion>
     </SectionShell>
   );

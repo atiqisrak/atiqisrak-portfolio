@@ -123,8 +123,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 lg:py-16">
-          <div className="flex flex-col gap-16 lg:gap-24">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:px-8 lg:py-24 xl:px-12">
+          <div className="flex flex-col gap-24 lg:gap-36">
             <LazySection>
               <Approach />
             </LazySection>

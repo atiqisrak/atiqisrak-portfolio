@@ -8,16 +8,8 @@ import {
   fadeUpTransition,
   staggerContainer,
 } from "@/lib/motion";
+import { getAccent } from "@/lib/design/accent-colors";
 import { cn } from "@/lib/utils";
-
-const pillStyles = [
-  { bg: "bg-[#FFD93D]", text: "text-black" },
-  { bg: "bg-[#FF6B35]", text: "text-white" },
-  { bg: "bg-[#635BFF]", text: "text-white" },
-  { bg: "bg-[#86EFAC]", text: "text-black" },
-  { bg: "bg-[#2A5D67]", text: "text-white" },
-  { bg: "bg-[#1E4D58]", text: "text-white" },
-];
 
 type HeroSkillPillsProps = {
   className?: string;
@@ -42,7 +34,7 @@ export function HeroSkillPills({ className }: HeroSkillPillsProps) {
         </span>
       </motion.span>
       {hero.skillPills.map((skill, index) => {
-        const style = pillStyles[index % pillStyles.length];
+        const style = getAccent(index);
         return (
           <motion.span
             key={skill}
