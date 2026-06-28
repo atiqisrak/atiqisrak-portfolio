@@ -70,10 +70,10 @@ export function IkigaiDiagram() {
                   cy={q.cy}
                   r={95}
                   fill={color.hex}
-                  fillOpacity={isActive ? 0.28 : 0.12}
+                  fillOpacity={isActive ? 0.32 : 0.2}
                   stroke={color.hex}
                   strokeWidth={1.5}
-                  strokeOpacity={isActive ? 0.9 : 0.5}
+                  strokeOpacity={isActive ? 0.95 : 0.65}
                   initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
                   viewport={{ once: true }}

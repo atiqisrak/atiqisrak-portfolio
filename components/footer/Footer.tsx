@@ -1,13 +1,16 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Noto_Sans_JP } from "next/font/google";
-import { IkigaiDiagram } from "./IkigaiDiagram";
 import { KaizenStrip } from "./KaizenStrip";
-import { FooterCTA } from "./FooterCTA";
+import { FooterCTA, FooterBackToTop } from "./FooterCTA";
 import { FooterLinks } from "./FooterLinks";
+import { FooterParallaxScene } from "./FooterParallaxScene";
+import { FooterParticleCanvas } from "./FooterParticleCanvas";
 import { HighlightedText } from "@/components/shared/HighlightedText";
-import { AnimatedWavyLine, FloatingOrb } from "@/components/shared/decorations";
+import { AnimatedWavyLine } from "@/components/shared/decorations";
 import { ikigaiFooterTheme } from "@/lib/design/accent-colors";
+import { useMotionPrefs } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const notoSansJp = Noto_Sans_JP({
@@ -17,37 +20,53 @@ const notoSansJp = Noto_Sans_JP({
 });
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const { prefersReducedMotion } = useMotionPrefs();
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsFooterVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <footer
+      ref={footerRef}
       className={cn(
-        "relative w-full overflow-hidden border-t",
-        ikigaiFooterTheme.background,
-        ikigaiFooterTheme.backgroundDark,
+        "relative flex min-h-[min(920px,100svh)] w-full flex-col overflow-hidden border-t",
         ikigaiFooterTheme.border
       )}
       role="contentinfo"
       aria-label="Site footer"
     >
-      <FloatingOrb
-        accent="ikigaiSky"
-        className="left-[8%] top-[12%] h-44 w-44"
-      />
-      <FloatingOrb
-        accent="ikigaiHorizon"
-        className="right-[12%] top-[35%] h-36 w-36"
-      />
-      <FloatingOrb
-        accent="ikigaiCerulean"
-        className="bottom-[18%] left-[38%] h-40 w-40"
+      <FooterParallaxScene footerRef={footerRef} />
+
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[min(520px,58%)] bg-gradient-to-b from-white/0 via-white/50 to-white dark:from-transparent dark:via-[#0f1a24]/60 dark:to-[#0f1a24]"
+        aria-hidden
       />
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 py-32 sm:px-6 md:px-8 lg:py-48 xl:px-12">
+      {!prefersReducedMotion ? (
+        <FooterParticleCanvas
+          containerRef={footerRef}
+          active={isFooterVisible}
+          className="z-[30]"
+        />
+      ) : null}
+
+      <div className="relative z-10 mx-auto mt-auto w-full max-w-7xl px-4 pb-6 pt-10 sm:px-6 sm:pb-8 md:px-8 lg:py-16 xl:px-12">
         <div className="mb-6 text-center">
           <p
             lang="ja"
@@ -81,19 +100,17 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 max-w-xl">
-          <IkigaiDiagram />
-        </div>
-
-        <div className="my-24 flex justify-center text-[#2E6B9E] dark:text-[#6BB8E8]">
+        <div className="my-10 flex justify-center text-[#2E6B9E] dark:text-[#6BB8E8]">
           <AnimatedWavyLine />
         </div>
 
         <KaizenStrip kanjiClassName={notoSansJp.className} />
 
-        <FooterCTA onBackToTop={scrollToTop} />
+        <FooterCTA />
 
-        <div className={cn("border-t py-12", ikigaiFooterTheme.border)}>
+        <FooterBackToTop onBackToTop={scrollToTop} />
+
+        <div className={cn("border-t pt-8", ikigaiFooterTheme.border)}>
           <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
             <FooterLinks />
             <div

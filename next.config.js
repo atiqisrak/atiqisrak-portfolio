@@ -22,6 +22,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "videos.pexels.com",
+        pathname: "/video-files/**",
+      },
+      {
+        protocol: "https",
         hostname: "**",
       },
     ],

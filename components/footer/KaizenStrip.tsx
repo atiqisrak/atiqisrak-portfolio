@@ -36,7 +36,7 @@ export function KaizenStrip({ kanjiClassName }: KaizenStripProps) {
         <HighlightedText accentKey="ikigaiCerulean">Kaizen</HighlightedText> —
         compound the gains
       </p>
-      <p className="mb-8 text-sm text-[#2E6B9E]/70 dark:text-[#B8DFF5]/70">
+      <p className="mb-8 text-sm text-[#1a4a6e]/80 dark:text-[#B8DFF5]/85">
         <HighlightedText accentKey="ikigaiSky" strong>
           1% better
         </HighlightedText>
