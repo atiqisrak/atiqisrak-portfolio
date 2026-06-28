@@ -13,7 +13,7 @@ import { fadeUp, fadeUpTransition, staggerContainer } from "@/lib/motion";
 export function Experience() {
   return (
     <>
-      <SectionShell id="experience" ariaLabel="Experience">
+      <SectionShell id="experience" ariaLabel="Experience" decorated decorationVariant="left">
         <SectionHeading
           eyebrow="Experience"
           title={
@@ -61,7 +61,7 @@ export function Experience() {
           <ExperienceResumeLink />
         </div>
       </SectionShell>
-      <SectionBreather accent="ikigaiHorizon" />
+      <SectionBreather />
     </>
   );
 }

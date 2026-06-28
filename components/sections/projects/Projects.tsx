@@ -21,7 +21,7 @@ const companyOrder: Company[] = ["chromatics", "ether", "navana"];
 
 export function Projects() {
   return (
-    <SectionShell id="projects" ariaLabel="Product portfolio">
+    <SectionShell id="projects" ariaLabel="Product portfolio" decorated decorationVariant="right">
       <SectionHeading
         eyebrow="Portfolio"
         title={

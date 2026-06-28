@@ -8,15 +8,17 @@ import { HeroSkillPills } from "./HeroSkillPills";
 import { HeroSideImage } from "./HeroSideImage";
 import { HeroStats } from "./HeroStats";
 import { HeroWavyLine } from "./HeroDecorations";
+import { HeroBackground } from "./HeroBackground";
 
 export function Hero() {
   return (
     <section
       id="home"
-      className="scroll-mt-16 overflow-x-hidden border-b border-ink-100 px-4 pb-12 pt-4 sm:px-6 md:px-8 md:pt-5 lg:pb-12 lg:pt-6 xl:px-12 xl:pt-8"
+      className="relative scroll-mt-16 overflow-x-hidden border-b border-ink-100 px-4 pb-12 pt-4 sm:px-6 md:px-8 md:pt-5 lg:pb-12 lg:pt-6 xl:px-12 xl:pt-8"
       aria-label="Introduction"
     >
-      <div className="mx-auto max-w-7xl">
+      <HeroBackground />
+      <div className="relative z-10 mx-auto max-w-7xl">
         {/* Mobile & tablet */}
         <div className="flex flex-col gap-7 sm:gap-8 lg:hidden">
           <div className="space-y-4">

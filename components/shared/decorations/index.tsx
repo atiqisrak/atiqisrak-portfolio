@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useId, useRef } from "react";
 import type { JapaneseAccentKey } from "@/lib/design/accent-colors";
 import { getJapaneseAccent } from "@/lib/design/accent-colors";
 import { fadeUp, useMotionPrefs } from "@/lib/motion";
@@ -240,6 +240,126 @@ export function BrushStroke({ className, accent = "sun" }: BrushStrokeProps) {
         strokeWidth="8"
         strokeLinecap="round"
         opacity="0.35"
+      />
+    </svg>
+  );
+}
+
+type DotGridProps = {
+  className?: string;
+  dotSize?: number;
+  gap?: number;
+  opacity?: number;
+};
+
+export function DotGrid({
+  className,
+  dotSize = 1.5,
+  gap = 24,
+  opacity = 0.35,
+}: DotGridProps) {
+  const patternId = useId().replace(/:/g, "");
+
+  return (
+    <svg
+      aria-hidden
+      className={cn("pointer-events-none absolute inset-0 h-full w-full", className)}
+    >
+      <defs>
+        <pattern
+          id={patternId}
+          width={gap}
+          height={gap}
+          patternUnits="userSpaceOnUse"
+        >
+          <circle
+            cx={gap / 2}
+            cy={gap / 2}
+            r={dotSize}
+            className="fill-foreground"
+            opacity={opacity}
+          />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#${patternId})`} />
+    </svg>
+  );
+}
+
+export function RingOutline({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 80 80"
+      fill="none"
+      aria-hidden
+      className={cn("h-20 w-20", className)}
+    >
+      <circle
+        cx="40"
+        cy="40"
+        r="36"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeDasharray="8 6"
+      />
+    </svg>
+  );
+}
+
+export function CrossMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      aria-hidden
+      className={cn("h-8 w-8", className)}
+    >
+      <path
+        d="M16 4V28M4 16H28"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function DiamondOutline({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden
+      className={cn("h-12 w-12", className)}
+    >
+      <rect
+        x="8"
+        y="8"
+        width="32"
+        height="32"
+        rx="2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        transform="rotate(45 24 24)"
+      />
+    </svg>
+  );
+}
+
+export function DashedArc({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 120 60"
+      fill="none"
+      aria-hidden
+      className={cn("h-16 w-32", className)}
+    >
+      <path
+        d="M8 52C30 12 90 12 112 52"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeDasharray="6 5"
       />
     </svg>
   );

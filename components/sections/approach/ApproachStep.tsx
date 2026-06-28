@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import type { ApproachStep as ApproachStepType } from "@/lib/content/portfolio";
 import { AccentPill } from "@/components/shared/AccentPill";
 import { HighlightedText } from "@/components/shared/HighlightedText";
+import { RingOutline, Sparkle } from "@/components/shared/decorations";
+import { getSectionAccent } from "@/lib/design/accent-colors";
 import { hoverScale } from "@/lib/motion";
 
 const titleHighlights: Record<string, string> = {
@@ -75,8 +77,16 @@ function renderDescription(
 }
 
 export function ApproachStep({ step, colorIndex = 0 }: ApproachStepProps) {
+  const accent = getSectionAccent("approach", colorIndex);
+
   return (
-    <div className="h-full p-6">
+    <div className="relative h-full overflow-hidden p-6">
+      <span className="pointer-events-none absolute -right-4 -top-4 opacity-[0.12]" style={{ color: accent.hex }}>
+        <RingOutline className="h-24 w-24" />
+      </span>
+      <span className="pointer-events-none absolute bottom-4 right-4 opacity-20" style={{ color: accent.hex }}>
+        <Sparkle className="h-4 w-4" />
+      </span>
       <motion.div whileHover={hoverScale}>
         <AccentPill size="sm" colorIndex={colorIndex}>
           {step.number}

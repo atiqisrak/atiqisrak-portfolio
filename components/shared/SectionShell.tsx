@@ -1,3 +1,6 @@
+"use client";
+
+import { SectionBackdrop } from "@/components/shared/SectionBackdrop";
 import { cn } from "@/lib/utils";
 
 type SectionShellProps = {
@@ -7,6 +10,8 @@ type SectionShellProps = {
   ariaLabel?: string;
   divided?: boolean;
   spacious?: boolean;
+  decorated?: boolean;
+  decorationVariant?: "default" | "left" | "right" | "center";
 };
 
 export function SectionShell({
@@ -16,12 +21,14 @@ export function SectionShell({
   ariaLabel,
   divided = true,
   spacious = false,
+  decorated = false,
+  decorationVariant = "default",
 }: SectionShellProps) {
   return (
     <section
       id={id}
       className={cn(
-        "scroll-mt-16",
+        "relative isolate scroll-mt-16",
         divided &&
           cn(
             "border-b border-ink-100 last:border-b-0",
@@ -32,7 +39,8 @@ export function SectionShell({
       )}
       aria-label={ariaLabel}
     >
-      {children}
+      {decorated ? <SectionBackdrop variant={decorationVariant} /> : null}
+      <div className="relative z-[1]">{children}</div>
     </section>
   );
 }

@@ -16,7 +16,7 @@ const sun = getJapaneseAccent("sun");
 
 export function Contact() {
   return (
-    <SectionShell id="contact" ariaLabel="Contact" divided={false} spacious>
+    <SectionShell id="contact" ariaLabel="Contact" divided={false} spacious decorated decorationVariant="center">
       <SectionMotion>
         <SectionHeading
           title={

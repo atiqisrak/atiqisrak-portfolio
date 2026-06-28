@@ -13,7 +13,7 @@ import { fadeUp, fadeUpTransition, staggerContainer } from "@/lib/motion";
 
 export function CaseStudies() {
   return (
-    <SectionShell id="case-studies" ariaLabel="Case studies">
+    <SectionShell id="case-studies" ariaLabel="Case studies" decorated decorationVariant="center">
       <SectionHeading
         eyebrow="Case studies"
         title={

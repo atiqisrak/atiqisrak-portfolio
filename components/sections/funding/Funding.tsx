@@ -12,7 +12,7 @@ import { pulseOnce } from "@/lib/motion";
 
 export function Funding() {
   return (
-    <SectionShell ariaLabel="Funding and traction">
+    <SectionShell ariaLabel="Funding and traction" decorated decorationVariant="right">
       <SectionMotion>
         <SectionHeading
           eyebrow="Funding & traction"

@@ -6,7 +6,6 @@ import { HighlightedText } from "@/components/shared/HighlightedText";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionShell } from "@/components/shared/SectionShell";
 import { StatCount, StatLabel } from "@/components/shared/StatCount";
-import { FloatingOrb } from "@/components/shared/decorations";
 import { fadeUp, fadeUpTransition, staggerContainer } from "@/lib/motion";
 
 const labelHighlights: Record<string, React.ReactNode> = {
@@ -54,7 +53,7 @@ const labelHighlights: Record<string, React.ReactNode> = {
 
 export function ImpactStats() {
   return (
-    <SectionShell id="impact" ariaLabel="Impact by the numbers" spacious>
+    <SectionShell id="impact" ariaLabel="Impact by the numbers" spacious decorated decorationVariant="right">
       <SectionHeading
         eyebrow="Impact"
         title={
@@ -68,10 +67,6 @@ export function ImpactStats() {
         showWavyLine
       />
       <div className="relative mt-16 lg:mt-20">
-        <FloatingOrb
-          accent="ikigaiHorizon"
-          className="right-0 top-0 hidden h-48 w-48 lg:block"
-        />
         <motion.div
           initial="hidden"
           whileInView="visible"

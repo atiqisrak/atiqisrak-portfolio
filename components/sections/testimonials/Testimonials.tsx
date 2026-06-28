@@ -12,7 +12,7 @@ const sakura = getJapaneseAccent("sakura");
 
 export function Testimonials() {
   return (
-    <SectionShell ariaLabel="Testimonials">
+    <SectionShell ariaLabel="Testimonials" decorated decorationVariant="left">
       <SectionHeading
         eyebrow="Testimonials"
         title={

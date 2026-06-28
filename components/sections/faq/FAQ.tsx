@@ -34,7 +34,7 @@ export function FAQ() {
   );
 
   return (
-    <SectionShell ariaLabel="Frequently asked questions">
+    <SectionShell ariaLabel="Frequently asked questions" decorated decorationVariant="right">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
