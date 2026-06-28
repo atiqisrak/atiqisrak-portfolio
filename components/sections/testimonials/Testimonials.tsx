@@ -44,13 +44,13 @@ export function Testimonials() {
             className="group relative rounded-2xl border border-ink-100 p-6 transition-colors hover:bg-[#F4A7B9]/10 dark:hover:bg-[#F4A7B9]/5"
           >
             <span
-              className="pointer-events-none absolute left-4 top-2 font-playfair text-5xl leading-none opacity-20"
+              className="pointer-events-none absolute right-5 top-4 font-playfair text-4xl leading-none opacity-[0.12] sm:right-6 sm:top-5 sm:text-5xl"
               style={{ color: sakura.hex }}
               aria-hidden
             >
               &ldquo;
             </span>
-            <p className="relative font-playfair text-base leading-relaxed text-foreground">
+            <p className="relative pr-6 font-playfair text-base leading-relaxed text-foreground sm:pr-8">
               {index === 0 ? (
                 <>
                   Atiq has a rare instinct for the{" "}

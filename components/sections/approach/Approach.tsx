@@ -10,13 +10,12 @@ import { MotionReveal } from "@/components/shared/MotionReveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionShell } from "@/components/shared/SectionShell";
 import { BrushStroke, Squiggle } from "@/components/shared/decorations";
-import { ApproachConnector } from "@/components/shared/SectionBreather";
 import { ApproachStep } from "./ApproachStep";
 import { fadeUp, fadeUpTransition, staggerContainer } from "@/lib/motion";
 
 export function Approach() {
   return (
-    <SectionShell id="about" ariaLabel="Approach" spacious decorated decorationVariant="left">
+    <SectionShell id="about" ariaLabel="Approach" spacious decorated decorationVariant="right">
       <SectionHeading
         title={
           <>
@@ -25,7 +24,7 @@ export function Approach() {
               roadmaps
             </HighlightedText>
             . I manage{" "}
-            <HighlightedText colorIndex={1} accentKey="matcha" strong>
+            <HighlightedText colorIndex={1} accentKey="matcha" strong variant="marker">
               outcomes
             </HighlightedText>
             .
@@ -65,9 +64,7 @@ export function Approach() {
       <div className="mt-10">
         <Squiggle />
       </div>
-      <div className="relative mt-10">
-        <ApproachConnector />
-        <motion.ol
+      <motion.ol
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
@@ -81,8 +78,7 @@ export function Approach() {
             </HoverCard>
           </motion.li>
         ))}
-        </motion.ol>
-      </div>
+      </motion.ol>
     </SectionShell>
   );
 }

@@ -17,7 +17,7 @@ const sun = getJapaneseAccent("sun");
 export function Contact() {
   return (
     <SectionShell id="contact" ariaLabel="Contact" divided={false} spacious decorated decorationVariant="center">
-      <SectionMotion>
+      <SectionMotion className="mx-auto flex max-w-2xl flex-col items-center text-center">
         <SectionHeading
           title={
             <>
@@ -30,9 +30,9 @@ export function Contact() {
           }
           showWavyLine
           titleSize="xl"
-          align="offset"
+          align="center"
         />
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground lg:mt-8 lg:text-lg">
+        <p className="mt-6 text-base leading-relaxed text-muted-foreground lg:mt-8 lg:text-lg">
           I&apos;m open to product leadership roles where the goal is{" "}
           <HighlightedText accentKey="matcha" strong>
             growth
@@ -47,7 +47,7 @@ export function Contact() {
           </HighlightedText>
           .
         </p>
-        <div className="mt-10 flex flex-wrap gap-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           {contactLinks.map((link, index) => {
             const accent =
               index % 3 === 0 ? sun : index % 3 === 1 ? ikigaiCerulean : sakura;

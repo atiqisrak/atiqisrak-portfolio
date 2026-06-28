@@ -34,10 +34,9 @@ const shapeLayouts: Record<
   ],
   left: [
     { shape: "ring", className: "left-4 top-6 text-foreground/20 lg:left-8" },
-    { shape: "cross", className: "left-12 bottom-16 text-foreground/15 hidden sm:block" },
-    { shape: "arc", className: "left-2 top-1/2 text-foreground/20" },
-    { shape: "diamond", className: "left-8 bottom-8 text-foreground/12 hidden md:block" },
-    { shape: "sparkle", className: "left-1/4 bottom-8 text-foreground/25 hidden lg:block" },
+    { shape: "sparkle", className: "left-1/4 top-1/3 text-foreground/20 hidden md:block" },
+    { shape: "arc", className: "left-2 top-8 text-foreground/15 hidden lg:block" },
+    { shape: "sparkle", className: "left-8 bottom-12 text-foreground/20 hidden lg:block" },
   ],
   right: [
     { shape: "ring", className: "right-4 top-10 text-foreground/20 lg:right-10" },
@@ -48,10 +47,8 @@ const shapeLayouts: Record<
   ],
   center: [
     { shape: "ring", className: "left-1/2 top-4 -translate-x-1/2 text-foreground/15" },
-    { shape: "cross", className: "left-8 bottom-10 text-foreground/12 hidden md:block" },
     { shape: "sparkle", className: "left-1/4 top-1/3 text-foreground/20 hidden md:block" },
     { shape: "sparkle", className: "right-1/4 bottom-1/4 text-foreground/20 hidden md:block" },
-    { shape: "diamond", className: "right-8 top-1/2 text-foreground/15 hidden lg:block" },
     { shape: "arc", className: "bottom-6 left-1/2 h-12 w-24 -translate-x-1/2 text-foreground/15 hidden lg:block" },
   ],
 };

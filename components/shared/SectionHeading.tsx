@@ -7,7 +7,7 @@ type SectionHeadingProps = {
   className?: string;
   showWavyLine?: boolean;
   titleSize?: "lg" | "xl";
-  align?: "left" | "offset";
+  align?: "left" | "offset" | "center";
 };
 
 export function SectionHeading({
@@ -23,6 +23,7 @@ export function SectionHeading({
       className={cn(
         "space-y-3",
         align === "offset" && "lg:pl-16 xl:pl-24",
+        align === "center" && "text-center",
         className
       )}
     >
@@ -42,7 +43,9 @@ export function SectionHeading({
         >
           {title}
         </h2>
-        {showWavyLine ? <WavyLine /> : null}
+        {showWavyLine ? (
+          <WavyLine className={align === "center" ? "mx-auto" : undefined} />
+        ) : null}
       </div>
     </div>
   );
