@@ -1,14 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fundingNarrative } from "@/lib/content/portfolio";
+import {
+  fundingRounds,
+  fundingTraction,
+} from "@/lib/content/portfolio";
 import { HighlightedText } from "@/components/shared/HighlightedText";
 import { MotionReveal } from "@/components/shared/MotionReveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionMotion } from "@/components/shared/SectionMotion";
 import { SectionShell } from "@/components/shared/SectionShell";
+import { StatCount, StatLabel } from "@/components/shared/StatCount";
 import { BrushStroke } from "@/components/shared/decorations";
-import { pulseOnce } from "@/lib/motion";
+import { fadeUp, fadeUpTransition, pulseOnce, staggerContainer } from "@/lib/motion";
+import { FundingRoundCard } from "./FundingRoundCard";
 
 export function Funding() {
   return (
@@ -48,6 +53,38 @@ export function Funding() {
             <HighlightedText accentKey="sakura">narrative</HighlightedText>,
             and demos that investors saw.
           </motion.p>
+        </MotionReveal>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={staggerContainer}
+          className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-6"
+        >
+          {fundingRounds.map((round, index) => (
+            <motion.div
+              key={round.product}
+              variants={fadeUp}
+              transition={fadeUpTransition}
+            >
+              <FundingRoundCard round={round} colorIndex={index} />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <MotionReveal className="mt-14 lg:mt-16" delay={0.1}>
+          <p className="text-[0.55rem] font-medium uppercase tracking-[0.18em] text-foreground sm:text-xs sm:tracking-[0.2em]">
+            Commercial traction
+          </p>
+          <div className="mt-6 grid gap-8 sm:grid-cols-3">
+            {fundingTraction.map((stat, index) => (
+              <div key={stat.label}>
+                <StatCount value={stat.value} colorIndex={index} />
+                <StatLabel>{stat.label}</StatLabel>
+              </div>
+            ))}
+          </div>
         </MotionReveal>
       </SectionMotion>
     </SectionShell>

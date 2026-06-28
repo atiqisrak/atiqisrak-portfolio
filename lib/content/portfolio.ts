@@ -62,6 +62,20 @@ export type FAQItem = {
   answer: string;
 };
 
+export type FundingRound = {
+  product: string;
+  productSlug?: string;
+  round: "Pre-seed" | "Seed";
+  amount: string;
+  investor: string;
+  role: string;
+};
+
+export type FundingTractionStat = {
+  value: string;
+  label: string;
+};
+
 export type HeroContent = {
   eyebrow: string;
   headline: string;
@@ -505,6 +519,55 @@ export const seo = {
 
 export const fundingNarrative =
   "Products I've led have collectively raised external funding across pre-seed and seed rounds — and I've owned the metrics, narrative, and demos that investors saw.";
+
+export const fundingRounds: FundingRound[] = [
+  {
+    product: "Bento",
+    productSlug: "bento",
+    round: "Pre-seed",
+    amount: "$500K",
+    investor: "Confidential",
+    role: "Built the product narrative, metrics, and demo",
+  },
+  {
+    product: "AssetIQ",
+    productSlug: "assetiq",
+    round: "Seed",
+    amount: "$1.2M",
+    investor: "The Federal",
+    role: "Led the product roadmap shown to investors",
+  },
+  {
+    product: "Aisha",
+    productSlug: "aisha",
+    round: "Seed",
+    amount: "$1.5M",
+    investor: "Confidential",
+    role: "Owned the growth + retention story in the data room",
+  },
+  {
+    product: "Sumo",
+    productSlug: "sumo",
+    round: "Seed",
+    amount: "$800K",
+    investor: "The Lounge Pvt.",
+    role: "Deployment proof + enterprise pipeline",
+  },
+  {
+    product: "Luca",
+    productSlug: "luca",
+    round: "Pre-seed",
+    amount: "$300K",
+    investor: "Caterpillar Inc.",
+    role: "Positioning vs. Cloudinary + technical narrative",
+  },
+];
+
+export const fundingTraction: FundingTractionStat[] = [
+  { value: "1,000+", label: "Restaurants running Neoshift" },
+  { value: "1M+", label: "Consumer downloads (Aisha)" },
+  { value: "17 Enterprise", label: "Campus, factory & telco deployments (Sumo)" },
+];
 
 export type CaseStudy = {
   slug: string;
